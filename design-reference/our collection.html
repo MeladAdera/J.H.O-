@@ -1,0 +1,1185 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>J.H.O ATELIER &amp; LAB // Specimen Archive Collection</title>
+<!-- Tailwind CSS CDN with forms and container-queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for High Fashion Typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Inter:wght@200;300;400;500;600&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            atelier: {
+              black: '#08080a',
+              deep: '#0d0d10',
+              charcoal: '#141418',
+              surface: '#1b1b22',
+              hairline: 'rgba(255, 255, 255, 0.08)',
+              hairlineStrong: 'rgba(255, 255, 255, 0.16)',
+              muted: '#7e7e8e',
+              chalk: '#f5f5f7',
+              pink: '#ff7597',
+              pinkSoft: '#ffb6c7',
+              pinkGlow: 'rgba(255, 117, 151, 0.18)'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Inter"', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace']
+          },
+          transitionTimingFunction: {
+            'atelier': 'cubic-bezier(0.19, 1, 0.22, 1)'
+          }
+        }
+      }
+    }
+  </script>
+<!-- Core Layout Styles -->
+<style data-purpose="layout">
+    body {
+      background-color: #08080a;
+      color: #f5f5f7;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Subtle fine grain texture */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Stage visibility system */
+    .journey-stage {
+      transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .stage-hidden {
+      display: none !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .stage-active {
+      display: flex !important;
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .text-vertical {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    /* Hairline glass backdrop */
+    .atelier-glass {
+      background: rgba(10, 10, 13, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .atelier-glass-card {
+      background: rgba(17, 17, 22, 0.7);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    /* Fullscreen split-panel smooth expansion */
+    .split-panel {
+      transition: width 0.9s cubic-bezier(0.19, 1, 0.22, 1),
+                  flex 0.9s cubic-bezier(0.19, 1, 0.22, 1),
+                  opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1),
+                  filter 0.6s ease;
+      will-change: width, flex, transform;
+    }
+    
+    .panel-expanded {
+      width: 100% !important;
+      flex: 1 0 100% !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+
+    .panel-collapsed {
+      width: 0% !important;
+      flex: 0 0 0% !important;
+      opacity: 0 !important;
+      overflow: hidden !important;
+      pointer-events: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+    }
+
+    .specimen-img {
+      transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
+    }
+    .split-panel:hover .specimen-img {
+      transform: scale(1.045);
+    }
+
+    /* Sleek circular button hover */
+    .circle-reveal-btn {
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .split-panel:hover .circle-reveal-btn {
+      background-color: #ff7597;
+      color: #08080a;
+      border-color: #ff7597;
+      transform: scale(1.08);
+    }
+
+    /* Staggered card animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.75s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+  </style>
+</head>
+<body class="bg-atelier-black text-atelier-chalk min-h-screen flex flex-col justify-between selection:bg-atelier-pink selection:text-atelier-black">
+<!-- Subtle 35mm grain overlay -->
+<div aria-hidden="true" class="film-grain"></div>
+<!-- BEGIN: MainHeader -->
+<header class="fixed top-0 left-0 right-0 z-50 atelier-glass px-4 md:px-8 py-3.5" data-purpose="atelier-header">
+<div class="max-w-[1840px] mx-auto flex items-center justify-between gap-4">
+<!-- Brand & Emblem -->
+<div class="flex items-center gap-3.5">
+<a class="group flex items-center gap-3.5 focus:outline-none" href="#" id="brandLogoLink">
+<img alt="J.H.O Atelier &amp; Lab Emblem" class="w-8 h-8 rounded-full object-cover border border-atelier-pink/40 group-hover:border-atelier-pink transition duration-300 shadow-[0_0_12px_rgba(255,117,151,0.25)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiWZf51oiI2JKQ4RPk004ZtSBEvy5V0s8n9jhiYAh3UzNgfPOlb50RKSK-beHOS9Ww4n1UcxzpVsr1SIZK_x0oxpIzZ4yEb0BZL1R3GeWmEa-rAt_zmoAWxkooLXDDb7s-JoSginjmManj7AVQ21Hhe6aUFL6cIWVaapc3hIWsQdBluzNRg9dp1mUw3Wg3JUQHBuA4bqH7JOKyrAGemENvkhJTPiF8mzhVva--IWQzHuPf9o-thkab6sK9us-rMtS9oQ">
+<div class="flex flex-col">
+<span class="font-serif tracking-[0.24em] text-sm md:text-base uppercase font-medium text-atelier-chalk group-hover:text-atelier-pinkSoft transition">J.H.O Atelier &amp; Lab</span>
+<span class="font-mono text-[9px] text-atelier-muted tracking-widest uppercase">Paris // Tokyo • Museum Specimen Archive</span>
+</div>
+</a>
+</div>
+<!-- Live Journey Breadcrumbs -->
+<nav aria-label="Archive Breadcrumbs" class="hidden md:flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-atelier-muted border border-white/10 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md" data-purpose="breadcrumbs-nav">
+<button class="hover:text-atelier-pink transition focus:outline-none" id="bcStage1">01 ARCHIVE</button>
+<span class="text-white/20">//</span>
+<button class="hover:text-atelier-pink transition focus:outline-none disabled:opacity-40 disabled:hover:text-atelier-muted" id="bcStage2">
+          02 GENDER: <span class="text-atelier-chalk font-semibold" id="bcGenderVal">MEN</span>
+</button>
+<span class="text-white/20">//</span>
+<button class="hover:text-atelier-pink transition focus:outline-none disabled:opacity-40 disabled:hover:text-atelier-muted" disabled="" id="bcStage3">
+          03 SEASON: <span class="text-atelier-chalk font-semibold" id="bcSeasonVal">UNSELECTED</span>
+</button>
+</nav>
+<!-- Archive Controls -->
+<div class="flex items-center gap-3">
+<span class="hidden lg:inline-block font-mono text-[9px] text-atelier-pink tracking-[0.2em] px-3 py-1 rounded-full border border-atelier-pink/30 bg-atelier-pinkGlow">
+          ARCHIVE 2026 // BESPOKE
+        </span>
+<button class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-white/20 hover:border-atelier-pink hover:text-atelier-pink transition duration-300 bg-white/5 active:scale-95 focus:outline-none" id="resetJourneyBtn" title="Restart Lookbook Journey">
+<span>RESET</span>
+<span class="text-atelier-pink">↺</span>
+</button>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 w-full pt-[60px] flex flex-col justify-center relative min-h-screen">
+<!-- ========================================================================= -->
+<!-- STAGE 1: GENDER SELECTION (Editorial Museum Archive Aesthetic) -->
+<!-- ========================================================================= -->
+<!-- BEGIN: Stage1Gender -->
+<section class="journey-stage w-full h-[calc(100vh-60px)] flex flex-col md:flex-row relative overflow-hidden stage-hidden" data-purpose="gender-split-selection" id="stage1">
+<!-- Central Floating Index Pill -->
+<div class="absolute top-5 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center">
+<div class="flex items-center gap-2 font-mono text-[9px] tracking-[0.3em] uppercase bg-black/85 px-4 py-1.5 rounded-full border border-white/10 text-atelier-muted backdrop-blur-md shadow-2xl">
+<span class="w-1.5 h-1.5 rounded-full bg-atelier-pink animate-pulse"></span>
+<span>Phase 01 // Exhibition Gender Axis</span>
+</div>
+</div>
+<!-- LEFT PANEL: WOMEN -->
+<div class="split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group border-b md:border-b-0 md:border-r border-white/10 bg-atelier-deep panel-collapsed" data-gender="WOMEN" data-purpose="panel-gender-women" id="panelWomen">
+<!-- Visual Specimen Layer -->
+<div class="absolute inset-0 overflow-hidden">
+<img alt="Atelier Women Specimen Silhouette" class="specimen-img w-full h-full object-cover object-top filter brightness-[0.88] contrast-[1.04] group-hover:brightness-100 group-hover:contrast-100 transition duration-1000 ease-atelier" src="https://lh3.googleusercontent.com/aida/AEtjO1XmRMA6abOlj8gxjwQbN6FFn3cdPmww9KjSSlUKZcuMSGa5SqkmuqIkjiSjfW4QqgIwv1Z4Yj4JbzD-NLPdkQlzsAfzRskZxsOpOwhSWsMy6aXnxBKD22vpOencSmxmdSaQlYkpUnsKT775GWHRoCr6XbYXlKlvSO1nNL1nKRnaqLodPDTf1YxL_7TI_tVpz_0-VfkT9orZBzaHH69KOdfLCiGwsplX0UqTjOuNVJMQ7JDid11TGIAnCs0">
+<div class="absolute inset-0 bg-gradient-to-t from-atelier-black via-atelier-black/45 to-atelier-black/20 opacity-85 group-hover:opacity-60 transition duration-700"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-atelier-pink/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 mix-blend-color-dodge transition duration-700"></div>
+</div>
+<!-- Specimen Technical Index Stamp -->
+<div class="absolute top-7 left-7 z-20 font-mono text-[9px] tracking-[0.25em] text-atelier-muted uppercase flex items-center gap-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-atelier-pink"></span>
+<span class="text-white/70">[ SPECIMEN 01 // ARCHITECTURAL SILHOUETTE ]</span>
+</div>
+<!-- Vertical Typographical Coordinates (Desktop) -->
+<div class="hidden lg:block absolute left-8 bottom-32 z-20 pointer-events-none">
+<p class="text-vertical font-mono text-[9px] tracking-[0.45em] text-white/35 uppercase">
+            STRUCTURAL FLUIDITY • COUTURE ARCHITECTURE • 48.8566° N
+          </p>
+</div>
+<!-- Panel Text / Action Content -->
+<div class="absolute bottom-8 left-6 md:left-14 right-6 md:right-14 z-20 flex items-end justify-between transition duration-500">
+<div class="max-w-md transform group-hover:-translate-y-1 transition duration-500">
+<span class="font-mono text-[10px] tracking-[0.3em] text-atelier-pink uppercase block mb-1.5">Division Alpha • Paris Studio</span>
+<h2 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-light tracking-wide text-atelier-chalk mb-3 group-hover:text-white transition duration-300">
+              WOMEN
+            </h2>
+<p class="text-atelier-muted text-xs sm:text-sm tracking-wide font-light leading-relaxed line-clamp-2 md:line-clamp-none">
+              Architectural draping, pleated couture organza accents, and sculpted outerwear engineered for timeless silhouettes.
+            </p>
+</div>
+<!-- Sleek Circular Arrow Button -->
+<div class="circle-reveal-btn w-12 h-12 rounded-full border border-white/25 flex items-center justify-center text-atelier-chalk bg-black/40 backdrop-blur-md shrink-0 ml-4 group-hover:shadow-[0_0_20px_rgba(255,117,151,0.4)]">
+<svg class="w-4 h-4 transform -rotate-45 group-hover:rotate-0 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- RIGHT PANEL: MEN -->
+<div class="split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group bg-atelier-deep panel-expanded" data-gender="MEN" data-purpose="panel-gender-men" id="panelMen">
+<!-- Visual Specimen Layer -->
+<div class="absolute inset-0 overflow-hidden">
+<img alt="Atelier Men Heavyweight Boxy Tailoring" class="specimen-img w-full h-full object-cover object-top filter brightness-[0.88] contrast-[1.04] group-hover:brightness-100 group-hover:contrast-100 transition duration-1000 ease-atelier" src="https://lh3.googleusercontent.com/aida/AEtjO1VrLl2ZbESs3rUiMK38emI45WPymLpmPdfir7GoXp8RcdOCOLFr9PtnMM5TQVIc_SQzduZwOJNInt8POr4ls58MoaMwVZtPZ2P7xdS_3CGWCeNi14Ot2LIP73KO_QJjY66hMhIMYPJ7r947HThkMnyFOBCl80Ir1qXPhLWjBYNm9iL9d3iYTVDE0dJQ5MRVLVAbhxZTAp8b3shEzU0x-7sxENJkBg_hTrxD2wCgNa-MMoGMsXVQp64wWg">
+<div class="absolute inset-0 bg-gradient-to-t from-atelier-black via-atelier-black/45 to-atelier-black/20 opacity-85 group-hover:opacity-60 transition duration-700"></div>
+<div class="absolute inset-0 bg-gradient-to-l from-atelier-pink/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 mix-blend-color-dodge transition duration-700"></div>
+</div>
+<!-- Specimen Technical Index Stamp -->
+<div class="absolute top-7 left-7 z-20 font-mono text-[9px] tracking-[0.25em] text-atelier-muted uppercase flex items-center gap-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-white/60"></span>
+<span class="text-white/70">[ SPECIMEN 02 // GEOMETRIC MONOLITH ]</span>
+</div>
+<!-- Vertical Typographical Coordinates (Desktop) -->
+<div class="hidden lg:block absolute left-8 bottom-32 z-20 pointer-events-none">
+<p class="text-vertical font-mono text-[9px] tracking-[0.45em] text-white/35 uppercase">
+            TAILORED PROPORTION • MINIMALIST CUT • 35.6762° N
+          </p>
+</div>
+<!-- Panel Text / Action Content -->
+<div class="absolute bottom-8 left-6 md:left-14 right-6 md:right-14 z-20 flex items-end justify-between transition duration-500">
+<div class="max-w-md transform group-hover:-translate-y-1 transition duration-500">
+<span class="font-mono text-[10px] tracking-[0.3em] text-atelier-pink uppercase block mb-1.5">Division Beta • Tokyo Lab</span>
+<h2 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-light tracking-wide text-atelier-chalk mb-3 group-hover:text-white transition duration-300">
+              MEN
+            </h2>
+<p class="text-atelier-muted text-xs sm:text-sm tracking-wide font-light leading-relaxed line-clamp-2 md:line-clamp-none">
+              Boxy tailored monolith cuts, 480GSM loopback weaves, minimalist gallery coats, and anatomical razor-sharp shoulder lines.
+            </p>
+</div>
+<!-- Sleek Circular Arrow Button -->
+<div class="circle-reveal-btn w-12 h-12 rounded-full border border-white/25 flex items-center justify-center text-atelier-chalk bg-black/40 backdrop-blur-md shrink-0 ml-4 group-hover:shadow-[0_0_20px_rgba(255,117,151,0.4)]">
+<svg class="w-4 h-4 transform -rotate-45 group-hover:rotate-0 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Stage1Gender -->
+<!-- ========================================================================= -->
+<!-- STAGE 2: SEASON SELECTION (SUMMER / WINTER SPLIT EXPANSION) -->
+<!-- ========================================================================= -->
+<!-- BEGIN: Stage2Season -->
+<section class="journey-stage w-full h-[calc(100vh-60px)] flex flex-col md:flex-row relative overflow-hidden stage-active" data-purpose="season-split-selection" id="stage2">
+<!-- Top Indicator -->
+<div class="absolute top-5 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center">
+<div class="flex items-center gap-2 font-mono text-[9px] tracking-[0.3em] uppercase bg-black/85 px-4 py-1.5 rounded-full border border-white/10 text-atelier-muted backdrop-blur-md shadow-2xl">
+<span class="w-1.5 h-1.5 rounded-full bg-atelier-pink"></span>
+<span>Phase 02 // Climate Edition Selection</span>
+</div>
+</div>
+<!-- SUMMER CARD -->
+<div class="split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group border-b md:border-b-0 md:border-r border-white/10 bg-atelier-deep" data-purpose="panel-season-summer" data-season="SUMMER" id="panelSummer">
+<div class="absolute inset-0 overflow-hidden">
+<img alt="Summer Collection Linen &amp; Sunlit Studio Tee" class="specimen-img w-full h-full object-cover object-center filter brightness-90 group-hover:brightness-100 transition duration-1000 ease-atelier" src="https://lh3.googleusercontent.com/aida/AEtjO1VblFa0tyxaXz9yOh0IViNttNOy5Rb2o6Ie5m7ghv_0nRnecyykVtrZbXo8bGU_pUNiQIPzxOO5J2J4VEr7n32d97xTN0Lzi86iERoWIXFM2XGCyj5Vz_yeiSXQ6b4PfKC7i2LjxNXFWwi8ZEEQys9594RuntriiTQCi0T_0agy4OczQ3omZ1Uao2bzvRwGZ2MLUm9y1xUCTC_1a0SEoL6hPRJFwYYWoNfKoZvYRWjK-9YUm8GARNF0QCE">
+<div class="absolute inset-0 bg-gradient-to-t from-atelier-black via-atelier-black/40 to-transparent opacity-85 group-hover:opacity-60 transition duration-700"></div>
+<div class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 mix-blend-soft-light transition duration-700"></div>
+</div>
+<!-- Badge -->
+<div class="absolute top-7 left-7 z-20 flex items-center gap-2 font-mono text-[9px] tracking-[0.25em] text-atelier-chalk uppercase bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+<span>SEASON 01 // SUMMER</span>
+</div>
+<div class="absolute bottom-8 left-6 md:left-14 right-6 md:right-14 z-20 flex items-end justify-between transition duration-500">
+<div class="max-w-md transform group-hover:-translate-y-1 transition duration-500">
+<span class="font-mono text-[10px] tracking-[0.25em] text-amber-200/90 uppercase block mb-1.5">Solar Weaves • 240–280GSM</span>
+<h2 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-light tracking-wide text-atelier-chalk mb-3 group-hover:text-white transition duration-300">
+              SUMMER
+            </h2>
+<p class="text-atelier-muted text-xs sm:text-sm tracking-wide font-light leading-relaxed line-clamp-2 md:line-clamp-none">
+              Airy linen-blend &amp; combed cotton weaves. Breathable relaxed silhouettes finished with micro tone-on-tone embroidery.
+            </p>
+</div>
+<div class="circle-reveal-btn w-12 h-12 rounded-full border border-white/25 flex items-center justify-center text-atelier-chalk bg-black/40 backdrop-blur-md shrink-0 ml-4 group-hover:shadow-[0_0_20px_rgba(255,117,151,0.4)]">
+<svg class="w-4 h-4 transform -rotate-45 group-hover:rotate-0 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- WINTER CARD -->
+<div class="split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group bg-atelier-deep" data-purpose="panel-season-winter" data-season="WINTER" id="panelWinter">
+<div class="absolute inset-0 overflow-hidden">
+<img alt="Winter Collection Architectural Heavyweight Hoodie" class="specimen-img w-full h-full object-cover object-center filter brightness-90 group-hover:brightness-100 transition duration-1000 ease-atelier" src="https://lh3.googleusercontent.com/aida/AEtjO1W9An0nKFzke672KhDolSa-6R1x696fZuH9m9idOY42PGnsmFCTeA6YOI2Ap9u8jS7MXX1LN6pzykZkDU_kYYeRDj3D6ciS8958D2maaiLhh5VARNBBQz2hpl_viajv5soeLK-iW0PbfBgaZOC8_SL9ZtwSGxEW7r06MHd5M1m1fxBPxgCwVU07_wq7iDVwmLE5dttCz15M0hSdPiFGgt8FBHZd7aAVZUswh9JVwQio051eZVdo5wv2YTg">
+<div class="absolute inset-0 bg-gradient-to-t from-atelier-black via-atelier-black/40 to-transparent opacity-85 group-hover:opacity-60 transition duration-700"></div>
+<div class="absolute inset-0 bg-atelier-pink/15 opacity-0 group-hover:opacity-100 mix-blend-color-dodge transition duration-700"></div>
+</div>
+<!-- Badge -->
+<div class="absolute top-7 left-7 z-20 flex items-center gap-2 font-mono text-[9px] tracking-[0.25em] text-atelier-chalk uppercase bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+<span class="w-1.5 h-1.5 rounded-full bg-atelier-pink"></span>
+<span>SEASON 02 // WINTER</span>
+</div>
+<div class="absolute bottom-8 left-6 md:left-14 right-6 md:right-14 z-20 flex items-end justify-between transition duration-500">
+<div class="max-w-md transform group-hover:-translate-y-1 transition duration-500">
+<span class="font-mono text-[10px] tracking-[0.25em] text-atelier-pinkSoft uppercase block mb-1.5">Loopback Fleece • 480GSM Heavyweight</span>
+<h2 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-light tracking-wide text-atelier-chalk mb-3 group-hover:text-white transition duration-300">
+              WINTER
+            </h2>
+<p class="text-atelier-muted text-xs sm:text-sm tracking-wide font-light leading-relaxed line-clamp-2 md:line-clamp-none">
+              Sculptural French Terry fleece and double-knit outerwear built for structural shelter, cocoon hoods, and tonal script.
+            </p>
+</div>
+<div class="circle-reveal-btn w-12 h-12 rounded-full border border-white/25 flex items-center justify-center text-atelier-chalk bg-black/40 backdrop-blur-md shrink-0 ml-4 group-hover:shadow-[0_0_20px_rgba(255,117,151,0.4)]">
+<svg class="w-4 h-4 transform -rotate-45 group-hover:rotate-0 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Stage2Season -->
+<!-- ========================================================================= -->
+<!-- STAGE 3: PRODUCT COLLECTION LOOKBOOK -->
+<!-- ========================================================================= -->
+<!-- BEGIN: Stage3Lookbook -->
+<section class="journey-stage w-full min-h-screen py-10 px-4 md:px-12 flex-col max-w-[1840px] mx-auto stage-hidden" data-purpose="collection-lookbook-catalog" id="stage3">
+<!-- Lookbook Header Banner -->
+<div class="border-b border-white/10 pb-8 pt-4 mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6" data-purpose="lookbook-controls-header">
+<div>
+<div class="flex items-center gap-3 mb-2.5 font-mono text-xs uppercase tracking-widest text-atelier-pink">
+<span class="px-3 py-0.5 rounded-full bg-atelier-pink/10 border border-atelier-pink/30" id="lookbookSeasonBadge">SUMMER 2026</span>
+<span class="text-white/30">•</span>
+<span class="text-atelier-chalk" id="lookbookGenderBadge">WOMEN ARCHIVE</span>
+</div>
+<h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-atelier-chalk tracking-tight" id="lookbookTitle">SUMMER Edition // WOMEN</h1>
+<p class="font-sans text-xs md:text-sm text-atelier-muted max-w-xl mt-2 tracking-wide font-light leading-relaxed">
+            Museum-grade garments individually tailored to patron specification. Inspect fabric telemetry, anatomical cutting notes, and fine embroidery accents below.
+          </p>
+</div>
+<!-- Architectural Fit Switcher -->
+<div class="flex flex-col sm:items-end gap-2.5" data-purpose="fit-filter-controls">
+<div class="flex items-center gap-3">
+<span class="font-mono text-[10px] tracking-[0.2em] text-atelier-muted uppercase">Silhouette Fit:</span>
+<div class="p-1 rounded-full border border-white/15 bg-black/60 backdrop-blur-md flex items-center gap-1 shadow-inner">
+<button class="px-5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition duration-300 bg-atelier-pink text-atelier-black font-semibold shadow-[0_0_12px_rgba(255,117,151,0.3)] focus:outline-none" id="fitRegularBtn">
+                REGULAR
+              </button>
+<button class="px-5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-atelier-muted hover:text-atelier-chalk transition duration-300 focus:outline-none" id="fitOversizedBtn">
+                OVERSIZED
+              </button>
+</div>
+</div>
+<!-- Telemetry Spec Note -->
+<div class="font-mono text-[10px] text-atelier-muted tracking-wide flex items-center gap-2" id="fitTelemetryNote">
+<span class="w-1.5 h-1.5 rounded-full bg-atelier-pink"></span>
+<span>SPEC: 280GSM Combed Cotton // Sharp Anatomical Cut</span>
+</div>
+</div>
+</div>
+<!-- Specimen Grid Container with Staggered Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pb-20" data-purpose="specimen-cards-grid" id="specimenGrid"><article class="group atelier-glass-card rounded-xl overflow-hidden flex flex-col justify-between cursor-pointer hover:border-atelier-pink/50 transition duration-500 transform hover:-translate-y-1.5 opacity-0 animate-fade-in-up" data-specimen-id="sp-01" data-purpose="specimen-product-card" style="animation-delay: 0ms;">
+            <div class="relative w-full aspect-[3/4] overflow-hidden bg-atelier-deep">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1VV3mVsymmENN_5PPPvCah9-HTZ5sIXKMTMdxI5rbldulAIjcuYKS5Wy_SnM2AdmdjV-ZMNCmMS-avdqtR7vp8H2CEvkNgpXjE1PFfpVGzBU3-Vlv3dm00M7OhaAIPpLBpn-8AOxildrxOFdaUHte7BVO099RsxOLE2MSsjdTCXEBRtD7TxZOneBk464CCa_B20oAav8xUTJnd-iqB4s8dZJwNQtXyuP8BnsO3PPmLyjdkMH4aDJ8fTE40" alt="The Minimalist Combed Gallery Tee" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-105 group-hover:brightness-105 transition duration-700 ease-atelier">
+              <div class="absolute inset-0 bg-gradient-to-t from-atelier-black/90 via-transparent to-transparent opacity-65 group-hover:opacity-40 transition duration-300"></div>
+              
+              <!-- Specimen Code Stamp -->
+              <div class="absolute top-3.5 left-3.5 font-mono text-[9px] tracking-widest text-atelier-chalk bg-black/75 px-2.5 py-1 rounded-full border border-white/10 uppercase">
+                SPECIMEN N°01
+              </div>
+
+              <!-- Fit Indicator Badge -->
+              <div class="absolute top-3.5 right-3.5 font-mono text-[9px] tracking-wider text-atelier-pink bg-black/75 px-2.5 py-1 rounded-full border border-atelier-pink/30 uppercase">
+                REGULAR
+              </div>
+
+              <!-- View Details Reveal Hover Badge -->
+              <div class="absolute inset-x-4 bottom-4 py-2.5 text-center rounded-full bg-atelier-black/95 backdrop-blur-md border border-atelier-pink/40 text-atelier-pink text-xs font-mono tracking-widest uppercase opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition duration-300 shadow-xl">
+                [ Inspect Specimen → ]
+              </div>
+            </div>
+
+            <div class="p-5 flex flex-col flex-1 justify-between">
+              <div>
+                <span class="font-mono text-[9px] text-atelier-pink tracking-widest uppercase block mb-1.5">
+                  SUMMER • MEN
+                </span>
+                <h3 class="font-serif text-2xl text-atelier-chalk group-hover:text-atelier-pinkSoft transition duration-300 line-clamp-1 mb-1 font-light">
+                  The Minimalist Combed Gallery Tee
+                </h3>
+                <p class="font-sans text-xs text-atelier-muted line-clamp-2 font-light mb-4 leading-relaxed">
+                  Clean tailored gallery silhouette with subtle geometric chest embroidery
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-atelier-muted">
+                <span class="">Commissioned Atelier Specimen</span>
+                <span class="text-atelier-chalk group-hover:text-atelier-pink transition duration-300">DETAILS +</span>
+              </div>
+            </div>
+          </article><article class="group atelier-glass-card rounded-xl overflow-hidden flex flex-col justify-between cursor-pointer hover:border-atelier-pink/50 transition duration-500 transform hover:-translate-y-1.5 opacity-0 animate-fade-in-up" data-specimen-id="sp-05" data-purpose="specimen-product-card" style="animation-delay: 120ms;">
+            <div class="relative w-full aspect-[3/4] overflow-hidden bg-atelier-deep">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1XmRMA6abOlj8gxjwQbN6FFn3cdPmww9KjSSlUKZcuMSGa5SqkmuqIkjiSjfW4QqgIwv1Z4Yj4JbzD-NLPdkQlzsAfzRskZxsOpOwhSWsMy6aXnxBKD22vpOencSmxmdSaQlYkpUnsKT775GWHRoCr6XbYXlKlvSO1nNL1nKRnaqLodPDTf1YxL_7TI_tVpz_0-VfkT9orZBzaHH69KOdfLCiGwsplX0UqTjOuNVJMQ7JDid11TGIAnCs0" alt="The Sculpted Couture Blush Coat" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-105 group-hover:brightness-105 transition duration-700 ease-atelier">
+              <div class="absolute inset-0 bg-gradient-to-t from-atelier-black/90 via-transparent to-transparent opacity-65 group-hover:opacity-40 transition duration-300"></div>
+              
+              <!-- Specimen Code Stamp -->
+              <div class="absolute top-3.5 left-3.5 font-mono text-[9px] tracking-widest text-atelier-chalk bg-black/75 px-2.5 py-1 rounded-full border border-white/10 uppercase">
+                SPECIMEN N°05
+              </div>
+
+              <!-- Fit Indicator Badge -->
+              <div class="absolute top-3.5 right-3.5 font-mono text-[9px] tracking-wider text-atelier-pink bg-black/75 px-2.5 py-1 rounded-full border border-atelier-pink/30 uppercase">
+                REGULAR
+              </div>
+
+              <!-- View Details Reveal Hover Badge -->
+              <div class="absolute inset-x-4 bottom-4 py-2.5 text-center rounded-full bg-atelier-black/95 backdrop-blur-md border border-atelier-pink/40 text-atelier-pink text-xs font-mono tracking-widest uppercase opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition duration-300 shadow-xl">
+                [ Inspect Specimen → ]
+              </div>
+            </div>
+
+            <div class="p-5 flex flex-col flex-1 justify-between">
+              <div>
+                <span class="font-mono text-[9px] text-atelier-pink tracking-widest uppercase block mb-1.5">
+                  WINTER • WOMEN
+                </span>
+                <h3 class="font-serif text-2xl text-atelier-chalk group-hover:text-atelier-pinkSoft transition duration-300 line-clamp-1 mb-1 font-light">
+                  The Sculpted Couture Blush Coat
+                </h3>
+                <p class="font-sans text-xs text-atelier-muted line-clamp-2 font-light mb-4 leading-relaxed">
+                  Dramatic high-collar couture garment with intricate contour pleating
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-atelier-muted">
+                <span class="">Commissioned Atelier Specimen</span>
+                <span class="text-atelier-chalk group-hover:text-atelier-pink transition duration-300">DETAILS +</span>
+              </div>
+            </div>
+          </article><article class="group atelier-glass-card rounded-xl overflow-hidden flex flex-col justify-between cursor-pointer hover:border-atelier-pink/50 transition duration-500 transform hover:-translate-y-1.5 opacity-0 animate-fade-in-up" data-specimen-id="sp-06" data-purpose="specimen-product-card" style="animation-delay: 240ms;">
+            <div class="relative w-full aspect-[3/4] overflow-hidden bg-atelier-deep">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1VrLl2ZbESs3rUiMK38emI45WPymLpmPdfir7GoXp8RcdOCOLFr9PtnMM5TQVIc_SQzduZwOJNInt8POr4ls58MoaMwVZtPZ2P7xdS_3CGWCeNi14Ot2LIP73KO_QJjY66hMhIMYPJ7r947HThkMnyFOBCl80Ir1qXPhLWjBYNm9iL9d3iYTVDE0dJQ5MRVLVAbhxZTAp8b3shEzU0x-7sxENJkBg_hTrxD2wCgNa-MMoGMsXVQp64wWg" alt="The Boxy Geometric Atelier Overcoat" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-105 group-hover:brightness-105 transition duration-700 ease-atelier">
+              <div class="absolute inset-0 bg-gradient-to-t from-atelier-black/90 via-transparent to-transparent opacity-65 group-hover:opacity-40 transition duration-300"></div>
+              
+              <!-- Specimen Code Stamp -->
+              <div class="absolute top-3.5 left-3.5 font-mono text-[9px] tracking-widest text-atelier-chalk bg-black/75 px-2.5 py-1 rounded-full border border-white/10 uppercase">
+                SPECIMEN N°06
+              </div>
+
+              <!-- Fit Indicator Badge -->
+              <div class="absolute top-3.5 right-3.5 font-mono text-[9px] tracking-wider text-atelier-pink bg-black/75 px-2.5 py-1 rounded-full border border-atelier-pink/30 uppercase">
+                REGULAR
+              </div>
+
+              <!-- View Details Reveal Hover Badge -->
+              <div class="absolute inset-x-4 bottom-4 py-2.5 text-center rounded-full bg-atelier-black/95 backdrop-blur-md border border-atelier-pink/40 text-atelier-pink text-xs font-mono tracking-widest uppercase opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition duration-300 shadow-xl">
+                [ Inspect Specimen → ]
+              </div>
+            </div>
+
+            <div class="p-5 flex flex-col flex-1 justify-between">
+              <div>
+                <span class="font-mono text-[9px] text-atelier-pink tracking-widest uppercase block mb-1.5">
+                  WINTER • MEN
+                </span>
+                <h3 class="font-serif text-2xl text-atelier-chalk group-hover:text-atelier-pinkSoft transition duration-300 line-clamp-1 mb-1 font-light">
+                  The Boxy Geometric Atelier Overcoat
+                </h3>
+                <p class="font-sans text-xs text-atelier-muted line-clamp-2 font-light mb-4 leading-relaxed">
+                  Sharp gallery tailoring with structured anatomical shoulder lines
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-atelier-muted">
+                <span class="">Commissioned Atelier Specimen</span>
+                <span class="text-atelier-chalk group-hover:text-atelier-pink transition duration-300">DETAILS +</span>
+              </div>
+            </div>
+          </article><article class="group atelier-glass-card rounded-xl overflow-hidden flex flex-col justify-between cursor-pointer hover:border-atelier-pink/50 transition duration-500 transform hover:-translate-y-1.5 opacity-0 animate-fade-in-up" data-specimen-id="sp-08" data-purpose="specimen-product-card" style="animation-delay: 360ms;">
+            <div class="relative w-full aspect-[3/4] overflow-hidden bg-atelier-deep">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1VV3mVsymmENN_5PPPvCah9-HTZ5sIXKMTMdxI5rbldulAIjcuYKS5Wy_SnM2AdmdjV-ZMNCmMS-avdqtR7vp8H2CEvkNgpXjE1PFfpVGzBU3-Vlv3dm00M7OhaAIPpLBpn-8AOxildrxOFdaUHte7BVO099RsxOLE2MSsjdTCXEBRtD7TxZOneBk464CCa_B20oAav8xUTJnd-iqB4s8dZJwNQtXyuP8BnsO3PPmLyjdkMH4aDJ8fTE40" alt="The Minimalist Bespoke Embroidered Tee" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-105 group-hover:brightness-105 transition duration-700 ease-atelier">
+              <div class="absolute inset-0 bg-gradient-to-t from-atelier-black/90 via-transparent to-transparent opacity-65 group-hover:opacity-40 transition duration-300"></div>
+              
+              <!-- Specimen Code Stamp -->
+              <div class="absolute top-3.5 left-3.5 font-mono text-[9px] tracking-widest text-atelier-chalk bg-black/75 px-2.5 py-1 rounded-full border border-white/10 uppercase">
+                SPECIMEN N°08
+              </div>
+
+              <!-- Fit Indicator Badge -->
+              <div class="absolute top-3.5 right-3.5 font-mono text-[9px] tracking-wider text-atelier-pink bg-black/75 px-2.5 py-1 rounded-full border border-atelier-pink/30 uppercase">
+                REGULAR
+              </div>
+
+              <!-- View Details Reveal Hover Badge -->
+              <div class="absolute inset-x-4 bottom-4 py-2.5 text-center rounded-full bg-atelier-black/95 backdrop-blur-md border border-atelier-pink/40 text-atelier-pink text-xs font-mono tracking-widest uppercase opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition duration-300 shadow-xl">
+                [ Inspect Specimen → ]
+              </div>
+            </div>
+
+            <div class="p-5 flex flex-col flex-1 justify-between">
+              <div>
+                <span class="font-mono text-[9px] text-atelier-pink tracking-widest uppercase block mb-1.5">
+                  SUMMER • WOMEN
+                </span>
+                <h3 class="font-serif text-2xl text-atelier-chalk group-hover:text-atelier-pinkSoft transition duration-300 line-clamp-1 mb-1 font-light">
+                  The Minimalist Bespoke Embroidered Tee
+                </h3>
+                <p class="font-sans text-xs text-atelier-muted line-clamp-2 font-light mb-4 leading-relaxed">
+                  Clean tailored neckline with subtle blush pink insignia
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-atelier-muted">
+                <span class="">Commissioned Atelier Specimen</span>
+                <span class="text-atelier-chalk group-hover:text-atelier-pink transition duration-300">DETAILS +</span>
+              </div>
+            </div>
+          </article></div>
+</section>
+<!-- END: Stage3Lookbook -->
+<!-- ========================================================================= -->
+<!-- STAGE 4: FOCUSED PRODUCT DETAIL PRESENTATION (MODAL/FOCUS VIEW) -->
+<!-- ========================================================================= -->
+<!-- BEGIN: Stage4ProductModal -->
+<div aria-labelledby="modalSpecimenTitle" aria-modal="true" class="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-8 bg-black/90 backdrop-blur-2xl opacity-0 pointer-events-none transition-all duration-500 ease-atelier" data-purpose="specimen-detail-modal" id="specimenModal" role="dialog">
+<div class="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto atelier-glass rounded-2xl border border-white/15 shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-500 ease-atelier" id="modalContainer">
+<!-- Close Button -->
+<button aria-label="Close Specimen View" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-atelier-muted hover:text-atelier-pink hover:border-atelier-pink transition duration-300 focus:outline-none" id="closeModalBtn">
+          ✕
+        </button>
+<!-- Left Image View -->
+<div class="w-full md:w-1/2 relative bg-atelier-deep min-h-[380px] md:min-h-[580px] flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r border-white/10">
+<img alt="Specimen Inspection View" class="w-full h-full object-cover object-center filter brightness-95" id="modalImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4=">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20 pointer-events-none"></div>
+<div class="absolute bottom-4 left-4 font-mono text-[9px] tracking-widest text-atelier-muted uppercase bg-black/70 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
+            Archive Telemetry • Hand-Finished Studio Specimen
+          </div>
+</div>
+<!-- Right Tailoring Dossier -->
+<div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-between">
+<div>
+<!-- Header Spec Details -->
+<div class="flex items-center justify-between mb-3 font-mono text-[11px] text-atelier-pink tracking-widest uppercase">
+<span id="modalCode">SPECIMEN ARCHIVE N°01</span>
+<span id="modalSeasonBadge">HIGH SUMMER 2026</span>
+</div>
+<h2 class="font-serif text-3xl md:text-4xl text-atelier-chalk mb-2 font-light" id="modalSpecimenTitle">
+              Specimen Garment
+            </h2>
+<p class="font-mono text-xs text-white/50 tracking-wider mb-6" id="modalPriceCommission">
+              Bespoke Atelier Commission // Made to Individual Order
+            </p>
+<div class="border-t border-b border-white/10 py-4 mb-6 space-y-3.5 font-sans text-xs">
+<div class="flex items-start justify-between gap-4">
+<span class="text-atelier-muted font-mono uppercase text-[10px] tracking-wider shrink-0">Fabric Profile:</span>
+<span class="text-right text-atelier-chalk font-light" id="modalFabricSpec">280GSM Combed Cotton</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-atelier-muted font-mono uppercase text-[10px] tracking-wider">Silhouette Architecture:</span>
+<span class="text-atelier-pink font-mono uppercase tracking-widest text-[10px] px-2.5 py-0.5 rounded-full bg-atelier-pink/10 border border-atelier-pink/30" id="modalFitBadge">REGULAR FIT</span>
+</div>
+<div class="flex items-start justify-between gap-4">
+<span class="text-atelier-muted font-mono uppercase text-[10px] tracking-wider shrink-0">Artisan Detail:</span>
+<span class="text-right text-atelier-chalk/80 font-light">Fine micro-satin script • Reinforced double-needle construction</span>
+</div>
+</div>
+<!-- Dynamic Proportional Sizing System -->
+<div class="mb-6" data-purpose="size-selection-module">
+<div class="flex items-center justify-between mb-2">
+<label class="font-mono text-[10px] uppercase tracking-wider text-atelier-chalk" id="modalSizeLabel">
+                  SELECT SPECIMEN SIZE:
+                </label>
+<span class="font-mono text-[9px] text-atelier-pink tracking-wide" id="modalSizeHelper">
+                  Standard Tailored Proportions
+                </span>
+</div>
+<!-- Pill Buttons injected via JS -->
+<div class="flex flex-wrap gap-2 pt-1" id="modalSizePills"></div>
+<!-- Proportional Size Description helper for Oversized -->
+<div class="hidden mt-3 p-3 rounded-lg bg-white/5 border border-white/10 text-[10px] font-mono text-atelier-muted leading-relaxed" id="modalOversizedExplainer">
+<span class="text-atelier-pink">SCALE GUIDE:</span>
+<span class="text-atelier-chalk">0</span> = Relaxed Draped • 
+                <span class="text-atelier-chalk">1</span> = Voluminous Studio • 
+                <span class="text-atelier-chalk">2</span> = Exaggerated Monumental
+              </div>
+</div>
+</div>
+<!-- Actions -->
+<div class="space-y-3 pt-4 border-t border-white/10" data-purpose="modal-actions">
+<button class="w-full py-3.5 px-6 rounded-full bg-atelier-chalk hover:bg-atelier-pink text-atelier-black font-mono text-xs uppercase tracking-widest font-semibold transition duration-300 flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(245,245,247,0.2)] focus:outline-none" id="inquireCommissionBtn">
+<span>Commission Specimen →</span>
+</button>
+<button class="w-full py-2.5 px-6 rounded-full border border-white/20 hover:border-atelier-pinkSoft text-atelier-chalk hover:text-atelier-pinkSoft font-mono text-[11px] uppercase tracking-widest transition duration-300 bg-transparent flex items-center justify-center gap-2 focus:outline-none" id="customizeBtn">
+<span>Inquire Atelier Piece • Silk Embroidery</span>
+<span class="text-[10px] text-atelier-pink">✦</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- END: Stage4ProductModal -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="w-full border-t border-white/10 bg-atelier-black py-8 px-6 md:px-12 mt-12 text-atelier-muted font-mono text-xs" data-purpose="atelier-footer">
+<div class="max-w-[1840px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Left: Atelier Manifesto & Tagline -->
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="text-atelier-chalk tracking-[0.2em] font-medium uppercase font-serif text-sm">J.H.O Atelier &amp; Lab</span>
+<span class="text-[10px] tracking-[0.25em] text-atelier-pink uppercase">YOUR IDEA → DESIGN → REAL</span>
+</div>
+<!-- Center: Coordinates & Timings -->
+<div class="flex items-center gap-6 text-[10px] tracking-wider uppercase text-white/50 text-center">
+<span>PARIS [48.8566° N]</span>
+<span class="text-white/20">•</span>
+<span>TOKYO [35.6762° N]</span>
+<span class="text-white/20">•</span>
+<span class="text-atelier-chalk/70">ARCHIVE SPECIMEN V2.6</span>
+</div>
+<!-- Right: Copyright -->
+<div class="text-[10px] text-white/40 tracking-wider">
+        © 2026 J.H.O ATELIER &amp; LAB. ALL SPECIMEN RIGHTS RESERVED.
+      </div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- Application Logic & Interactive State Machine -->
+<script data-purpose="atelier-journey-state-machine">
+    (function () {
+      'use strict';
+
+      // ==========================================
+      // STATE STORE
+      // ==========================================
+      const state = {
+        gender: null,    // 'WOMEN' | 'MEN'
+        season: null,    // 'SUMMER' | 'WINTER'
+        fit: 'REGULAR',  // 'REGULAR' | 'OVERSIZED'
+        selectedSpecimen: null,
+        selectedSize: null
+      };
+
+      // Specimen Catalog Database with targeted requested imagery placeholders
+      const CATALOG = [
+        {
+          id: 'sp-01',
+          code: 'SPECIMEN N°01',
+          title: 'The Minimalist Combed Gallery Tee',
+          gender: 'MEN',
+          season: 'SUMMER',
+          fit: 'REGULAR',
+          fabric: '280GSM Combed Organic Cotton // Diamond Satin Needlework',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1VV3mVsymmENN_5PPPvCah9-HTZ5sIXKMTMdxI5rbldulAIjcuYKS5Wy_SnM2AdmdjV-ZMNCmMS-avdqtR7vp8H2CEvkNgpXjE1PFfpVGzBU3-Vlv3dm00M7OhaAIPpLBpn-8AOxildrxOFdaUHte7BVO099RsxOLE2MSsjdTCXEBRtD7TxZOneBk464CCa_B20oAav8xUTJnd-iqB4s8dZJwNQtXyuP8BnsO3PPmLyjdkMH4aDJ8fTE40',
+          subtitle: 'Clean tailored gallery silhouette with subtle geometric chest embroidery',
+          priceNote: 'Commissioned Atelier Specimen'
+        },
+        {
+          id: 'sp-02',
+          code: 'SPECIMEN N°02',
+          title: 'The Boxy 360GSM Atelier Script Tee',
+          gender: 'MEN',
+          season: 'SUMMER',
+          fit: 'OVERSIZED',
+          fabric: '360GSM Heavyweight Compact Cotton // Blush Silk Inscription',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1UVS9Jxn3zZs-4TcejcPg-lhCHfJ1nGvzfI3D6enP5YDtU_Mrjw8CRq8oNMoGBQf3cor8Qa_ff8xUq4Z4IPe0pVrz_6tv-DVPAiZ3oRXc9evNZivIUjplehPiEod4MPM7KSpokN6CV3et4omSP8feaVOjtpXEDgCtkiDpFFaEqLDOZNCtf28vZ1AVV2BLz4G0DUZOhenOtWSvitL2mKL7bCPC2f5nhF8lpKAbYXuvL5mcvq9RY_VJCYX30',
+          subtitle: 'Boxy drop-shoulder cut draped with pink micro atelier typography',
+          priceNote: 'Commissioned Atelier Specimen'
+        },
+        {
+          id: 'sp-03',
+          code: 'SPECIMEN N°03',
+          title: 'Architectural French Terry Structural Hoodie',
+          gender: 'MEN',
+          season: 'WINTER',
+          fit: 'OVERSIZED',
+          fabric: '480GSM Loopback French Terry // Sculptural Hood Architecture',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1W9An0nKFzke672KhDolSa-6R1x696fZuH9m9idOY42PGnsmFCTeA6YOI2Ap9u8jS7MXX1LN6pzykZkDU_kYYeRDj3D6ciS8958D2maaiLhh5VARNBBQz2hpl_viajv5soeLK-iW0PbfBgaZOC8_SL9ZtwSGxEW7r06MHd5M1m1fxBPxgCwVU07_wq7iDVwmLE5dttCz15M0hSdPiFGgt8FBHZd7aAVZUswh9JVwQio051eZVdo5wv2YTg',
+          subtitle: 'Double-knit heavyweight drape with pink cuff monogram embroidery',
+          priceNote: 'Commissioned Atelier Specimen'
+        },
+        {
+          id: 'sp-04',
+          code: 'SPECIMEN N°04',
+          title: 'The Sunlit Airy Linen-Blend Tee',
+          gender: 'WOMEN',
+          season: 'SUMMER',
+          fit: 'OVERSIZED',
+          fabric: '260GSM Linen-Cotton Hybrid // Tone-on-Tone Bespoke Relief Stitch',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1VblFa0tyxaXz9yOh0IViNttNOy5Rb2o6Ie5m7ghv_0nRnecyykVtrZbXo8bGU_pUNiQIPzxOO5J2J4VEr7n32d97xTN0Lzi86iERoWIXFM2XGCyj5Vz_yeiSXQ6b4PfKC7i2LjxNXFWwi8ZEEQys9594RuntriiTQCi0T_0agy4OczQ3omZ1Uao2bzvRwGZ2MLUm9y1xUCTC_1a0SEoL6hPRJFwYYWoNfKoZvYRWjK-9YUm8GARNF0QCE',
+          subtitle: 'Airy summer volume bathed in natural architectural sunlight',
+          priceNote: 'Commissioned Atelier Specimen'
+        },
+        {
+          id: 'sp-05',
+          code: 'SPECIMEN N°05',
+          title: 'The Sculpted Couture Blush Coat',
+          gender: 'WOMEN',
+          season: 'WINTER',
+          fit: 'REGULAR',
+          fabric: '520GSM Bonded Wool Melton // Blush Pleated Organza Sculpting',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1XmRMA6abOlj8gxjwQbN6FFn3cdPmww9KjSSlUKZcuMSGa5SqkmuqIkjiSjfW4QqgIwv1Z4Yj4JbzD-NLPdkQlzsAfzRskZxsOpOwhSWsMy6aXnxBKD22vpOencSmxmdSaQlYkpUnsKT775GWHRoCr6XbYXlKlvSO1nNL1nKRnaqLodPDTf1YxL_7TI_tVpz_0-VfkT9orZBzaHH69KOdfLCiGwsplX0UqTjOuNVJMQ7JDid11TGIAnCs0',
+          subtitle: 'Dramatic high-collar couture garment with intricate contour pleating',
+          priceNote: 'Commissioned Atelier Specimen'
+        },
+        {
+          id: 'sp-06',
+          code: 'SPECIMEN N°06',
+          title: 'The Boxy Geometric Atelier Overcoat',
+          gender: 'MEN',
+          season: 'WINTER',
+          fit: 'REGULAR',
+          fabric: '480GSM Double-Face Brushed Wool // Muted Graphic Inlay',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1VrLl2ZbESs3rUiMK38emI45WPymLpmPdfir7GoXp8RcdOCOLFr9PtnMM5TQVIc_SQzduZwOJNInt8POr4ls58MoaMwVZtPZ2P7xdS_3CGWCeNi14Ot2LIP73KO_QJjY66hMhIMYPJ7r947HThkMnyFOBCl80Ir1qXPhLWjBYNm9iL9d3iYTVDE0dJQ5MRVLVAbhxZTAp8b3shEzU0x-7sxENJkBg_hTrxD2wCgNa-MMoGMsXVQp64wWg',
+          subtitle: 'Sharp gallery tailoring with structured anatomical shoulder lines',
+          priceNote: 'Commissioned Atelier Specimen'
+        },
+        {
+          id: 'sp-07',
+          code: 'SPECIMEN N°07',
+          title: 'Sculptural Heavyweight Fleece Cocoon',
+          gender: 'WOMEN',
+          season: 'WINTER',
+          fit: 'OVERSIZED',
+          fabric: '480GSM Double-Faced French Terry // Silk Thread Sleeve Accents',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1W9An0nKFzke672KhDolSa-6R1x696fZuH9m9idOY42PGnsmFCTeA6YOI2Ap9u8jS7MXX1LN6pzykZkDU_kYYeRDj3D6ciS8958D2maaiLhh5VARNBBQz2hpl_viajv5soeLK-iW0PbfBgaZOC8_SL9ZtwSGxEW7r06MHd5M1m1fxBPxgCwVU07_wq7iDVwmLE5dttCz15M0hSdPiFGgt8FBHZd7aAVZUswh9JVwQio051eZVdo5wv2YTg',
+          subtitle: 'Monumental cocoon hood with relaxed drape volume',
+          priceNote: 'Commissioned Atelier Specimen'
+        },
+        {
+          id: 'sp-08',
+          code: 'SPECIMEN N°08',
+          title: 'The Minimalist Bespoke Embroidered Tee',
+          gender: 'WOMEN',
+          season: 'SUMMER',
+          fit: 'REGULAR',
+          fabric: '280GSM Combed Long-Staple Cotton // Micro Atelier Crest',
+          img: 'https://lh3.googleusercontent.com/aida/AEtjO1VV3mVsymmENN_5PPPvCah9-HTZ5sIXKMTMdxI5rbldulAIjcuYKS5Wy_SnM2AdmdjV-ZMNCmMS-avdqtR7vp8H2CEvkNgpXjE1PFfpVGzBU3-Vlv3dm00M7OhaAIPpLBpn-8AOxildrxOFdaUHte7BVO099RsxOLE2MSsjdTCXEBRtD7TxZOneBk464CCa_B20oAav8xUTJnd-iqB4s8dZJwNQtXyuP8BnsO3PPmLyjdkMH4aDJ8fTE40',
+          subtitle: 'Clean tailored neckline with subtle blush pink insignia',
+          priceNote: 'Commissioned Atelier Specimen'
+        }
+      ];
+
+      // DOM Elements
+      const stage1 = document.getElementById('stage1');
+      const stage2 = document.getElementById('stage2');
+      const stage3 = document.getElementById('stage3');
+      
+      const panelWomen = document.getElementById('panelWomen');
+      const panelMen = document.getElementById('panelMen');
+      const panelSummer = document.getElementById('panelSummer');
+      const panelWinter = document.getElementById('panelWinter');
+      
+      const bcStage1 = document.getElementById('bcStage1');
+      const bcStage2 = document.getElementById('bcStage2');
+      const bcStage3 = document.getElementById('bcStage3');
+      const bcGenderVal = document.getElementById('bcGenderVal');
+      const bcSeasonVal = document.getElementById('bcSeasonVal');
+      const resetJourneyBtn = document.getElementById('resetJourneyBtn');
+      const brandLogoLink = document.getElementById('brandLogoLink');
+
+      const fitRegularBtn = document.getElementById('fitRegularBtn');
+      const fitOversizedBtn = document.getElementById('fitOversizedBtn');
+      const fitTelemetryNote = document.getElementById('fitTelemetryNote');
+      
+      const lookbookSeasonBadge = document.getElementById('lookbookSeasonBadge');
+      const lookbookGenderBadge = document.getElementById('lookbookGenderBadge');
+      const lookbookTitle = document.getElementById('lookbookTitle');
+      const specimenGrid = document.getElementById('specimenGrid');
+
+      // Modal Elements
+      const specimenModal = document.getElementById('specimenModal');
+      const modalContainer = document.getElementById('modalContainer');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const modalImg = document.getElementById('modalImg');
+      const modalCode = document.getElementById('modalCode');
+      const modalSeasonBadge = document.getElementById('modalSeasonBadge');
+      const modalSpecimenTitle = document.getElementById('modalSpecimenTitle');
+      const modalPriceCommission = document.getElementById('modalPriceCommission');
+      const modalFabricSpec = document.getElementById('modalFabricSpec');
+      const modalFitBadge = document.getElementById('modalFitBadge');
+      const modalSizeLabel = document.getElementById('modalSizeLabel');
+      const modalSizeHelper = document.getElementById('modalSizeHelper');
+      const modalSizePills = document.getElementById('modalSizePills');
+      const modalOversizedExplainer = document.getElementById('modalOversizedExplainer');
+      const inquireCommissionBtn = document.getElementById('inquireCommissionBtn');
+      const customizeBtn = document.getElementById('customizeBtn');
+
+      // ==========================================
+      // NAVIGATION & STAGE CONTROLLER
+      // ==========================================
+      function showStage(stageNumber) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (stageNumber === 1) {
+          panelWomen.className = "split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group border-b md:border-b-0 md:border-r border-white/10 bg-atelier-deep";
+          panelMen.className = "split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group bg-atelier-deep";
+          
+          panelSummer.className = "split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group border-b md:border-b-0 md:border-r border-white/10 bg-atelier-deep";
+          panelWinter.className = "split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group bg-atelier-deep";
+
+          stage1.classList.remove('stage-hidden');
+          stage1.classList.add('stage-active');
+          stage2.classList.remove('stage-active');
+          stage2.classList.add('stage-hidden');
+          stage3.classList.remove('stage-active');
+          stage3.classList.add('stage-hidden');
+
+          state.gender = null;
+          state.season = null;
+          updateBreadcrumbs();
+        } else if (stageNumber === 2) {
+          stage1.classList.remove('stage-active');
+          stage1.classList.add('stage-hidden');
+          
+          stage2.classList.remove('stage-hidden');
+          stage2.classList.add('stage-active');
+
+          stage3.classList.remove('stage-active');
+          stage3.classList.add('stage-hidden');
+
+          panelSummer.className = "split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group border-b md:border-b-0 md:border-r border-white/10 bg-atelier-deep";
+          panelWinter.className = "split-panel flex-1 w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden cursor-pointer group bg-atelier-deep";
+
+          state.season = null;
+          updateBreadcrumbs();
+        } else if (stageNumber === 3) {
+          stage1.classList.remove('stage-active');
+          stage1.classList.add('stage-hidden');
+          stage2.classList.remove('stage-active');
+          stage2.classList.add('stage-hidden');
+
+          stage3.classList.remove('stage-hidden');
+          stage3.classList.add('stage-active');
+
+          updateBreadcrumbs();
+          renderCatalog();
+        }
+      }
+
+      function updateBreadcrumbs() {
+        if (!state.gender) {
+          bcGenderVal.textContent = 'UNSELECTED';
+          bcSeasonVal.textContent = 'UNSELECTED';
+          bcStage2.disabled = true;
+          bcStage3.disabled = true;
+        } else if (state.gender && !state.season) {
+          bcGenderVal.textContent = state.gender;
+          bcSeasonVal.textContent = 'UNSELECTED';
+          bcStage2.disabled = false;
+          bcStage3.disabled = true;
+        } else {
+          bcGenderVal.textContent = state.gender;
+          bcSeasonVal.textContent = state.season;
+          bcStage2.disabled = false;
+          bcStage3.disabled = false;
+        }
+      }
+
+      // ==========================================
+      // STAGE 1: GENDER EXPANSION ANIMATION
+      // ==========================================
+      function selectGender(selectedGender) {
+        state.gender = selectedGender;
+        updateBreadcrumbs();
+
+        if (selectedGender === 'WOMEN') {
+          panelWomen.classList.add('panel-expanded');
+          panelMen.classList.add('panel-collapsed');
+        } else {
+          panelMen.classList.add('panel-expanded');
+          panelWomen.classList.add('panel-collapsed');
+        }
+
+        setTimeout(() => {
+          showStage(2);
+        }, 850);
+      }
+
+      panelWomen.addEventListener('click', () => selectGender('WOMEN'));
+      panelMen.addEventListener('click', () => selectGender('MEN'));
+
+      // ==========================================
+      // STAGE 2: SEASON EXPANSION ANIMATION
+      // ==========================================
+      function selectSeason(selectedSeason) {
+        state.season = selectedSeason;
+        updateBreadcrumbs();
+
+        if (selectedSeason === 'SUMMER') {
+          panelSummer.classList.add('panel-expanded');
+          panelWinter.classList.add('panel-collapsed');
+        } else {
+          panelWinter.classList.add('panel-expanded');
+          panelSummer.classList.add('panel-collapsed');
+        }
+
+        setTimeout(() => {
+          showStage(3);
+        }, 850);
+      }
+
+      panelSummer.addEventListener('click', () => selectSeason('SUMMER'));
+      panelWinter.addEventListener('click', () => selectSeason('WINTER'));
+
+      // Breadcrumb Navigation Clicks
+      bcStage1.addEventListener('click', () => showStage(1));
+      bcStage2.addEventListener('click', () => {
+        if (state.gender) showStage(2);
+      });
+      bcStage3.addEventListener('click', () => {
+        if (state.gender && state.season) showStage(3);
+      });
+      resetJourneyBtn.addEventListener('click', () => showStage(1));
+      brandLogoLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showStage(1);
+      });
+
+      // ==========================================
+      // STAGE 3: CATALOG & FIT CONTROLLER
+      // ==========================================
+      function setFit(fitType) {
+        state.fit = fitType;
+        if (fitType === 'REGULAR') {
+          fitRegularBtn.className = "px-5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition duration-300 bg-atelier-pink text-atelier-black font-semibold shadow-[0_0_12px_rgba(255,117,151,0.3)] focus:outline-none";
+          fitOversizedBtn.className = "px-5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-atelier-muted hover:text-atelier-chalk transition duration-300 focus:outline-none";
+          fitTelemetryNote.innerHTML = `
+            <span class="w-1.5 h-1.5 rounded-full bg-atelier-pink"></span>
+            <span>SPEC: 280GSM Combed Cotton // Sharp Anatomical Cut</span>
+          `;
+        } else {
+          fitOversizedBtn.className = "px-5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition duration-300 bg-atelier-pink text-atelier-black font-semibold shadow-[0_0_12px_rgba(255,117,151,0.3)] focus:outline-none";
+          fitRegularBtn.className = "px-5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-atelier-muted hover:text-atelier-chalk transition duration-300 focus:outline-none";
+          fitTelemetryNote.innerHTML = `
+            <span class="w-1.5 h-1.5 rounded-full bg-atelier-pink"></span>
+            <span>SPEC: 360–480GSM French Terry // Volumetric Shoulder Drop</span>
+          `;
+        }
+        renderCatalog();
+      }
+
+      fitRegularBtn.addEventListener('click', () => setFit('REGULAR'));
+      fitOversizedBtn.addEventListener('click', () => setFit('OVERSIZED'));
+
+      function renderCatalog() {
+        lookbookSeasonBadge.textContent = `${state.season || 'COLLECTION'} 2026`;
+        lookbookGenderBadge.textContent = `${state.gender || 'BESPOKE'} ARCHIVE`;
+        lookbookTitle.textContent = `${state.season || 'Archive'} Edition // ${state.gender || 'Specimens'}`;
+
+        let filtered = CATALOG.filter(item => {
+          const matchGender = !state.gender || item.gender === state.gender;
+          const matchSeason = !state.season || item.season === state.season;
+          const matchFit = !state.fit || item.fit === state.fit;
+          return matchGender && matchSeason && matchFit;
+        });
+
+        if (filtered.length < 2) {
+          filtered = CATALOG.filter(item => item.fit === state.fit);
+        }
+        if (filtered.length === 0) {
+          filtered = CATALOG.slice(0, 4);
+        }
+
+        specimenGrid.innerHTML = '';
+
+        filtered.forEach((item, index) => {
+          const card = document.createElement('article');
+          card.className = "group atelier-glass-card rounded-xl overflow-hidden flex flex-col justify-between cursor-pointer hover:border-atelier-pink/50 transition duration-500 transform hover:-translate-y-1.5 opacity-0 animate-fade-in-up";
+          card.style.animationDelay = `${index * 120}ms`;
+          card.setAttribute('data-specimen-id', item.id);
+          card.setAttribute('data-purpose', 'specimen-product-card');
+
+          card.innerHTML = `
+            <div class="relative w-full aspect-[3/4] overflow-hidden bg-atelier-deep">
+              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover object-top filter brightness-95 group-hover:scale-105 group-hover:brightness-105 transition duration-700 ease-atelier">
+              <div class="absolute inset-0 bg-gradient-to-t from-atelier-black/90 via-transparent to-transparent opacity-65 group-hover:opacity-40 transition duration-300"></div>
+              
+              <!-- Specimen Code Stamp -->
+              <div class="absolute top-3.5 left-3.5 font-mono text-[9px] tracking-widest text-atelier-chalk bg-black/75 px-2.5 py-1 rounded-full border border-white/10 uppercase">
+                ${item.code}
+              </div>
+
+              <!-- Fit Indicator Badge -->
+              <div class="absolute top-3.5 right-3.5 font-mono text-[9px] tracking-wider text-atelier-pink bg-black/75 px-2.5 py-1 rounded-full border border-atelier-pink/30 uppercase">
+                ${item.fit}
+              </div>
+
+              <!-- View Details Reveal Hover Badge -->
+              <div class="absolute inset-x-4 bottom-4 py-2.5 text-center rounded-full bg-atelier-black/95 backdrop-blur-md border border-atelier-pink/40 text-atelier-pink text-xs font-mono tracking-widest uppercase opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition duration-300 shadow-xl">
+                [ Inspect Specimen &rarr; ]
+              </div>
+            </div>
+
+            <div class="p-5 flex flex-col flex-1 justify-between">
+              <div>
+                <span class="font-mono text-[9px] text-atelier-pink tracking-widest uppercase block mb-1.5">
+                  ${item.season} &bull; ${item.gender}
+                </span>
+                <h3 class="font-serif text-2xl text-atelier-chalk group-hover:text-atelier-pinkSoft transition duration-300 line-clamp-1 mb-1 font-light">
+                  ${item.title}
+                </h3>
+                <p class="font-sans text-xs text-atelier-muted line-clamp-2 font-light mb-4 leading-relaxed">
+                  ${item.subtitle}
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-atelier-muted">
+                <span>${item.priceNote}</span>
+                <span class="text-atelier-chalk group-hover:text-atelier-pink transition duration-300">DETAILS +</span>
+              </div>
+            </div>
+          `;
+
+          card.addEventListener('click', () => openModal(item));
+          specimenGrid.appendChild(card);
+        });
+      }
+
+      // ==========================================
+      // STAGE 4: DETAIL MODAL & SIZING SYSTEM
+      // ==========================================
+      function openModal(specimen) {
+        state.selectedSpecimen = specimen;
+        state.selectedSize = null;
+
+        modalImg.src = specimen.img;
+        modalImg.alt = specimen.title;
+        modalCode.textContent = specimen.code;
+        modalSeasonBadge.textContent = `${specimen.season} EDITION 2026`;
+        modalSpecimenTitle.textContent = specimen.title;
+        modalPriceCommission.textContent = `${specimen.priceNote} // Crafted individually in Tokyo & Paris`;
+        modalFabricSpec.textContent = specimen.fabric;
+        modalFitBadge.textContent = `${specimen.fit} ARCHITECTURE`;
+
+        // Proportional Size Selector Setup
+        modalSizePills.innerHTML = '';
+        if (specimen.fit === 'REGULAR') {
+          modalSizeLabel.textContent = "SELECT TAILORED SIZE:";
+          modalSizeHelper.textContent = "Standard European Proportions";
+          modalOversizedExplainer.classList.add('hidden');
+
+          const sizes = ['S', 'M', 'L', 'XL'];
+          sizes.forEach((size, idx) => {
+            const btn = document.createElement('button');
+            btn.className = "w-12 h-10 rounded-lg border border-white/20 font-mono text-xs font-medium hover:border-atelier-pink transition duration-200 flex items-center justify-center focus:outline-none";
+            btn.textContent = size;
+            btn.addEventListener('click', () => {
+              state.selectedSize = size;
+              updateSelectedSizePills();
+            });
+            modalSizePills.appendChild(btn);
+            if (idx === 1) {
+              state.selectedSize = size;
+            }
+          });
+        } else {
+          modalSizeLabel.textContent = "SELECT VOLUMETRIC SCALE CODE:";
+          modalSizeHelper.textContent = "Architectural Proportion System";
+          modalOversizedExplainer.classList.remove('hidden');
+
+          const proportions = [
+            { code: '0', label: '0: RELAXED' },
+            { code: '1', label: '1: VOLUMINOUS' },
+            { code: '2', label: '2: SCULPTURAL' }
+          ];
+
+          proportions.forEach((prop, idx) => {
+            const btn = document.createElement('button');
+            btn.className = "px-4 h-10 rounded-lg border border-white/20 font-mono text-xs font-medium hover:border-atelier-pink transition duration-200 flex items-center justify-center gap-1 focus:outline-none";
+            btn.innerHTML = `<span>CODE</span> <strong class="text-atelier-pink">${prop.code}</strong>`;
+            btn.title = prop.label;
+            btn.addEventListener('click', () => {
+              state.selectedSize = prop.code;
+              updateSelectedSizePills();
+            });
+            modalSizePills.appendChild(btn);
+            if (idx === 1) {
+              state.selectedSize = prop.code;
+            }
+          });
+        }
+
+        updateSelectedSizePills();
+
+        specimenModal.classList.remove('opacity-0', 'pointer-events-none');
+        modalContainer.classList.remove('scale-95');
+        modalContainer.classList.add('scale-100');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function updateSelectedSizePills() {
+        const buttons = modalSizePills.querySelectorAll('button');
+        buttons.forEach(btn => {
+          const text = btn.textContent.trim();
+          if (text === state.selectedSize || text.includes(`CODE ${state.selectedSize}`) || text.endsWith(state.selectedSize)) {
+            btn.classList.add('border-atelier-pink', 'bg-atelier-pink', 'text-atelier-black', 'font-bold', 'shadow-[0_0_15px_rgba(255,117,151,0.3)]');
+            btn.classList.remove('border-white/20', 'text-atelier-chalk');
+          } else {
+            btn.classList.remove('border-atelier-pink', 'bg-atelier-pink', 'text-atelier-black', 'font-bold', 'shadow-[0_0_15px_rgba(255,117,151,0.3)]');
+            btn.classList.add('border-white/20');
+          }
+        });
+      }
+
+      function closeModal() {
+        specimenModal.classList.add('opacity-0', 'pointer-events-none');
+        modalContainer.classList.remove('scale-100');
+        modalContainer.classList.add('scale-95');
+        document.body.style.overflow = '';
+      }
+
+      closeModalBtn.addEventListener('click', closeModal);
+      specimenModal.addEventListener('click', (e) => {
+        if (e.target === specimenModal) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      inquireCommissionBtn.addEventListener('click', () => {
+        const originalText = inquireCommissionBtn.innerHTML;
+        inquireCommissionBtn.innerHTML = `<span>TRANSMITTING COMMISSION DOSSIER...</span>`;
+        inquireCommissionBtn.classList.add('bg-atelier-pink');
+        setTimeout(() => {
+          alert(`J.H.O Atelier & Lab Bespoke Commission Dossier Prepared:\n\nSpecimen: ${state.selectedSpecimen.title} (${state.selectedSpecimen.code})\nSilhouette Fit: ${state.selectedSpecimen.fit}\nSelected Proportion/Size: ${state.selectedSize}\n\nOur bespoke concierge will contact your personal atelier liaison within 12 hours.`);
+          inquireCommissionBtn.innerHTML = originalText;
+          closeModal();
+        }, 350);
+      });
+
+      customizeBtn.addEventListener('click', () => {
+        alert(`Bespoke Customizer Initialized for ${state.selectedSpecimen.code}.\nSilk Embroidery colorways, monogram placement, and custom 480GSM weight specifications will be adjusted to your bespoke measurement profile.`);
+      });
+
+      // Initialize
+      showStage(1);
+
+    })();
+  </script>
+
+
+</body></html>

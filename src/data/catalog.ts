@@ -1,0 +1,108 @@
+import type { Specimen } from "@/lib/types";
+
+/* The specimen archive. Ported from the CATALOG in
+   design-reference/our collection.html, with images repointed at /public.
+
+   NOTE: specimen-01..06.jpg are currently generated PLACEHOLDERS. The
+   original photo URLs (lh3.googleusercontent.com/aida/…) started returning
+   403 and are permanently gone. To use real product photography, drop the
+   files into public/images/ under the same names — no code change needed. */
+
+export const CATALOG: Specimen[] = [
+  {
+    id: "sp-01",
+    code: "SPECIMEN N°01",
+    title: "The Minimalist Combed Gallery Tee",
+    gender: "MEN",
+    season: "SUMMER",
+    fit: "REGULAR",
+    fabric: "280GSM Combed Organic Cotton // Diamond Satin Needlework",
+    img: "/images/specimen-01.jpg",
+    subtitle: "Clean tailored gallery silhouette with subtle geometric chest embroidery",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-02",
+    code: "SPECIMEN N°02",
+    title: "The Boxy 360GSM Atelier Script Tee",
+    gender: "MEN",
+    season: "SUMMER",
+    fit: "OVERSIZED",
+    fabric: "360GSM Heavyweight Compact Cotton // Blush Silk Inscription",
+    img: "/images/specimen-02.jpg",
+    subtitle: "Boxy drop-shoulder cut draped with pink micro atelier typography",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-03",
+    code: "SPECIMEN N°03",
+    title: "Architectural French Terry Structural Hoodie",
+    gender: "MEN",
+    season: "WINTER",
+    fit: "OVERSIZED",
+    fabric: "480GSM Loopback French Terry // Sculptural Hood Architecture",
+    img: "/images/specimen-03.jpg",
+    subtitle: "Double-knit heavyweight drape with pink cuff monogram embroidery",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-04",
+    code: "SPECIMEN N°04",
+    title: "The Sunlit Airy Linen-Blend Tee",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "OVERSIZED",
+    fabric: "260GSM Linen-Cotton Hybrid // Tone-on-Tone Bespoke Relief Stitch",
+    img: "/images/specimen-04.jpg",
+    subtitle: "Airy summer volume bathed in natural architectural sunlight",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-05",
+    code: "SPECIMEN N°05",
+    title: "The Sculpted Couture Blush Coat",
+    gender: "WOMEN",
+    season: "WINTER",
+    fit: "REGULAR",
+    fabric: "520GSM Bonded Wool Melton // Blush Pleated Organza Sculpting",
+    img: "/images/specimen-05.jpg",
+    subtitle: "Dramatic high-collar couture garment with intricate contour pleating",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-06",
+    code: "SPECIMEN N°06",
+    title: "The Boxy Geometric Atelier Overcoat",
+    gender: "MEN",
+    season: "WINTER",
+    fit: "REGULAR",
+    fabric: "480GSM Double-Face Brushed Wool // Muted Graphic Inlay",
+    img: "/images/specimen-06.jpg",
+    subtitle: "Sharp gallery tailoring with structured anatomical shoulder lines",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-07",
+    code: "SPECIMEN N°07",
+    title: "Sculptural Heavyweight Fleece Cocoon",
+    gender: "WOMEN",
+    season: "WINTER",
+    fit: "OVERSIZED",
+    fabric: "480GSM Double-Faced French Terry // Silk Thread Sleeve Accents",
+    img: "/images/specimen-03.jpg",
+    subtitle: "Monumental cocoon hood with relaxed drape volume",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-08",
+    code: "SPECIMEN N°08",
+    title: "The Minimalist Bespoke Embroidered Tee",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "REGULAR",
+    fabric: "280GSM Combed Long-Staple Cotton // Micro Atelier Crest",
+    img: "/images/specimen-01.jpg",
+    subtitle: "Clean tailored neckline with subtle blush pink insignia",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+];

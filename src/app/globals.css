@@ -1,26 +1,307 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   J.H.O DESIGN SYSTEM
+   Three pages, three palettes. They are namespaced because the original
+   HTML files all called their palette "atelier" while meaning different
+   colours, and all defined font-serif / font-mono as different fonts.
+
+     atelier-*   page 1  /                 light drafting paper
+     archive-*   page 2  /collection       dark museum
+     surface-* / primary / outline / brand-*
+                 page 3  /my-little-world  obsidian gallery (names kept
+                         verbatim from design-reference/DESIGN.md)
+   ========================================================================== */
+
+@theme {
+  /* --- Page 1: Hero — light drafting paper -------------------------------- */
+  --color-atelier-canvas: #faf8f5;
+  --color-atelier-grid: #efeae3;
+  --color-atelier-dark: #141416;
+  --color-atelier-charcoal: #222226;
+  --color-atelier-muted: #7a7a85;
+  --color-atelier-pink: #ff7b9a;
+  --color-atelier-pink-deep: #e65478;
+  --color-atelier-pink-soft: #ffd3dc;
+  --color-atelier-tape: #f3eddf;
+
+  /* --- Page 2: Collection — dark museum ----------------------------------- */
+  --color-archive-black: #08080a;
+  --color-archive-deep: #0d0d10;
+  --color-archive-charcoal: #141418;
+  --color-archive-surface: #1b1b22;
+  --color-archive-muted: #7e7e8e;
+  --color-archive-chalk: #f5f5f7;
+  --color-archive-pink: #ff7597;
+  --color-archive-pink-soft: #ffb6c7;
+
+  /* --- Page 3: My Little World — obsidian gallery -------------------------
+     Values from the page's own Tailwind config, which is what produced
+     screen3.png. DESIGN.md's prose lists a different background (#0c0b0e);
+     the config wins. */
+  --color-surface: #141316;
+  --color-surface-dim: #141316;
+  --color-surface-bright: #3a383c;
+  --color-surface-container-lowest: #0f0e11;
+  --color-surface-container-low: #1c1b1e;
+  --color-surface-container: #201f22;
+  --color-surface-container-high: #2b292d;
+  --color-surface-container-highest: #363438;
+  --color-surface-variant: #363438;
+  --color-surface-tint: #ffb1c0;
+  --color-on-surface: #e6e1e5;
+  --color-on-surface-variant: #ddbfc3;
+  --color-inverse-surface: #e6e1e5;
+  --color-inverse-on-surface: #313033;
+  --color-background: #141316;
+  --color-on-background: #e6e1e5;
+  --color-outline: #a58a8e;
+  --color-outline-variant: #564145;
+  --color-primary: #ffb1c0;
+  --color-on-primary: #660029;
+  --color-primary-container: #ff7597;
+  --color-on-primary-container: #740430;
+  --color-inverse-primary: #a83255;
+  --color-primary-fixed: #ffd9df;
+  --color-primary-fixed-dim: #ffb1c0;
+  --color-on-primary-fixed: #3f0016;
+  --color-on-primary-fixed-variant: #88183e;
+  --color-secondary: #e8c177;
+  --color-on-secondary: #402d00;
+  --color-secondary-container: #5f4504;
+  --color-on-secondary-container: #d9b36b;
+  --color-secondary-fixed: #ffdea3;
+  --color-secondary-fixed-dim: #e8c177;
+  --color-on-secondary-fixed: #261900;
+  --color-on-secondary-fixed-variant: #5c4202;
+  --color-tertiary: #ffb1c4;
+  --color-on-tertiary: #5a172f;
+  --color-tertiary-container: #e4869f;
+  --color-on-tertiary-container: #651f37;
+  --color-tertiary-fixed: #ffd9e0;
+  --color-tertiary-fixed-dim: #ffb1c4;
+  --color-on-tertiary-fixed: #3e011a;
+  --color-on-tertiary-fixed-variant: #772d45;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+  --color-brand-black: #0f0e11;
+  --color-brand-surface: #141316;
+  --color-brand-card: #1c1b1e;
+  --color-brand-border: rgba(221, 191, 195, 0.14);
+  --color-brand-pink: #ffb1c0;
+  --color-brand-pink-glow: #ff7597;
+  --color-brand-cream: #f5f2eb;
+  --color-brand-muted: #a58a8e;
+
+  /* --- Fonts (variables are set by next/font in layout.tsx) --------------- */
+  --font-atelier-sans: var(--font-space-grotesk), sans-serif;
+  --font-atelier-serif: var(--font-playfair), serif;
+  --font-atelier-display: var(--font-italiana), serif;
+  --font-atelier-mono: var(--font-jetbrains-mono), monospace;
+
+  --font-archive-sans: var(--font-inter), sans-serif;
+  --font-archive-serif: var(--font-cormorant), serif;
+  --font-archive-mono: var(--font-space-mono), monospace;
+
+  --font-editorial: var(--font-bodoni), serif;
+  --font-world-serif: var(--font-eb-garamond), serif;
+  --font-world-mono: var(--font-jetbrains-mono), monospace;
+
+  /* --- Shared --------------------------------------------------------------
+     The collection design leans on this easing everywhere (ease-atelier). */
+  --ease-atelier: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Each page paints its own background: page 1 is light, pages 2 and 3 are
+   dark, so the body must stay neutral. */
+body {
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ==========================================================================
+   PAGE 1 — hero (from design-reference/code.html)
+   ========================================================================== */
+
+/* Architectural draft grid behind the hero */
+.draft-canvas-grid {
+  background-color: #faf8f5;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.038) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.038) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(255, 123, 154, 0.035) 0%, transparent 70%);
+  background-size: 32px 32px, 32px 32px, 100% 100%;
+}
+
+/* Self-drawing pencil strokes. The dash offset is applied by GSAP on mount
+   rather than hardcoded here, so the sketch still renders complete if JS
+   never runs (the original left it blank in that case). */
+.sketch-path {
+  stroke-dasharray: 1000;
+}
+
+.pencil-grain {
+  filter: url(#pencil-filter);
+}
+
+.fade-mask-bottom {
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+@keyframes subtlePulse {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.96);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+   PAGE 2 — collection (from design-reference/our collection.html)
+   ========================================================================== */
+
+/* 35mm grain overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.text-vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.atelier-glass {
+  background: rgba(10, 10, 13, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.atelier-glass-card {
+  background: rgba(17, 17, 22, 0.7);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* The signature split-panel expand/collapse used by BOTH the gender and
+   the season screens. */
+.split-panel {
+  transition:
+    width 0.9s cubic-bezier(0.19, 1, 0.22, 1),
+    flex 0.9s cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1),
+    filter 0.6s ease;
+  will-change: width, flex, transform;
+}
+
+.panel-expanded {
+  width: 100% !important;
+  flex: 1 0 100% !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.panel-collapsed {
+  width: 0% !important;
+  flex: 0 0 0% !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+.specimen-img {
+  transition:
+    transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+    filter 0.8s ease;
+}
+
+.split-panel:hover .specimen-img {
+  transform: scale(1.045);
+}
+
+.circle-reveal-btn {
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.split-panel:hover .circle-reveal-btn {
+  background-color: #ff7597;
+  color: #08080a;
+  border-color: #ff7597;
+  transform: scale(1.08);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.75s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* ==========================================================================
+   PAGE 3 — my little world (from design-reference/my little world.html)
+   ========================================================================== */
+
+.font-editorial-heading {
+  font-family: var(--font-bodoni), serif;
+  letter-spacing: 0.04em;
+}
+
+.text-mono-telemetry {
+  font-family: var(--font-jetbrains-mono), monospace;
+  letter-spacing: 0.12em;
+}
+
+.backdrop-blur-atelier {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 117, 151, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(255, 117, 151, 0);
+  }
+}
+
+/* Pages 1 and 3 both define .pulse-dot but with different animations.
+   Page 1's is a scale/opacity pulse, page 3's is a glowing ring. */
+.pulse-dot {
+  animation: subtlePulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot,
+  .pulse-glow,
+  .animate-fade-in-up {
+    animation: none;
+  }
 }

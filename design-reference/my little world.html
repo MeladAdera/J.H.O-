@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MY LITTLE WORLD — J.H.O Atelier &amp; Lab</title>
+<!-- Google Fonts: Bodoni Moda, JetBrains Mono, EB Garamond -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=JetBrains+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration conforming to Design Tokens -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container-high": "#2b292d",
+          "secondary-fixed-dim": "#e8c177",
+          "inverse-primary": "#a83255",
+          "on-primary": "#660029",
+          "primary-container": "#ff7597",
+          "tertiary": "#ffb1c4",
+          "surface-container": "#201f22",
+          "on-surface-variant": "#ddbfc3",
+          "secondary-container": "#5f4504",
+          "outline-variant": "#564145",
+          "on-secondary": "#402d00",
+          "primary-fixed-dim": "#ffb1c0",
+          "on-primary-fixed-variant": "#88183e",
+          "primary": "#ffb1c0",
+          "tertiary-container": "#e4869f",
+          "inverse-on-surface": "#313033",
+          "on-primary-fixed": "#3f0016",
+          "surface-dim": "#141316",
+          "on-secondary-fixed-variant": "#5c4202",
+          "on-tertiary": "#5a172f",
+          "on-surface": "#e6e1e5",
+          "on-primary-container": "#740430",
+          "tertiary-fixed-dim": "#ffb1c4",
+          "tertiary-fixed": "#ffd9e0",
+          "surface-container-low": "#1c1b1e",
+          "surface-variant": "#363438",
+          "on-error-container": "#ffdad6",
+          "secondary-fixed": "#ffdea3",
+          "background": "#141316",
+          "on-secondary-container": "#d9b36b",
+          "surface-container-lowest": "#0f0e11",
+          "on-tertiary-fixed-variant": "#772d45",
+          "inverse-surface": "#e6e1e5",
+          "surface-tint": "#ffb1c0",
+          "surface": "#141316",
+          "primary-fixed": "#ffd9df",
+          "on-error": "#690005",
+          "on-tertiary-fixed": "#3e011a",
+          "secondary": "#e8c177",
+          "on-tertiary-container": "#651f37",
+          "surface-container-highest": "#363438",
+          "on-secondary-fixed": "#261900",
+          "error-container": "#93000a",
+          "outline": "#a58a8e",
+          "error": "#ffb4ab",
+          "on-background": "#e6e1e5",
+          "surface-bright": "#3a383c",
+          brand: {
+            black: '#0f0e11',
+            surface: '#141316',
+            card: '#1c1b1e',
+            border: 'rgba(221, 191, 195, 0.14)',
+            pink: '#ffb1c0',
+            pinkGlow: '#ff7597',
+            cream: '#f5f2eb',
+            muted: '#a58a8e'
+          }
+        },
+        fontFamily: {
+          editorial: ['"Bodoni Moda"', 'serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+          serif: ['"EB Garamond"', 'serif']
+        }
+      }
+    }
+  }
+</script>
+<!-- Custom Typography & Atmospheric Accents -->
+<style data-purpose="typography">
+    .font-editorial-heading {
+      font-family: 'Bodoni Moda', serif;
+      letter-spacing: 0.04em;
+    }
+    .text-mono-telemetry {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.12em;
+    }
+  </style>
+<style data-purpose="animations-and-effects">
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 117, 151, 0.55);
+      }
+      50% {
+        box-shadow: 0 0 0 7px rgba(255, 117, 151, 0);
+      }
+    }
+    .pulse-dot {
+      animation: pulseGlow 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    .backdrop-blur-atelier {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .station-btn.active {
+      background-color: rgba(255, 117, 151, 0.22);
+      border-color: #ff7597;
+      color: #ffb1c0;
+    }
+  </style>
+<meta content="web_standard" name="shell-type"/></head>
+<body class="bg-surface-container-lowest text-on-background font-serif selection:bg-primary selection:text-on-primary min-h-screen relative overflow-x-hidden antialiased">
+<!-- BEGIN: SiteHeader -->
+<header class="fixed top-0 left-0 w-full z-50 border-b border-outline-variant/30 bg-surface-container-lowest/85 backdrop-blur-atelier">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Brand & Origin Identification with Authentic Official Emblem https://lh3.googleusercontent.com/aida-public/AB6AXuA12vg45W1VzKfX7xrek8Ae5ys9zY4LmsEpfjssMC9HEG5-hVR5EIvThNxNP54RgMi61rFSmm3Ohkdn6C2NZxzPFcLmz8Mly5ELnokT4UeLIE0GxetfKQhXmRGskYDCH5-6lMI46bNGmmux3KJydeYoE-TK0toaiyapFtWBMtn18ZkOXDlKExUBbt4JZs_GwFtXng444FH0m9ymmN_KERr9WPW5AOqjbaI9YLecNox8PolLDiLfYJF1tsras9s-NRV0gA -->
+<div class="flex items-center space-x-3.5" data-purpose="brand-id">
+<a class="group flex items-center space-x-3.5" href="#hero">
+<img alt="J.H.O Atelier circular emblem official seal" class="w-10 h-10 rounded-full object-cover border border-primary/40 shadow-sm shadow-primary/20 transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp-YDt6s5__8C4kCbuzExRoqWoHtLTUOvY-CeZ6ye-SY41UTtEY2VT0CYnzp5HORQ4tbNSuPoGVNx5up_0Ec5H1pHjBm7TstWZJ7E7dPGjt3ASbD7v8UqBx3DsOralX6Sg6altfr_5TrUjWFMzdFd-6YbICCn83jGNySk3NjUI13xTmrjYLw9SVbQo4apsUp19xa7tSs0TGajEHHbIPuiG1utMhqWdFn9vdALuOrpjl5F2aLKkahMwVhc-OzA_d2H9eQ"/>
+<div class="flex flex-col">
+<span class="font-editorial-heading text-lg tracking-wider text-on-surface font-medium">J.H.O ATELIER &amp; LAB</span>
+<span class="text-mono-telemetry text-[9px] uppercase text-outline">ORIGIN ARCHIVES • BEDROOM SANCTUARY</span>
+</div>
+</a>
+</div>
+<!-- Telemetry Status Bar -->
+<div class="hidden md:flex items-center space-x-2.5 text-mono-telemetry text-[11px] text-on-surface-variant/80 bg-surface-container-low/80 px-4 py-1.5 rounded-full border border-outline-variant/40" data-purpose="telemetry-bar">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container pulse-dot inline-block"></span>
+<span>ORIGIN ROOM 402 // IN SITU 3D DIORAMA // CHECKERED FLOOR</span>
+</div>
+<!-- Action Navigation Links -->
+<nav class="flex items-center space-x-3 text-mono-telemetry text-xs" data-purpose="header-navigation">
+<a class="px-3.5 py-1.5 text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider" href="#hero">
+          ORIGIN ROOM
+        </a>
+<a class="px-3.5 py-1.5 text-on-surface-variant hover:text-primary transition-colors uppercase tracking-wider hidden sm:inline-block" href="#photo-archives">
+          PHOTO ARCHIVES
+        </a>
+<a class="px-4 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/30 hover:bg-primary-container hover:text-on-primary-container transition-all duration-300 font-mono text-xs uppercase" href="#inquire">
+          COLLECTION ARCHIVE
+        </a>
+</nav>
+</div>
+</header>
+<!-- END: SiteHeader -->
+<!-- BEGIN: MainHeroSection -->
+<main class="pt-28 pb-20 relative" id="hero"><div class="flex flex-col w-full">
+<!-- SECTION: Editorial Title & Architectural Statement -->
+<section class="relative px-4 sm:px-8 lg:px-16 pt-4 pb-12 max-w-7xl mx-auto w-full">
+<div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-10">
+<div class="flex flex-col space-y-3 max-w-2xl">
+<div class="flex items-center space-x-3">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-mono text-xs uppercase tracking-widest text-primary">
+            [ ORIGIN ARCHIVE • ROOM 402 ]
+          </span>
+<span class="text-outline/40 font-mono text-xs">/</span>
+<span class="font-mono text-xs text-outline uppercase tracking-wider">
+            ATELIER GENESIS
+          </span>
+</div>
+<h1 class="font-editorial text-5xl sm:text-6xl lg:text-7xl text-on-surface tracking-tight font-normal">
+          MY LITTLE WORLD
+        </h1>
+<div class="space-y-1 pt-1">
+<p class="text-xl sm:text-2xl text-primary italic font-serif">
+            “A small room. A lot of ideas.”
+          </p>
+<p class="text-base sm:text-lg text-on-surface-variant font-serif italic">
+            “This is where ideas begin.”
+          </p>
+</div>
+</div>
+<!-- Telemetry Coordinates & Official Seal Block -->
+<div class="flex items-center space-x-5 bg-surface-container-low px-6 py-4 rounded-none shadow-xl border border-outline-variant/30">
+<img alt="J.H.O Atelier circular emblem official seal" class="w-12 h-12 rounded-full object-cover shadow-md border border-primary/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEab9h2AtLPMJjb3qog-bFYJTjYSQryNaHI5Sf7XpmP-EOZ3oqAmsT0ZTm506sDXgk_qc8-kL5QPnQcROudbQkwyf39ga2lNxBvU9udIR0_T9jx37D7KslMLz9vy7dvNhcqCJWZUcJFIpMuSG8P3h6t8zvlMelfzU8KONsC9plyjKmwzwsjhiJZR1y-TCDoQBicLPtgL9kGBfeM_W6Clt72-cYVdDUnyuvXSrrWoZGYK2hCwOTEHJfZ-nynuJ3FFqy5Q"/>
+<div class="flex flex-col space-y-1">
+<span class="font-mono text-xs text-on-surface uppercase tracking-widest font-medium">
+            J.H.O ATELIER &amp; LAB
+          </span>
+<span class="font-mono text-[10px] text-outline tracking-wider">
+            COORD: 48°51′N 2°20′E // SANCTUARY IN SITU
+          </span>
+<span class="font-mono text-[10px] text-secondary tracking-widest uppercase">
+            STATUS: ACTIVE DRAFTING ENVIRONMENT
+          </span>
+</div>
+</div>
+</div>
+<!-- Interactive Full-Bleed 3D Diorama Exhibition Vessel (Under the lamp format) -->
+<div class="relative w-full bg-surface-container-lowest p-2 sm:p-4 rounded-none shadow-2xl overflow-hidden border border-outline-variant/30" id="diorama-frame">
+<!-- Top Exhibition Bar: Waypoint Controls & Coordinates -->
+<div class="flex flex-wrap items-center justify-between gap-4 px-4 py-3 bg-surface-container-low/95 mb-3 text-on-surface border-b border-outline-variant/30">
+<div class="flex items-center space-x-3">
+<span class="inline-flex w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-xs uppercase tracking-wider text-secondary">
+            WAYPOINT NAVIGATION • LIVE SPATIAL FEED
+          </span>
+</div>
+<!-- Waypoint Camera Controller Buttons -->
+<div aria-label="Waypoint Camera Viewpoints" class="flex flex-wrap items-center gap-2" role="toolbar">
+<button class="station-btn active px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider bg-surface-container hover:bg-primary/20 text-on-surface transition-colors cursor-pointer border border-outline-variant/40" onclick="window.switchStation(0); window.setDioramaStation &amp;&amp; window.setDioramaStation(0);" type="button">
+            00 // OVERVIEW
+          </button>
+<button class="station-btn px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider bg-surface-container hover:bg-primary/20 text-on-surface transition-colors cursor-pointer border border-outline-variant/40" onclick="window.switchStation(1); window.setDioramaStation &amp;&amp; window.setDioramaStation(1);" type="button">
+            01 // THE DESK
+          </button>
+<button class="station-btn px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider bg-surface-container hover:bg-primary/20 text-on-surface transition-colors cursor-pointer border border-outline-variant/40" onclick="window.switchStation(2); window.setDioramaStation &amp;&amp; window.setDioramaStation(2);" type="button">
+            02 // THE RACK
+          </button>
+<button class="station-btn px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider bg-surface-container hover:bg-primary/20 text-on-surface transition-colors cursor-pointer border border-outline-variant/40" onclick="window.switchStation(3); window.setDioramaStation &amp;&amp; window.setDioramaStation(3);" type="button">
+            03 // THE VANITY MIRROR
+          </button>
+<button class="station-btn px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider bg-surface-container hover:bg-primary/20 text-on-surface transition-colors cursor-pointer border border-outline-variant/40" onclick="window.switchStation(4); window.setDioramaStation &amp;&amp; window.setDioramaStation(4);" type="button">
+            04 // THE LAPTOP
+          </button>
+</div>
+</div>
+<!-- 3D Three.js Scene Host with ANIMATION_61 -->
+<div class="relative w-full overflow-hidden bg-[#0f0e12]">
+<!-- STITCH_THREEJS_START:ANIMATION_61 class="w-full h-[540px] sm:h-[640px] md:h-[720px] rounded-none overflow-hidden relative shadow-2xl bg-[#0f0e12] block" -->
+<div class="w-full h-[540px] sm:h-[640px] md:h-[720px] rounded-none overflow-hidden relative shadow-2xl bg-[#0f0e12] block" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_61" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_61');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js interactive 3D Creative Bedroom & Atelier Diorama: "MY LITTLE WORLD"
+// Synthesized from real bedroom photos:
+// - Makeup Vanity Desk with large arched mirror, cosmetic bottles, perfumes, brushes, and drawer units
+// - Illuminated full-length standing arched dressing mirror with perimeter glow
+// - Yellow draped round prototyping altar with blue Stitch character lamp & ring head
+// - Laptop workstation, pastel fineliners jar, purple notebook, sticky note bowl
+// - Wrought-iron coat tree bearing neon lime jacket, black Guess gold-plate bag, and monogram shoulder bag
+// - Dark wood wardrobe with gold handles
+// - Twin beds with soft rose/pink linens and pillows
+// - Standing oscillating white floor fan, wall shelf, and checkered floor tiles
+// - Full interactive 360 drag-orbit, scroll zoom, and waypoint controls
+
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+camera.position.set(13.5, 11.5, 15.5);
+camera.lookAt(0, 1.6, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.3;
+container.appendChild(renderer.domElement);
+
+// Palette derived directly from bedroom photos & Atelier aesthetic
+const P = {
+  plinth: 0x141317,
+  floorTileA: 0x2d2b35,
+  floorTileB: 0x1b1a22,
+  wallWarm: 0x222029,
+  yellowDrape: 0xe0b95b,
+  yellowDrapeDark: 0xb58f38,
+  stitchBlue: 0x2578d1,
+  neonLime: 0x3eef70,
+  neonLimeDark: 0x23aa48,
+  blackBag: 0x151518,
+  goldHardware: 0xdfb744,
+  monogramTan: 0xcbb293,
+  monogramBrown: 0x5a3e2b,
+  woodDark: 0x483226,
+  woodWarm: 0x6e4c3a,
+  vanityWood: 0x54392b,
+  pinkLinen: 0xe78ba5,
+  fanWhite: 0xe5e7eb,
+  screenCyan: 0xa8f2ff,
+  mirrorGlass: 0xd8e8f8,
+  mirrorGoldFrame: 0xd4af37,
+  cosmeticPink: 0xf472b6,
+  cosmeticGold: 0xfae8b0,
+  cosmeticGlass: 0xb9e2fe,
+  vanityGlow: 0xffedd5
+};
+
+// Atmospheric Lighting
+const ambientLight = new THREE.AmbientLight(0xd9d5e6, 1.15);
+scene.add(ambientLight);
+
+const sunLight = new THREE.DirectionalLight(0xfff1dc, 2.1);
+sunLight.position.set(15, 22, 13);
+sunLight.castShadow = true;
+sunLight.shadow.mapSize.width = 1024;
+sunLight.shadow.mapSize.height = 1024;
+sunLight.shadow.bias = -0.0003;
+scene.add(sunLight);
+
+const fillLight = new THREE.DirectionalLight(0x8fa4bf, 0.65);
+fillLight.position.set(-14, 10, 14);
+scene.add(fillLight);
+
+// Stitch ring lamp warm point light
+const stitchPointLight = new THREE.PointLight(0xfff3da, 2.8, 11, 1.5);
+stitchPointLight.position.set(2.4, 3.2, 1.8);
+scene.add(stitchPointLight);
+
+// Vanity Illuminated Mirror point light
+const vanityMirrorLight = new THREE.PointLight(0xfff6ea, 2.4, 8.5, 1.5);
+vanityMirrorLight.position.set(-2.0, 3.2, -4.2);
+scene.add(vanityMirrorLight);
+
+// Bedside ambient warm light
+const bedLight = new THREE.PointLight(0xffab7e, 1.5, 10, 1.6);
+bedLight.position.set(-3.2, 2.8, -1.5);
+scene.add(bedLight);
+
+const diorama = new THREE.Group();
+scene.add(diorama);
+
+function makeMesh(geo, mat, cast = true, receive = true) {
+  const m = new THREE.Mesh(geo, mat);
+  m.castShadow = cast;
+  m.receiveShadow = receive;
+  return m;
+}
+
+// 1. EXHIBITION BASE & CHECKERED ROOM TILES (From user's floor photos)
+const baseRadius = 10.2;
+const baseGeo = new THREE.CylinderGeometry(baseRadius, baseRadius + 0.35, 0.45, 56);
+const baseMat = new THREE.MeshStandardMaterial({ color: P.plinth, roughness: 0.85 });
+const baseMesh = makeMesh(baseGeo, baseMat, false, true);
+baseMesh.position.y = -0.23;
+diorama.add(baseMesh);
+
+// Checkered Grid Tiles
+const tSize = 0.92;
+const tRows = 18;
+const tCols = 18;
+const tGeo = new THREE.PlaneGeometry(tSize * 0.96, tSize * 0.96);
+const matTileA = new THREE.MeshStandardMaterial({ color: P.floorTileA, roughness: 0.7 });
+const matTileB = new THREE.MeshStandardMaterial({ color: P.floorTileB, roughness: 0.85 });
+const tilesGroup = new THREE.Group();
+tilesGroup.rotation.x = -Math.PI / 2;
+tilesGroup.position.y = 0.01;
+
+for (let r = -tRows / 2; r < tRows / 2; r++) {
+  for (let c = -tCols / 2; c < tCols / 2; c++) {
+    const dist = Math.sqrt(r * r * tSize * tSize + c * c * tSize * tSize);
+    if (dist < baseRadius - 0.3) {
+      const isEven = (Math.abs(r) + Math.abs(c)) % 2 === 0;
+      const tile = new THREE.Mesh(tGeo, isEven ? matTileA : matTileB);
+      tile.position.set(c * tSize + tSize / 2, r * tSize + tSize / 2, 0);
+      tile.receiveShadow = true;
+      tilesGroup.add(tile);
+    }
+  }
+}
+diorama.add(tilesGroup);
+
+// Back corner architectural framing walls
+const wallGroup = new THREE.Group();
+const wallH = 7.2;
+const wallThick = 0.35;
+const backWall = makeMesh(new THREE.BoxGeometry(12.0, wallH, wallThick), new THREE.MeshStandardMaterial({ color: P.wallWarm, roughness: 0.9 }), false, true);
+backWall.position.set(0, wallH / 2, -6.0);
+wallGroup.add(backWall);
+
+const leftWall = makeMesh(new THREE.BoxGeometry(wallThick, wallH, 12.0), new THREE.MeshStandardMaterial({ color: P.wallWarm, roughness: 0.9 }), false, true);
+leftWall.position.set(-6.0, wallH / 2, 0);
+wallGroup.add(leftWall);
+diorama.add(wallGroup);
+
+// 2. THE MAKEUP VANITY DESK WITH LARGE ARCHED MIRROR (From Photo 1 & 2)
+const vanityGroup = new THREE.Group();
+vanityGroup.position.set(-3.6, 0, -4.5);
+
+// Vanity table desk surface & pedestal drawers
+const vanityMat = new THREE.MeshStandardMaterial({ color: P.vanityWood, roughness: 0.6 });
+const tableTop = makeMesh(new THREE.BoxGeometry(3.6, 0.15, 1.5), vanityMat);
+tableTop.position.y = 1.6;
+vanityGroup.add(tableTop);
+
+// Left and right drawer units
+const leftPedestal = makeMesh(new THREE.BoxGeometry(1.0, 1.5, 1.4), vanityMat);
+leftPedestal.position.set(-1.25, 0.75, 0);
+vanityGroup.add(leftPedestal);
+
+const rightPedestal = makeMesh(new THREE.BoxGeometry(1.0, 1.5, 1.4), vanityMat);
+rightPedestal.position.set(1.25, 0.75, 0);
+vanityGroup.add(rightPedestal);
+
+// Drawer pull handles (brass/gold)
+for (let d = 0; d < 3; d++) {
+  const yPos = 0.35 + d * 0.45;
+  const pullL = makeMesh(new THREE.BoxGeometry(0.18, 0.04, 0.04), new THREE.MeshStandardMaterial({ color: P.goldHardware, metalness: 0.85 }));
+  pullL.position.set(-1.25, yPos, 0.72);
+  vanityGroup.add(pullL);
+
+  const pullR = makeMesh(new THREE.BoxGeometry(0.18, 0.04, 0.04), new THREE.MeshStandardMaterial({ color: P.goldHardware, metalness: 0.85 }));
+  pullR.position.set(1.25, yPos, 0.72);
+  vanityGroup.add(pullR);
+}
+
+// Large Arched Vanity Mirror (sculptural crescent/organic arch from Photo 1)
+const mirrorGroup = new THREE.Group();
+mirrorGroup.position.set(0, 1.65, -0.4);
+
+// Curved outer wooden frame
+const mirrorFrameGeo = new THREE.TorusGeometry(1.35, 0.1, 16, 36, Math.PI);
+const mirrorFrame = makeMesh(mirrorFrameGeo, new THREE.MeshStandardMaterial({ color: P.mirrorGoldFrame, roughness: 0.4, metalness: 0.6 }));
+mirrorFrame.rotation.z = Math.PI;
+mirrorFrame.position.y = 1.35;
+mirrorGroup.add(mirrorFrame);
+
+// Lower base arc frame
+const lowerFrame = makeMesh(new THREE.BoxGeometry(2.7, 0.12, 0.16), new THREE.MeshStandardMaterial({ color: P.mirrorGoldFrame, roughness: 0.4, metalness: 0.6 }));
+lowerFrame.position.y = 1.35;
+mirrorGroup.add(lowerFrame);
+
+// Mirror reflective glass surface
+const mirrorGlassGeo = new THREE.CircleGeometry(1.25, 32);
+const mirrorGlassMat = new THREE.MeshStandardMaterial({ color: P.mirrorGlass, roughness: 0.05, metalness: 0.85 });
+const mirrorGlass = new THREE.Mesh(mirrorGlassGeo, mirrorGlassMat);
+mirrorGlass.position.set(0, 1.35, 0.01);
+mirrorGroup.add(mirrorGlass);
+vanityGroup.add(mirrorGroup);
+
+// Cosmetic bottles, perfumes, jars, brushes on the vanity table top
+const cosmeticColors = [0xf472b6, 0x38bdf8, 0xfde047, 0xe2e8f0, 0xa855f7, 0xf43f5e];
+for (let c = 0; c < 14; c++) {
+  const h = 0.15 + (c % 4) * 0.08;
+  const r = 0.04 + (c % 3) * 0.02;
+  const botMat = new THREE.MeshStandardMaterial({
+    color: cosmeticColors[c % cosmeticColors.length],
+    roughness: 0.2,
+    metalness: (c % 2 === 0) ? 0.3 : 0.7
+  });
+  const bottle = makeMesh(new THREE.CylinderGeometry(r, r * 1.1, h, 12), botMat);
+  const cx = -1.2 + (c * 0.18) + (c % 3) * 0.05;
+  const cz = 0.15 + ((c % 4) - 1.5) * 0.18;
+  bottle.position.set(cx, 1.6 + h / 2, cz);
+  vanityGroup.add(bottle);
+}
+
+// Vanity Stool/Chair
+const stoolSeat = makeMesh(new THREE.CylinderGeometry(0.45, 0.45, 0.08, 24), new THREE.MeshStandardMaterial({ color: P.pinkLinen, roughness: 0.7 }));
+stoolSeat.position.set(0, 0.9, 0.85);
+vanityGroup.add(stoolSeat);
+for (let l = 0; l < 4; l++) {
+  const ang = (l / 4) * Math.PI * 2;
+  const leg = makeMesh(new THREE.CylinderGeometry(0.025, 0.02, 0.9, 8), vanityMat);
+  leg.position.set(Math.cos(ang) * 0.32, 0.45, 0.85 + Math.sin(ang) * 0.32);
+  vanityGroup.add(leg);
+}
+diorama.add(vanityGroup);
+
+// 3. ILLUMINATED FULL-LENGTH STANDING DRESSING MIRROR (Photo 1 center)
+const fullMirrorGroup = new THREE.Group();
+fullMirrorGroup.position.set(-0.8, 0, -5.2);
+fullMirrorGroup.rotation.y = 0.25;
+
+// Standing wooden tall frame
+const fFrameMat = new THREE.MeshStandardMaterial({ color: P.goldHardware, roughness: 0.35, metalness: 0.8 });
+const fFrameH = 4.2;
+const fFrameW = 1.3;
+
+const fGlass = makeMesh(new THREE.PlaneGeometry(fFrameW - 0.16, fFrameH - 0.5), new THREE.MeshStandardMaterial({ color: P.mirrorGlass, roughness: 0.05, metalness: 0.9 }));
+fGlass.position.set(0, fFrameH / 2 + 0.2, 0.02);
+fullMirrorGroup.add(fGlass);
+
+// Arch top frame
+const fArch = makeMesh(new THREE.TorusGeometry(fFrameW / 2, 0.08, 12, 24, Math.PI), fFrameMat);
+fArch.position.y = fFrameH - 0.05;
+fullMirrorGroup.add(fArch);
+
+// Vertical Frame Posts
+const fPostL = makeMesh(new THREE.CylinderGeometry(0.04, 0.04, fFrameH - 0.2, 10), fFrameMat);
+fPostL.position.set(-fFrameW / 2, (fFrameH - 0.2) / 2, 0);
+fullMirrorGroup.add(fPostL);
+
+const fPostR = makeMesh(new THREE.CylinderGeometry(0.04, 0.04, fFrameH - 0.2, 10), fFrameMat);
+fPostR.position.set(fFrameW / 2, (fFrameH - 0.2) / 2, 0);
+fullMirrorGroup.add(fPostR);
+
+// Glowing Perimeter LED strip on mirror
+const fLightStrip = new THREE.Mesh(new THREE.PlaneGeometry(fFrameW - 0.06, fFrameH - 0.38), new THREE.MeshBasicMaterial({ color: 0xfffae8, transparent: true, opacity: 0.45 }));
+fLightStrip.position.set(0, fFrameH / 2 + 0.2, 0.01);
+fullMirrorGroup.add(fLightStrip);
+
+// Mirror base floor stand
+const fStand = makeMesh(new THREE.BoxGeometry(fFrameW + 0.3, 0.12, 0.65), vanityMat);
+fStand.position.y = 0.06;
+fullMirrorGroup.add(fStand);
+diorama.add(fullMirrorGroup);
+
+// 4. THE YELLOW DRAPED ROUND TABLE & STITCH LAMP (Prototyping Altar)
+const deskGroup = new THREE.Group();
+deskGroup.position.set(2.4, 0, 1.8);
+
+const clothTop = makeMesh(new THREE.CylinderGeometry(1.82, 1.86, 0.12, 32), new THREE.MeshStandardMaterial({ color: P.yellowDrape, roughness: 0.85 }));
+clothTop.position.y = 1.55;
+deskGroup.add(clothTop);
+
+const clothSkirt = makeMesh(new THREE.CylinderGeometry(1.85, 2.08, 1.5, 32, 1, true), new THREE.MeshStandardMaterial({ color: P.yellowDrapeDark, roughness: 0.9, side: THREE.DoubleSide }));
+clothSkirt.position.y = 0.76;
+deskGroup.add(clothSkirt);
+
+// Open Laptop ("Where sketches become digital")
+const laptopGroup = new THREE.Group();
+laptopGroup.position.set(-0.35, 1.62, 0.15);
+laptopGroup.rotation.y = 0.38;
+
+const lapBase = makeMesh(new THREE.BoxGeometry(0.9, 0.03, 0.65), new THREE.MeshStandardMaterial({ color: 0x22242a, roughness: 0.4, metalness: 0.5 }));
+laptopGroup.add(lapBase);
+
+const screenLid = new THREE.Group();
+screenLid.position.set(0, 0.02, -0.31);
+screenLid.rotation.x = -0.3;
+const screenBack = makeMesh(new THREE.BoxGeometry(0.9, 0.6, 0.02), new THREE.MeshStandardMaterial({ color: 0x19191f, roughness: 0.4 }));
+screenBack.position.set(0, 0.3, 0);
+screenLid.add(screenBack);
+
+const screenGlow = new THREE.Mesh(new THREE.PlaneGeometry(0.84, 0.54), new THREE.MeshBasicMaterial({ color: P.screenCyan }));
+screenGlow.position.set(0, 0.3, 0.012);
+screenLid.add(screenGlow);
+laptopGroup.add(screenLid);
+deskGroup.add(laptopGroup);
+
+// Stitch Character Desk Lamp with glowing Ring Light
+const stitchLamp = new THREE.Group();
+stitchLamp.position.set(0.45, 1.62, 0.65);
+
+const lampBaseMesh = makeMesh(new THREE.CylinderGeometry(0.25, 0.28, 0.06, 16), new THREE.MeshStandardMaterial({ color: P.stitchBlue, roughness: 0.4 }));
+lampBaseMesh.position.y = 0.03;
+stitchLamp.add(lampBaseMesh);
+
+const lampBody = makeMesh(new THREE.SphereGeometry(0.22, 16, 16), new THREE.MeshStandardMaterial({ color: P.stitchBlue, roughness: 0.4 }));
+lampBody.scale.set(1, 1.25, 1);
+lampBody.position.y = 0.26;
+stitchLamp.add(lampBody);
+
+const ringHead = makeMesh(new THREE.TorusGeometry(0.18, 0.038, 12, 24), new THREE.MeshStandardMaterial({ color: P.stitchBlue, roughness: 0.3 }));
+ringHead.position.set(0, 0.72, 0.06);
+stitchLamp.add(ringHead);
+
+const ringBulb = new THREE.Mesh(new THREE.CircleGeometry(0.155, 16), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+ringBulb.position.set(0, 0.72, 0.075);
+stitchLamp.add(ringBulb);
+
+const lampGooseneck = makeMesh(new THREE.CylinderGeometry(0.022, 0.022, 0.35, 8), new THREE.MeshStandardMaterial({ color: 0xd1d5db }));
+lampGooseneck.position.set(0, 0.5, 0.03);
+stitchLamp.add(lampGooseneck);
+deskGroup.add(stitchLamp);
+
+// Pastel Markers Cup (Photo 1)
+const markerCup = makeMesh(new THREE.CylinderGeometry(0.2, 0.18, 0.4, 16), new THREE.MeshStandardMaterial({ color: 0xf8f9fa, roughness: 0.4 }));
+markerCup.position.set(0.95, 1.82, -0.2);
+deskGroup.add(markerCup);
+
+const pColors = [0xf472b6, 0x60a5fa, 0x4ade80, 0xfbbf24, 0xa78bfa, 0xf87171, 0x38bdf8, 0xf43f5e];
+for (let i = 0; i < 16; i++) {
+  const col = pColors[i % pColors.length];
+  const pen = makeMesh(new THREE.CylinderGeometry(0.018, 0.018, 0.55, 8), new THREE.MeshStandardMaterial({ color: col, roughness: 0.3 }));
+  const ang = (i / 16) * Math.PI * 2;
+  const rad = 0.08 + (i % 3) * 0.035;
+  pen.position.set(0.95 + Math.cos(ang) * rad, 2.05, -0.2 + Math.sin(ang) * rad);
+  pen.rotation.set((Math.random() - 0.5) * 0.28, 0, (Math.random() - 0.5) * 0.28);
+  deskGroup.add(pen);
+}
+
+// Purple Sketchbook & Sticky Notes Glass Bowl
+const purpleBook = makeMesh(new THREE.BoxGeometry(0.55, 0.04, 0.75), new THREE.MeshStandardMaterial({ color: 0x8b5cf6, roughness: 0.6 }));
+purpleBook.position.set(0.8, 1.64, 0.55);
+purpleBook.rotation.y = -0.35;
+deskGroup.add(purpleBook);
+
+const glassBowl = makeMesh(new THREE.SphereGeometry(0.18, 16, 16, 0, Math.PI * 2, 0, Math.PI * 0.65), new THREE.MeshStandardMaterial({ color: 0xbfdbfe, roughness: 0.1, transparent: true, opacity: 0.65 }), false, false);
+glassBowl.position.set(0.4, 1.74, -0.6);
+deskGroup.add(glassBowl);
+
+const stickyNotes = makeMesh(new THREE.BoxGeometry(0.12, 0.08, 0.12), new THREE.MeshStandardMaterial({ color: 0xfef08a }));
+stickyNotes.position.set(0.4, 1.72, -0.6);
+deskGroup.add(stickyNotes);
+diorama.add(deskGroup);
+
+// 5. THE CLOTHING RACK & HANGING BAGS (Photo 2)
+const rackGroup = new THREE.Group();
+rackGroup.position.set(-2.2, 0, -1.5);
+
+const standBase = makeMesh(new THREE.CylinderGeometry(0.75, 0.8, 0.08, 16), new THREE.MeshStandardMaterial({ color: 0x1f1f22, roughness: 0.5, metalness: 0.7 }));
+standBase.position.y = 0.04;
+rackGroup.add(standBase);
+
+const centralPole = makeMesh(new THREE.CylinderGeometry(0.045, 0.045, 4.4, 12), new THREE.MeshStandardMaterial({ color: 0x1f1f22, roughness: 0.5, metalness: 0.7 }));
+centralPole.position.y = 2.2;
+rackGroup.add(centralPole);
+
+const crownRing = makeMesh(new THREE.TorusGeometry(0.5, 0.035, 8, 24), new THREE.MeshStandardMaterial({ color: 0x1f1f22, roughness: 0.5, metalness: 0.7 }));
+crownRing.rotation.x = Math.PI / 2;
+crownRing.position.y = 3.85;
+rackGroup.add(crownRing);
+
+// Electric Lime Green jacket
+const limeJacketGroup = new THREE.Group();
+limeJacketGroup.position.set(0.3, 2.7, 0.25);
+limeJacketGroup.rotation.y = -0.5;
+
+const hangerBrass = makeMesh(new THREE.BoxGeometry(0.03, 0.14, 0.48), new THREE.MeshStandardMaterial({ color: P.goldHardware, metalness: 0.8 }));
+hangerBrass.position.y = 1.0;
+limeJacketGroup.add(hangerBrass);
+
+const jacketCloth = makeMesh(new THREE.BoxGeometry(0.24, 1.7, 0.9), new THREE.MeshStandardMaterial({ color: P.neonLime, roughness: 0.5 }));
+limeJacketGroup.add(jacketCloth);
+
+const lapelFold = makeMesh(new THREE.BoxGeometry(0.28, 1.25, 0.38), new THREE.MeshStandardMaterial({ color: P.neonLimeDark, roughness: 0.5 }));
+lapelFold.position.set(0.04, -0.15, 0.16);
+limeJacketGroup.add(lapelFold);
+rackGroup.add(limeJacketGroup);
+
+// Black GUESS bag with gold hardware plate
+const blackGuessBag = new THREE.Group();
+blackGuessBag.position.set(-0.28, 2.6, 0.35);
+
+const bStrap = makeMesh(new THREE.TorusGeometry(0.24, 0.016, 6, 16, Math.PI), new THREE.MeshStandardMaterial({ color: 0x111111 }));
+bStrap.position.y = 0.68;
+blackGuessBag.add(bStrap);
+
+const bBody = makeMesh(new THREE.BoxGeometry(0.18, 0.58, 0.68), new THREE.MeshStandardMaterial({ color: P.blackBag, roughness: 0.35, metalness: 0.2 }));
+blackGuessBag.add(bBody);
+
+const goldPlate = makeMesh(new THREE.BoxGeometry(0.01, 0.09, 0.26), new THREE.MeshStandardMaterial({ color: P.goldHardware, roughness: 0.2, metalness: 0.9 }));
+goldPlate.position.set(0.1, 0.05, 0);
+blackGuessBag.add(goldPlate);
+rackGroup.add(blackGuessBag);
+
+// Monogram shoulder bag
+const monogramBag = new THREE.Group();
+monogramBag.position.set(0.18, 2.15, -0.38);
+
+const mBody = makeMesh(new THREE.BoxGeometry(0.17, 0.46, 0.55), new THREE.MeshStandardMaterial({ color: P.monogramTan, roughness: 0.65 }));
+monogramBag.add(mBody);
+
+const mStrap = makeMesh(new THREE.CylinderGeometry(0.012, 0.012, 0.72, 6), new THREE.MeshStandardMaterial({ color: P.monogramBrown }));
+mStrap.position.set(0, 0.52, 0);
+monogramBag.add(mStrap);
+rackGroup.add(monogramBag);
+diorama.add(rackGroup);
+
+// 6. THE WARDROBE CABINET (Photo 3)
+const wardrobeGroup = new THREE.Group();
+wardrobeGroup.position.set(-5.0, 0, -2.2);
+
+const wardrobeMat = new THREE.MeshStandardMaterial({ color: P.woodDark, roughness: 0.65 });
+const wMain = makeMesh(new THREE.BoxGeometry(1.8, 5.6, 1.4), wardrobeMat);
+wMain.position.y = 2.8;
+wardrobeGroup.add(wMain);
+
+const wUpperSeam = makeMesh(new THREE.BoxGeometry(0.02, 0.02, 1.42), new THREE.MeshStandardMaterial({ color: 0x111111 }));
+wUpperSeam.position.set(0.91, 4.2, 0);
+wardrobeGroup.add(wUpperSeam);
+
+for (let h = -1; h <= 1; h += 2) {
+  const pull = makeMesh(new THREE.BoxGeometry(0.04, 0.42, 0.03), new THREE.MeshStandardMaterial({ color: P.goldHardware, metalness: 0.85 }));
+  pull.position.set(0.93, 2.9, h * 0.16);
+  wardrobeGroup.add(pull);
+}
+diorama.add(wardrobeGroup);
+
+// 7. THE TWIN BEDS WITH PINK BEDSPREADS (Photo 3)
+const bedStation = new THREE.Group();
+bedStation.position.set(-1.8, 0, 3.2);
+bedStation.rotation.y = -0.25;
+
+const bedFrame = makeMesh(new THREE.BoxGeometry(3.6, 0.45, 2.1), wardrobeMat);
+bedFrame.position.set(0, 0.22, 0);
+bedStation.add(bedFrame);
+
+const bedHead = makeMesh(new THREE.BoxGeometry(0.24, 1.6, 2.1), wardrobeMat);
+bedHead.position.set(-1.7, 0.9, 0);
+bedStation.add(bedHead);
+
+const pinkSpread = makeMesh(new THREE.BoxGeometry(3.4, 0.42, 2.0), new THREE.MeshStandardMaterial({ color: P.pinkLinen, roughness: 0.85 }));
+pinkSpread.position.set(0.05, 0.58, 0);
+bedStation.add(pinkSpread);
+
+for (let p = -0.45; p <= 0.45; p += 0.9) {
+  const pillow = makeMesh(new THREE.BoxGeometry(0.65, 0.22, 0.75), new THREE.MeshStandardMaterial({ color: 0xfdfdfd, roughness: 0.8 }));
+  pillow.position.set(-1.2, 0.85, p);
+  pillow.rotation.z = 0.2;
+  bedStation.add(pillow);
+}
+diorama.add(bedStation);
+
+// 8. STANDING OSCILLATING FAN (Photo 3)
+const fanGroup = new THREE.Group();
+fanGroup.position.set(4.2, 0, 3.8);
+
+const fanBase = makeMesh(new THREE.CylinderGeometry(0.42, 0.44, 0.08, 16), new THREE.MeshStandardMaterial({ color: P.fanWhite }));
+fanBase.position.y = 0.04;
+fanGroup.add(fanBase);
+
+const fanStem = makeMesh(new THREE.CylinderGeometry(0.03, 0.03, 2.3, 8), new THREE.MeshStandardMaterial({ color: 0xcfd8dc }));
+fanStem.position.y = 1.15;
+fanGroup.add(fanStem);
+
+const fanCage = makeMesh(new THREE.CylinderGeometry(0.48, 0.48, 0.16, 16), new THREE.MeshStandardMaterial({ color: P.fanWhite, roughness: 0.3 }));
+fanCage.rotation.x = Math.PI / 2;
+fanCage.position.y = 2.3;
+fanGroup.add(fanCage);
+diorama.add(fanGroup);
+
+// Ambient floating particles
+const pCount = 65;
+const pGeo = new THREE.BufferGeometry();
+const pPos = new Float32Array(pCount * 3);
+for (let i = 0; i < pCount * 3; i += 3) {
+  pPos[i] = (Math.random() - 0.5) * 14;
+  pPos[i + 1] = 0.8 + Math.random() * 5.8;
+  pPos[i + 2] = (Math.random() - 0.5) * 14;
+}
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+const pMat = new THREE.PointsMaterial({ color: 0xffd1b8, size: 0.075, transparent: true, opacity: 0.55 });
+const particles = new THREE.Points(pGeo, pMat);
+diorama.add(particles);
+
+// INTERACTIVE CAMERA WAYPOINTS
+// 00: Overview, 01: The Desk, 02: The Rack, 03: The Vanity Mirror, 04: The Laptop
+const waypoints = [
+  { id: 'overview', cam: new THREE.Vector3(13.5, 11.5, 15.5), look: new THREE.Vector3(0, 1.6, 0) },
+  { id: 'desk',     cam: new THREE.Vector3(5.2, 4.4, 4.8),    look: new THREE.Vector3(2.4, 1.7, 1.8) },
+  { id: 'rack',     cam: new THREE.Vector3(-0.5, 4.2, 1.4),   look: new THREE.Vector3(-2.2, 2.6, -1.5) },
+  { id: 'vanity',   cam: new THREE.Vector3(-2.2, 3.6, -1.8),  look: new THREE.Vector3(-3.4, 2.3, -4.5) },
+  { id: 'laptop',   cam: new THREE.Vector3(3.6, 3.1, 2.9),    look: new THREE.Vector3(2.0, 1.8, 1.9) }
+];
+
+let targetCam = waypoints[0].cam.clone();
+let targetLook = waypoints[0].look.clone();
+let curLook = waypoints[0].look.clone();
+
+window.setDioramaStation = function(idx) {
+  if (idx >= 0 && idx < waypoints.length) {
+    targetCam.copy(waypoints[idx].cam);
+    targetLook.copy(waypoints[idx].look);
+    if (window.onDioramaStationChanged) {
+      window.onDioramaStationChanged(waypoints[idx].id);
+    }
+  }
+};
+
+// Drag Orbit Controls
+let isDragging = false;
+let prevMouseX = 0;
+let prevMouseY = 0;
+let sphericalTheta = 0.55;
+let sphericalPhi = 0.15;
+const orbitRadius = 22.0;
+
+container.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  prevMouseX = e.clientX;
+  prevMouseY = e.clientY;
+});
+
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    const deltaX = e.clientX - prevMouseX;
+    const deltaY = e.clientY - prevMouseY;
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+
+    sphericalTheta -= deltaX * 0.0055;
+    sphericalPhi = Math.max(-0.45, Math.min(0.65, sphericalPhi + deltaY * 0.0055));
+
+    targetCam.x = Math.sin(sphericalTheta) * orbitRadius * Math.cos(sphericalPhi);
+    targetCam.z = Math.cos(sphericalTheta) * orbitRadius * Math.cos(sphericalPhi);
+    targetCam.y = Math.max(3.5, 10.0 + sphericalPhi * 12.0);
+  }
+});
+
+// Scroll Zoom
+container.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const zoomFactor = e.deltaY * 0.0028;
+  targetCam.multiplyScalar(1 + zoomFactor);
+  targetCam.clampLength(6.5, 28.0);
+}, { passive: false });
+
+function onResize() {
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+}
+window.addEventListener('resize', onResize);
+
+// Render loop
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const time = clock.getElapsedTime();
+
+  camera.position.lerp(targetCam, 0.05);
+  curLook.lerp(targetLook, 0.05);
+  camera.lookAt(curLook);
+
+  limeJacketGroup.rotation.z = Math.sin(time * 1.3) * 0.02;
+  blackGuessBag.rotation.z = Math.cos(time * 1.1) * 0.025;
+  stitchPointLight.intensity = 2.7 + Math.sin(time * 2.5) * 0.35;
+  vanityMirrorLight.intensity = 2.3 + Math.cos(time * 1.8) * 0.2;
+
+  const posArr = particles.geometry.attributes.position.array;
+  for (let i = 1; i < posArr.length; i += 3) {
+    posArr[i] += Math.sin(time + i) * 0.002;
+  }
+  particles.geometry.attributes.position.needsUpdate = true;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_61 -->
+<!-- Ambient Spatial HUD Overlay inside Viewport -->
+<div class="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-md pointer-events-none">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md p-4 shadow-2xl border border-outline-variant/40 pointer-events-auto">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-mono text-xs text-primary font-medium tracking-wider" id="hud-title">
+                // 00 • ARCHITECTURAL OVERVIEW
+              </span>
+<span class="font-mono text-[10px] text-secondary uppercase tracking-widest">
+                IN SITU 3D
+              </span>
+</div>
+<p class="font-serif text-sm text-on-surface-variant leading-relaxed" id="hud-description">
+              Complete atelier origin diorama: vanity desk with arched mirror &amp; perfumes, standing LED full-length mirror, yellow draped crafting altar, Stitch ring lamp, coat tree with lime jacket and Guess bag, twin beds, and checkered tile grid.
+            </p>
+</div>
+</div>
+<!-- Camera Crosshair & Telemetry Accent -->
+<div class="absolute top-6 right-6 pointer-events-none hidden sm:flex flex-col items-end space-y-1">
+<span class="font-mono text-[10px] text-outline-variant uppercase tracking-widest">
+            FOV: 40° • TILT: -14.2°
+          </span>
+<span class="font-mono text-[10px] text-primary/80 uppercase tracking-widest">
+            SCALE: 1:12 PHYSICAL REPLICA
+          </span>
+</div>
+</div>
+<!-- Station Guide Prompt Footer -->
+<div class="mt-3 px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 bg-surface-container-low/70 text-outline border border-outline-variant/20">
+<span class="font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
+          DRAG TO ROTATE 360° • SCROLL TO ZOOM • CLICK STATIONS TO GLIDE CAMERA
+        </span>
+<span class="font-mono text-[10px] text-primary tracking-widest uppercase font-medium">
+          LIVE INTERACTIVE LAB
+        </span>
+</div>
+</div>
+</section>
+<!-- SECTION: Interactive Object Cards (Origin Sanctuary Pillars) -->
+<section class="relative px-4 sm:px-8 lg:px-16 py-12 max-w-7xl mx-auto w-full">
+<div class="mb-8 flex items-baseline justify-between">
+<div>
+<span class="font-mono text-xs text-primary uppercase tracking-widest block mb-1">
+          SANCTUARY ANATOMY
+        </span>
+<h2 class="font-editorial text-2xl sm:text-3xl text-on-surface font-normal">
+          Artifacts of the Origin Room
+        </h2>
+</div>
+<span class="hidden md:inline-block font-mono text-xs text-outline uppercase tracking-widest">
+        ARCHIVE INDEX • 01 — 05
+      </span>
+</div>
+<!-- Bento Exhibition Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+<!-- Item 1: The Desk -->
+<div class="group cursor-pointer bg-surface-container-low p-6 flex flex-col justify-between transition-all duration-300 hover:bg-surface-container hover:shadow-xl relative overflow-hidden border border-outline-variant/20 hover:border-primary/40" onclick="window.switchStation(1); window.setDioramaStation &amp;&amp; window.setDioramaStation(1);">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-xs text-primary uppercase tracking-widest">
+              STATION 01
+            </span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-lg">
+              draw
+            </span>
+</div>
+<div>
+<h3 class="font-editorial text-xl text-on-surface group-hover:text-primary transition-colors font-medium">
+              THE DESK
+            </h3>
+<p class="text-base text-secondary italic font-serif mt-1">
+              “Where ideas take shape.”
+            </p>
+</div>
+<p class="font-serif text-sm text-on-surface-variant leading-relaxed">
+            Yellow draped crafting altar, Stitch character ring lamp, scattered pastel markers cup, sticky notes bowl, and purple sketchbook.
+          </p>
+</div>
+<div class="pt-6 mt-6 flex items-center justify-between bg-surface-container-lowest/40 -mx-6 -mb-6 px-6 py-3 border-t border-outline-variant/20">
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider">
+            FOCUS CAM
+          </span>
+<span class="font-mono text-xs text-primary group-hover:translate-x-1 transition-transform">
+            VIEWPOINT →
+          </span>
+</div>
+</div>
+<!-- Item 2: Clothing Rack -->
+<div class="group cursor-pointer bg-surface-container-low p-6 flex flex-col justify-between transition-all duration-300 hover:bg-surface-container hover:shadow-xl relative overflow-hidden border border-outline-variant/20 hover:border-primary/40" onclick="window.switchStation(2); window.setDioramaStation &amp;&amp; window.setDioramaStation(2);">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-xs text-primary uppercase tracking-widest">
+              STATION 02
+            </span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-lg">
+              checkroom
+            </span>
+</div>
+<div>
+<h3 class="font-editorial text-xl text-on-surface group-hover:text-primary transition-colors font-medium">
+              CLOTHING RACK
+            </h3>
+<p class="text-base text-secondary italic font-serif mt-1">
+              “Where designs become something real.”
+            </p>
+</div>
+<p class="font-serif text-sm text-on-surface-variant leading-relaxed">
+            Wrought-iron coat stand bearing neon lime-green jacket, black Guess gold-badge shoulder bag, and monogram purse.
+          </p>
+</div>
+<div class="pt-6 mt-6 flex items-center justify-between bg-surface-container-lowest/40 -mx-6 -mb-6 px-6 py-3 border-t border-outline-variant/20">
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider">
+            FOCUS CAM
+          </span>
+<span class="font-mono text-xs text-primary group-hover:translate-x-1 transition-transform">
+            VIEWPOINT →
+          </span>
+</div>
+</div>
+<!-- Item 3: Vanity & Mirrors (NEW) -->
+<div class="group cursor-pointer bg-surface-container-low p-6 flex flex-col justify-between transition-all duration-300 hover:bg-surface-container hover:shadow-xl relative overflow-hidden border border-outline-variant/20 hover:border-primary/40" onclick="window.switchStation(3); window.setDioramaStation &amp;&amp; window.setDioramaStation(3);">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-xs text-primary uppercase tracking-widest">
+              STATION 03
+            </span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-lg">
+              auto_awesome
+            </span>
+</div>
+<div>
+<h3 class="font-editorial text-xl text-on-surface group-hover:text-primary transition-colors font-medium">
+              VANITY &amp; MIRRORS
+            </h3>
+<p class="text-base text-secondary italic font-serif mt-1">
+              “Where reflections meet form and color.”
+            </p>
+</div>
+<p class="font-serif text-sm text-on-surface-variant leading-relaxed">
+            Dual-mirror atelier setup: the sculpted arched vanity with cosmetic bottles, perfumes, and drafting tools alongside the illuminated full-length dressing mirror.
+          </p>
+</div>
+<div class="pt-6 mt-6 flex items-center justify-between bg-surface-container-lowest/40 -mx-6 -mb-6 px-6 py-3 border-t border-outline-variant/20">
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider">
+            FOCUS CAM
+          </span>
+<span class="font-mono text-xs text-primary group-hover:translate-x-1 transition-transform">
+            VIEWPOINT →
+          </span>
+</div>
+</div>
+<!-- Item 4: Laptop Workstation -->
+<div class="group cursor-pointer bg-surface-container-low p-6 flex flex-col justify-between transition-all duration-300 hover:bg-surface-container hover:shadow-xl relative overflow-hidden border border-outline-variant/20 hover:border-primary/40" onclick="window.switchStation(4); window.setDioramaStation &amp;&amp; window.setDioramaStation(4);">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-xs text-primary uppercase tracking-widest">
+              STATION 04
+            </span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-lg">
+              laptop_mac
+            </span>
+</div>
+<div>
+<h3 class="font-editorial text-xl text-on-surface group-hover:text-primary transition-colors font-medium">
+              LAPTOP
+            </h3>
+<p class="text-base text-secondary italic font-serif mt-1">
+              “Where sketches become digital.”
+            </p>
+</div>
+<p class="font-serif text-sm text-on-surface-variant leading-relaxed">
+            Open glowing workstation, vector paths, 3D garment simulation, spec sheets, and client dialogue translating imagination into wearable blueprints.
+          </p>
+</div>
+<div class="pt-6 mt-6 flex items-center justify-between bg-surface-container-lowest/40 -mx-6 -mb-6 px-6 py-3 border-t border-outline-variant/20">
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider">
+            FOCUS CAM
+          </span>
+<span class="font-mono text-xs text-primary group-hover:translate-x-1 transition-transform">
+            VIEWPOINT →
+          </span>
+</div>
+</div>
+<!-- Item 5: Sanctuary & Horizon -->
+<div class="group cursor-pointer bg-surface-container-low p-6 flex flex-col justify-between transition-all duration-300 hover:bg-surface-container hover:shadow-xl relative overflow-hidden border border-outline-variant/20 hover:border-primary/40" onclick="window.switchStation(0); window.setDioramaStation &amp;&amp; window.setDioramaStation(0);">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-mono text-xs text-primary uppercase tracking-widest">
+              STATION 00
+            </span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-lg">
+              night_shelter
+            </span>
+</div>
+<div>
+<h3 class="font-editorial text-xl text-on-surface group-hover:text-primary transition-colors font-medium">
+              SANCTUARY
+            </h3>
+<p class="text-base text-secondary italic font-serif mt-1">
+              “The lived-in sanctuary.”
+            </p>
+</div>
+<p class="font-serif text-sm text-on-surface-variant leading-relaxed">
+            Twin rose beds, dark wood wardrobe with brass handles, checkered floor tiles, and standing fan where restful stillness nurtures radical creation.
+          </p>
+</div>
+<div class="pt-6 mt-6 flex items-center justify-between bg-surface-container-lowest/40 -mx-6 -mb-6 px-6 py-3 border-t border-outline-variant/20">
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider">
+            FOCUS CAM
+          </span>
+<span class="font-mono text-xs text-primary group-hover:translate-x-1 transition-transform">
+            VIEWPOINT →
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: Photographic Reference Gallery ("In Situ Archives" with Real Photos) -->
+<section class="relative px-4 sm:px-8 lg:px-16 py-20 max-w-7xl mx-auto w-full border-t border-outline-variant/20" id="photo-archives">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div class="max-w-xl">
+<span class="font-mono text-xs text-primary uppercase tracking-widest block mb-2">
+          CURATED EVIDENCE • ROOM 402
+        </span>
+<h2 class="font-editorial text-3xl sm:text-4xl lg:text-5xl text-on-surface font-normal">
+          In Situ Archives
+        </h2>
+<p class="font-serif text-base text-on-surface-variant mt-2 leading-relaxed">
+          Original photographic captures from the bedroom sanctuary. These raw, everyday moments provided the architectural blueprint for our 3D diorama and couture collections.
+        </p>
+</div>
+<div class="flex items-center space-x-6 text-outline font-mono text-xs uppercase tracking-widest">
+<span>EXHIBIT A: 09.18.2026</span>
+<span class="text-primary">•</span>
+<span>KODAK ARCHIVE SCAN</span>
+</div>
+</div>
+<!-- Real User Photos Grid: Primary captures -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-8">
+<!-- Plate I (IMAGE_12) -->
+<article class="flex flex-col bg-surface-container-low overflow-hidden shadow-xl group transition-all duration-300 hover:bg-surface-container border border-outline-variant/20">
+<div class="relative overflow-hidden aspect-[4/3] bg-surface-container-lowest">
+<img alt="Original sanctuary reference photograph showing room drafting perspective, fan and checkered floor" class="w-full h-full object-cover grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC14_kO_4daDg1K1fUQ0i6iqECtF9y4BF1U0IvuTFKE88iyln9VUG9PgohWPpQ5GKm7nHaEHEdxDHQx8Ky9Tx_D1iuSrvRTZaFlnadbG473sH2XiTxERRb5hynqPSLh0BSw0D80DjooaCLEb4Q53nemGb_VRpZt0ZDmCzogHdNR3nX0pLaeYB2GGkAMjBA_8C9D_WA03YG3UmHsWia8kqLMfd5qQ1Nb7Z5ooMWbx3X5eTgVugNSuSdVZI6IWF4eIs-_DQ"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/85 backdrop-blur-sm px-2.5 py-1 text-on-surface font-mono text-[10px] uppercase tracking-widest border border-outline-variant/30">
+            PLATE I // SANCTUARY VISTA
+          </div>
+</div>
+<div class="p-5 flex flex-col justify-between space-y-3">
+<div>
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider block">
+              ROOM PERSPECTIVE • 17:15:43 HRS
+            </span>
+<h4 class="font-editorial text-lg text-on-surface mt-1 font-medium">
+              Checkered Floor &amp; Linen Grid
+            </h4>
+<p class="font-serif text-sm text-on-surface-variant mt-2 leading-relaxed">
+              The spatial matrix that defines Room 402: checkered tiles setting the rhythm against gentle draped textiles, twin beds, and oscillating fan.
+            </p>
+</div>
+<div class="pt-3 flex items-center justify-between text-outline font-mono text-[10px] uppercase tracking-widest border-t border-outline-variant/20">
+<span>REF: DSC_0918_12</span>
+<span class="text-secondary font-mono">AUTHENTIC RECORD</span>
+</div>
+</div>
+</article>
+<!-- Plate II (IMAGE_2) -->
+<article class="flex flex-col bg-surface-container-low overflow-hidden shadow-xl group transition-all duration-300 hover:bg-surface-container md:-mt-6 border border-outline-variant/20">
+<div class="relative overflow-hidden aspect-[4/3] bg-surface-container-lowest">
+<img alt="Original studio makeup vanity desk with large arched mirror, illuminated dressing mirror, and wardrobe" class="w-full h-full object-cover grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNyZFw0rgxCT9eQkTYGDJN0tHFwNZQA0J_5oOG4zbEgIxzn0ryqQtNX9jD6lTKQ75-w0Trq-T40h9ZqoTxIDGEkDL_JxF0lm5qzrVBR8k0UHUzgxZJU3m4Hx50oIQe3H8oVwsmVqNvIw3CPw6ZepYXgXSR-SkCGarthpapC6kPcHv4fpmCl7ryoil5j8Gvudji2rexQTr4OBjHePz33nGiBcSDUWakTO_lDwePUvNBeie1wOIb01nJJIu3rWejqYMjNA"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/85 backdrop-blur-sm px-2.5 py-1 text-on-surface font-mono text-[10px] uppercase tracking-widest border border-outline-variant/30">
+            PLATE II // VANITY &amp; HORIZON
+          </div>
+</div>
+<div class="p-5 flex flex-col justify-between space-y-3">
+<div>
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider block">
+              MATERIAL HORIZON • 17:13:03 HRS
+            </span>
+<h4 class="font-editorial text-lg text-on-surface mt-1 font-medium">
+              Arched Vanity, LED Mirror &amp; Wardrobe
+            </h4>
+<p class="font-serif text-sm text-on-surface-variant mt-2 leading-relaxed">
+              The sculptural curved vanity mirror, cosmetics station, illuminated standing mirror, and wardrobe holding fabric swatches and finished sample cuts.
+            </p>
+</div>
+<div class="pt-3 flex items-center justify-between text-outline font-mono text-[10px] uppercase tracking-widest border-t border-outline-variant/20">
+<span>REF: DSC_0918_02</span>
+<span class="text-secondary font-mono">AUTHENTIC RECORD</span>
+</div>
+</div>
+</article>
+<!-- Plate III (IMAGE_10) -->
+<article class="flex flex-col bg-surface-container-low overflow-hidden shadow-xl group transition-all duration-300 hover:bg-surface-container border border-outline-variant/20">
+<div class="relative overflow-hidden aspect-[3/4] bg-surface-container-lowest">
+<img alt="Original coat stand with neon lime jacket, Guess and Coach bags, and yellow draped desk setup" class="w-full h-full object-cover grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHDHGqWeFHrmJtXACo9quMJJucBmb-ekK-xBlHjUnFmb-8FYL80PpyvxzGHOVd6AMNFY9nVet5_95ksq9_3O8Qo1JWaN23lwW4YeTRrPwlDbi1IjVU6P14jX8kN8bTVq3r4Q6dwWbpYUJ8rEMimzuwObPMefmS_2nvCVJca3hWSijwRre6VWkXjCze6OEvleNH-o00GvSChsT2KTNDLs4mSWVomcgs5nm9rK9milDF_BAWHJWXz3LRr2aJsZPLx_R9jQ"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/85 backdrop-blur-sm px-2.5 py-1 text-on-surface font-mono text-[10px] uppercase tracking-widest border border-outline-variant/30">
+            PLATE III // THE CRAFT ALTAR
+          </div>
+</div>
+<div class="p-5 flex flex-col justify-between space-y-3">
+<div>
+<span class="font-mono text-[10px] text-outline uppercase tracking-wider block">
+              WORKBENCH DETAIL • 17:14:11 HRS
+            </span>
+<h4 class="font-editorial text-lg text-on-surface mt-1 font-medium">
+              The Altar of Sketches &amp; Rack
+            </h4>
+<p class="font-serif text-sm text-on-surface-variant mt-2 leading-relaxed">
+              The focal hub where the yellow draped crafting table meets the wrought-iron coat tree with neon lime jacket, Guess gold-hardware bag, and laptop station.
+            </p>
+</div>
+<div class="pt-3 flex items-center justify-between text-outline font-mono text-[10px] uppercase tracking-widest border-t border-outline-variant/20">
+<span>REF: DSC_0918_10</span>
+<span class="text-secondary font-mono">AUTHENTIC RECORD</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Secondary Row: Detailed Closeups -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-outline-variant/10">
+<div class="relative group bg-surface-container-low overflow-hidden border border-outline-variant/20">
+<img alt="Close-up table setup with Stitch lamp and laptop" class="w-full h-48 object-cover grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlNLICwHo-NV_OzsStTi1n39P4USydt-xWkjNvfI4xkQx5jLcjx-L6Q0pN-l8YWImH5uZoo6CxF4wqppQCHVA5uTbHJKENatOf8QzCaghD5deJJit2yfV8FNWQowLvRG3COzNEE0DCuQswNNg59sFAE-TVvRW_1FHGf2vovFROspx5YROwUmfDNb1uBlTZhk2o3TzI4b8sKXmVcdfw7JqKWWjQFjQ2ly3Tkk9MYOQ6MpmGIJ_kF5yvYV1bHewgiO6cIQ"/>
+<div class="p-3">
+<span class="font-mono text-[9px] text-primary uppercase tracking-widest">MACRO ARCHIVE // 01</span>
+<p class="font-serif text-xs text-on-surface-variant mt-1">Yellow tabletop, Stitch lamp, pastel fineliners and sketch accessories.</p>
+</div>
+</div>
+<div class="relative group bg-surface-container-low overflow-hidden border border-outline-variant/20">
+<img alt="Studio sanctuary overview from dressing table mirror" class="w-full h-48 object-cover grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6CqGmFyYBXum9N26ze4CWppIX_T-2NSBwiDJMBzSa4QKm1BFDFgexSjs7PmU-xRPVO7nsLJpHtCAj_7z1MMbjFq57XcpQCeFoHxv4SN-J_eoeZV-EPMLHLogVNpWut8XWnrAAq2igbMfodHjRCyFo1ANVKxbFXekrG-fciuyoMxo78wxamzoic4R9NDlxL3Rd2NWutuj14ziIeBYMoj6DR5MKD9RuMZcvFPz99p5G--eb-yqx8Wh4aUHL45m2X2wp5g"/>
+<div class="p-3">
+<span class="font-mono text-[9px] text-primary uppercase tracking-widest">MACRO ARCHIVE // 02</span>
+<p class="font-serif text-xs text-on-surface-variant mt-1">Sculpted arched vanity mirror, perfumes, and illuminated dressing mirror.</p>
+</div>
+</div>
+<div class="relative group bg-surface-container-low overflow-hidden border border-outline-variant/20">
+<img alt="Coat rack with green blazer and Guess bag" class="w-full h-48 object-cover grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4S9yx42XcZ12lIAx1Bnx0h35_w1OM1iyQd8WbaqDce6x1NHWZSda_pSqniCoDHoI9sMROtLQ-St8LbY8PMlf1jsAlkHl_Du0aL5G85CSqCOx43oOHK1t4k4W6v6bEdaBm4C52EXsQs7lciHm8JaZVav-pRmGEbEnTHofFzClD9VxQEmx_LDpvaxZdMs1U6ejvcGkHgJWVSMtdlMj8IupMohKeD70d0mVGE1bSmcnVug7E-vUhwpFkUMTx6iUILTGyHw"/>
+<div class="p-3">
+<span class="font-mono text-[9px] text-primary uppercase tracking-widest">MACRO ARCHIVE // 03</span>
+<p class="font-serif text-xs text-on-surface-variant mt-1">Checkered tile floor grid, fan, and room drafting perspective.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: Epilogue & Atelier Collection Call to Action -->
+<section class="relative px-4 sm:px-8 lg:px-16 py-16 max-w-7xl mx-auto w-full">
+<div class="bg-surface-container-low p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl border border-outline-variant/30">
+<div class="relative z-10 max-w-3xl flex flex-col space-y-6">
+<span class="font-mono text-xs text-primary uppercase tracking-widest">
+          TRANSFORMATION // FROM ORIGIN TO RUNWAY
+        </span>
+<h3 class="font-editorial text-3xl sm:text-4xl text-on-surface font-normal">
+          From a Bedroom Sanctuary to Haute Couture Reality.
+        </h3>
+<p class="font-serif text-lg text-on-surface-variant leading-relaxed">
+          Every silhouette in our collection trace back to this small sanctuary. What starts as sticky notes and pencil markings on draped cloth becomes real-world wearable art.
+        </p>
+<div class="pt-4 flex flex-wrap items-center gap-4">
+<a class="px-8 py-3.5 bg-on-surface text-surface-container-lowest font-mono text-xs uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-md inline-flex items-center space-x-2" href="#inquire">
+<span>DISCOVER COLLECTION ARCHIVE</span>
+<span>→</span>
+</a>
+<button class="px-6 py-3.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-mono text-xs uppercase tracking-widest transition-all duration-300 inline-flex items-center space-x-2 border border-outline-variant/30" onclick="window.switchStation(0); window.setDioramaStation &amp;&amp; window.setDioramaStation(0);" type="button">
+<span class="material-symbols-outlined text-sm text-primary">view_in_ar</span>
+<span>RE-CENTER 3D DIORAMA</span>
+</button>
+</div>
+</div>
+<!-- Architectural Watermark Accent in Background -->
+<div class="absolute right-0 bottom-0 pointer-events-none opacity-5 select-none font-editorial text-[180px] leading-none text-on-surface transform translate-x-12 translate-y-16">
+        402
+      </div>
+</div>
+</section>
+</div></main>
+<!-- BEGIN: SiteFooter -->
+<footer class="border-t border-outline-variant/20 bg-surface-container-low/40 mt-16 py-12" data-purpose="atelier-footer" id="inquire">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Brand & Mission Statement with Official Emblem https://lh3.googleusercontent.com/aida-public/AB6AXuAsZYeVscS65EFzgZy8OCrdodGfG14kFTQFi7AO5Jcb9gijgFVh4v3vHkXSVgiFG8ttIT4mOdMqAa3uumMCTHbo1fomnIyRM8rCYkMOz4LDsnt_kWdHruKSo5M1cZNW0KsPNHwqKLLMnitIlQvbvxnWB4Lm7r6lnn8Xy8xpowjiVCOqh8009vUCanKyx6Fotyt4hqTjpSTvvP1WWU1syORbjoUo_pFl4ld_GrhQvI1dKuk0ydQxh7Wzf80Fb2-tt_ToHg -->
+<div class="flex items-center space-x-4">
+<img alt="J.H.O Atelier circular emblem official seal" class="w-10 h-10 rounded-full object-cover border border-primary/40 shadow-sm shadow-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTI5rPzg2cyj4xkr49TVZfn84STW1sKk1tJ-NwiVO3pnJQzeFLgbQTAwvlCoPepiK4BhbcUgppW2sDJE8jy1tXsiNFn21RgvanFZxRwhzMBGO5vvP0Df_kNwAe3QrAEgXCk_9ttnfygcRx6Y7Icr_oP5g1Ir452xA90qnka5S_Ad0PaXg60nNjOr0EwxEaTkbmKhAFZ2WuWYPnFOV86sleDUvHnNDMgCBk9neIP_6HlCjI6d-JEu8UU-04fzv0EdLeyQ"/>
+<div>
+<span class="font-editorial-heading text-base tracking-wider text-on-surface font-medium block">
+          J.H.O ATELIER &amp; LAB
+        </span>
+<span class="text-mono-telemetry text-[10px] text-outline">
+          YOUR IDEA → DESIGN → REAL // ORIGIN ROOM 402
+        </span>
+</div>
+</div>
+<!-- Studio Coordinates & Heritage -->
+<div class="text-center md:text-right">
+<a class="group inline-flex items-center space-x-2 text-mono-telemetry text-xs text-primary hover:text-on-surface transition-colors duration-200" href="#diorama-frame">
+<span>Explore Our Collection</span>
+<span class="transform transition-transform group-hover:translate-x-1">→</span>
+</a>
+<div class="text-mono-telemetry text-[10px] text-outline/80 mt-1">
+        PARIS // TOKYO • © 2026 J.H.O ATELIER. ALL RIGHTS RESERVED.
+      </div>
+</div>
+</div>
+</footer>
+<!-- END: SiteFooter -->
+<!-- JavaScript Handler: Camera Waypoints & Diorama Stations -->
+<script data-purpose="interaction-handlers">
+  const stationDescriptions = [
+    {
+      title: "// 00 • ARCHITECTURAL OVERVIEW",
+      desc: "Complete atelier origin diorama: vanity desk with arched mirror & perfumes, standing LED full-length mirror, yellow draped crafting altar, Stitch ring lamp, coat tree with lime jacket and Guess bag, twin beds, and checkered tile grid."
+    },
+    {
+      title: "// 01 • THE ROUND DESK & STITCH LAMP",
+      desc: "Yellow fabric draped table, Stitch ring-light lamp, pastel fineliners cup, sticky notes bowl, and purple sketchbook."
+    },
+    {
+      title: "// 02 • THE COAT TREE & LIME JACKET",
+      desc: "Wrought iron coat rack with hanging neon lime-green jacket, black Guess gold-hardware bag, and monogram purse."
+    },
+    {
+      title: "// 03 • THE VANITY MIRROR & PERFUMES",
+      desc: "Dual-mirror atelier setup: the sculpted arched vanity desk with cosmetic bottles, perfumes, and stool, next to the standing LED-illuminated dressing mirror."
+    },
+    {
+      title: "// 04 • THE LAPTOP WORKSTATION",
+      desc: "Open digital workstation screen where garment vector cutlines, typography prints, and 3D clothing simulation programs are born."
+    }
+  ];
+
+  window.switchStation = function(index) {
+    // 1. Call custom diorama station method
+    if (typeof window.setDioramaStation === 'function') {
+      window.setDioramaStation(index);
+    }
+
+    // 2. Update active button styles
+    const buttons = document.querySelectorAll('.station-btn');
+    buttons.forEach((btn, i) => {
+      if (i === index) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // 3. Update HUD text
+    const hudTitle = document.getElementById('hud-title');
+    const hudDesc = document.getElementById('hud-description');
+    if (hudTitle && hudDesc && stationDescriptions[index]) {
+      hudTitle.textContent = stationDescriptions[index].title;
+      hudDesc.textContent = stationDescriptions[index].desc;
+    }
+  };
+
+  // Listen for station changes triggered inside the 3D scene
+  window.onDioramaStationChanged = function(id) {
+    const map = { 'overview': 0, 'desk': 1, 'rack': 2, 'vanity': 3, 'laptop': 4 };
+    if (map[id] !== undefined) {
+      const idx = map[id];
+      const buttons = document.querySelectorAll('.station-btn');
+      buttons.forEach((btn, i) => {
+        if (i === idx) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      const hudTitle = document.getElementById('hud-title');
+      const hudDesc = document.getElementById('hud-description');
+      if (hudTitle && hudDesc && stationDescriptions[idx]) {
+        hudTitle.textContent = stationDescriptions[idx].title;
+        hudDesc.textContent = stationDescriptions[idx].desc;
+      }
+    }
+  };
+</script>
+</body></html>
