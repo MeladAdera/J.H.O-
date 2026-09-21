@@ -95,19 +95,24 @@
   --color-brand-cream: #f5f2eb;
   --color-brand-muted: #a58a8e;
 
-  /* --- Fonts (variables are set by next/font in layout.tsx) --------------- */
-  --font-atelier-sans: var(--font-space-grotesk), sans-serif;
-  --font-atelier-serif: var(--font-playfair), serif;
-  --font-atelier-display: var(--font-italiana), serif;
-  --font-atelier-mono: var(--font-jetbrains-mono), monospace;
+  /* --- Fonts (variables are set by next/font in [locale]/layout.tsx) ------
+     Each token lists its Latin face first, then an Arabic face. None of the
+     Latin typefaces has Arabic glyphs, so the browser falls back per
+     character: Arabic words render in Amiri or Plex Arabic while Latin words
+     — "J.H.O", "360GSM" — keep their original face inside the same sentence.
+     Amiri answers the high-contrast serifs; Plex Arabic carries UI text. */
+  --font-atelier-sans: var(--font-space-grotesk), var(--font-plex-arabic), sans-serif;
+  --font-atelier-serif: var(--font-playfair), var(--font-amiri), serif;
+  --font-atelier-display: var(--font-italiana), var(--font-amiri), serif;
+  --font-atelier-mono: var(--font-jetbrains-mono), var(--font-plex-arabic), monospace;
 
-  --font-archive-sans: var(--font-inter), sans-serif;
-  --font-archive-serif: var(--font-cormorant), serif;
-  --font-archive-mono: var(--font-space-mono), monospace;
+  --font-archive-sans: var(--font-inter), var(--font-plex-arabic), sans-serif;
+  --font-archive-serif: var(--font-cormorant), var(--font-amiri), serif;
+  --font-archive-mono: var(--font-space-mono), var(--font-plex-arabic), monospace;
 
-  --font-editorial: var(--font-bodoni), serif;
-  --font-world-serif: var(--font-eb-garamond), serif;
-  --font-world-mono: var(--font-jetbrains-mono), monospace;
+  --font-editorial: var(--font-bodoni), var(--font-amiri), serif;
+  --font-world-serif: var(--font-eb-garamond), var(--font-amiri), serif;
+  --font-world-mono: var(--font-jetbrains-mono), var(--font-plex-arabic), monospace;
 
   /* --- Shared --------------------------------------------------------------
      The collection design leans on this easing everywhere (ease-atelier). */
@@ -264,12 +269,12 @@ body {
    ========================================================================== */
 
 .font-editorial-heading {
-  font-family: var(--font-bodoni), serif;
+  font-family: var(--font-editorial);
   letter-spacing: 0.04em;
 }
 
 .text-mono-telemetry {
-  font-family: var(--font-jetbrains-mono), monospace;
+  font-family: var(--font-world-mono);
   letter-spacing: 0.12em;
 }
 
@@ -304,4 +309,53 @@ body {
   .animate-fade-in-up {
     animation: none;
   }
+}
+
+/* ==========================================================================
+   RIGHT-TO-LEFT (Arabic)
+
+   Layout direction is handled by logical utilities (ms-/me-, ps-/pe-,
+   start-/end-, text-start/text-end), which flip on their own. Only things
+   that cannot follow direction automatically are corrected here.
+   ========================================================================== */
+
+/* Arabic needs a little more line height to breathe. */
+[dir="rtl"] {
+  line-height: 1.7;
+}
+
+/* Latin telemetry — specimen codes, GSM weights, coordinates — stays
+   left-to-right even inside an Arabic sentence, so "360GSM" and
+   "LAT 48.8566° N" never come apart.
+
+   CAREFUL: this sets `direction` on the element, and logical utilities
+   (start-*, end-*, ms-*, me-*) resolve against the element's OWN direction.
+   Putting it on an absolutely positioned box therefore pins that box to the
+   left in Arabic instead of mirroring it. Keep the positioning on the
+   wrapper and put this class on an inner <span>. */
+[dir="rtl"] .latin-telemetry {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Artwork must never mirror: the bow, the diorama and the photographs are
+   images of real objects, not UI. */
+[dir="rtl"] svg:not(.mirror-in-rtl),
+[dir="rtl"] canvas,
+[dir="rtl"] img {
+  direction: ltr;
+}
+
+/* Arrow glyphs written inline in the copy point the wrong way once the text
+   flips; this turns them around without touching the strings. */
+[dir="rtl"] .flip-arrow {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* The collection page sets vertical text, which needs the mirrored rotation
+   in RTL to stay readable. */
+[dir="rtl"] .text-vertical {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
 }

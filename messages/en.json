@@ -1,0 +1,79 @@
+{
+  "brand": {
+    "name": "J.H.O Atelier & Lab",
+    "tagline": "Your idea → design → real"
+  },
+  "nav": {
+    "hero": "Hero",
+    "collection": "Our Collection",
+    "myLittleWorld": "My Little World",
+    "switchLanguage": "العربية"
+  },
+  "hero": {
+    "badge": {
+      "flow": "Sketch → Design → Shirt",
+      "bespoke": "1-of-1 Bespoke"
+    },
+    "headline": {
+      "line1": "From an idea",
+      "line2": "to something real."
+    },
+    "intro": "Your story, your business, your idea — transformed into a design made for you.",
+    "cta": "Explore our collection →",
+    "commissionsOpen": "Atelier commissions open",
+    "steps": {
+      "sketch": "Rough sketch",
+      "vector": "Polished vector",
+      "shirt": "Real physical shirt"
+    },
+    "pills": {
+      "sketch": "Sketch",
+      "design": "Design",
+      "shirt": "Shirt",
+      "replay": "Replay full transformation"
+    },
+    "phases": {
+      "one": { "title": "Raw concept", "note": "Freehand pencil draft" },
+      "two": { "title": "Vector precision", "note": "Bézier & Pantone prep" },
+      "three": { "title": "cotton garment", "note": "High-density puff print" }
+    },
+    "stageBadge": {
+      "sketch": { "subtitle": "Idea conception", "title": "Stage 1 of 3: Rough sketch" },
+      "vector": { "subtitle": "Digital translation", "title": "Stage 2 of 3: Vector design" },
+      "shirt": { "subtitle": "Physical product", "title": "Stage 3 of 3: Real t-shirt" }
+    },
+    "sketchStage": {
+      "studioNote": "Studio concept note",
+      "ideaSpark": "Idea spark",
+      "brief": "Client brief",
+      "stageLabel": "Hand sketch",
+      "quote": "Can you turn an intimate childhood memory into wearable t-shirt? A bow that feels protective, bold, and iconic.",
+      "annotationLabel": "Annotation:",
+      "annotation": "“Boop & Co. heavy drop-shoulder”",
+      "pencil": "Pencil 2B • Draft"
+    },
+    "vectorStage": {
+      "stageLabel": "Polished vector asset",
+      "specimen": "Atelier specimen",
+      "proof": "custom memory • proof verified",
+      "puffSpec": "3D high-density puff spec"
+    },
+    "garmentStage": {
+      "verified": "Physical product verified",
+      "specLabel": "Specification output",
+      "statusLabel": "Status",
+      "status": "1-of-1 delivered",
+      "signature": "Signature atelier bow"
+    },
+    "footer": {
+      "lab": "J.H.O Metamorphosis Lab",
+      "cycle": "Sketch to garment fabrication cycle",
+      "transformation": "Transformation:",
+      "latency": "Latency:",
+      "archive": "100% bespoke archive",
+      "submit": "Submit an idea ↗"
+    },
+    "sequence": "Autonomous stage sequence: 1 → 2 → 3",
+    "frameNote": "Take your time. Choose your style."
+  }
+}

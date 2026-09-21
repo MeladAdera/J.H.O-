@@ -29,12 +29,14 @@ export function HeroExperience() {
       <HeroHeader stage={stage} onJump={jumpToStage} />
 
       <main className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-6 py-8 lg:px-14 lg:py-12">
-        {/* Drafting watermarks */}
-        <div className="pointer-events-none absolute left-14 top-4 hidden font-atelier-mono text-[10px] uppercase tracking-widest text-black/25 lg:block">
-          {"// ATELIER METAMORPHOSIS PIPELINE • TRACE ENGINE • REF #744.18"}
-        </div>
-        <div className="pointer-events-none absolute right-14 top-4 hidden font-atelier-mono text-[10px] uppercase tracking-widest text-black/25 lg:block">
-          SCALE 1:1 TRUE METRIC FABRICATION
+        {/* Drafting watermark. The positioned box stays in the page's own
+            direction so start/end mirror in Arabic, while latin-telemetry sits
+            on the inner span to keep the text itself left-to-right — otherwise
+            the leading "//" and the reference number get reordered. */}
+        <div className="pointer-events-none absolute start-14 top-4 hidden font-atelier-mono text-[10px] uppercase tracking-widest text-black/25 lg:block">
+          <span className="latin-telemetry">
+            {"// ATELIER METAMORPHOSIS PIPELINE • TRACE ENGINE • REF #744.18"}
+          </span>
         </div>
 
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">

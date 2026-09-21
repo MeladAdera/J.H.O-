@@ -1,8 +1,12 @@
+import { useTranslations } from "next-intl";
+
 /* Act 1 — the rough hand sketch on studio drafting paper.
    Ported from design-reference/code.html (Stage 1). Every path carrying
    .sketch-path is drawn by GSAP, in order, via its stroke dash offset. */
 
 export function SketchStage() {
+  const t = useTranslations("hero.sketchStage");
+
   return (
     <div
       data-stage="1"
@@ -23,19 +27,22 @@ export function SketchStage() {
         {/* Tape */}
         <div className="absolute -top-3 left-1/2 flex h-6 w-24 -translate-x-1/2 rotate-[1.5deg] items-center justify-center border border-[#DACFBA] bg-[#EBE2CD]/80 shadow-sm backdrop-blur-sm">
           <span className="font-atelier-mono text-[8px] uppercase tracking-widest text-neutral-600">
-            Studio Concept Note
+            {t("studioNote")}
           </span>
         </div>
 
-        <div className="mb-2 mt-1 flex w-full items-center justify-between border-b border-dashed border-neutral-300 pb-2 font-atelier-mono text-[10px] text-neutral-500">
-          <span className="font-medium text-neutral-700">IDEA SPARK • CLIENT BRIEF #049</span>
-          <span className="font-semibold text-atelier-pink">STAGE 01 // HAND SKETCH</span>
+        <div className="mb-2 mt-1 flex w-full items-center justify-between border-b border-dashed border-neutral-300 pb-2 font-atelier-mono text-[10px] uppercase text-neutral-500">
+          <span className="font-medium text-neutral-700">
+            {t("ideaSpark")} • {t("brief")} <span className="latin-telemetry">#049</span>
+          </span>
+          <span className="font-semibold text-atelier-pink">
+            <span className="latin-telemetry">STAGE 01 //</span> {t("stageLabel")}
+          </span>
         </div>
 
-        <div className="my-2 w-full text-left">
+        <div className="my-2 w-full text-start">
           <p className="font-atelier-serif text-sm italic leading-snug text-neutral-800 sm:text-base">
-            &ldquo;Can you turn an intimate childhood memory into wearable armor? A bow that
-            feels protective, bold, and iconic.&rdquo;
+            &ldquo;{t("quote")}&rdquo;
           </p>
         </div>
 
@@ -142,10 +149,10 @@ export function SketchStage() {
 
         <div className="mt-1 flex w-full items-center justify-between border-t border-neutral-200/80 pt-2 text-center">
           <span className="font-atelier-mono text-[11px] text-neutral-500">
-            Annotation: &ldquo;Boop &amp; Co. heavy drop-shoulder&rdquo;
+            {t("annotationLabel")} {t("annotation")}
           </span>
           <span className="rounded bg-neutral-100 px-2 py-0.5 font-atelier-mono text-[9px] uppercase text-neutral-600">
-            Pencil 2B • Draft
+            {t("pencil")}
           </span>
         </div>
       </div>

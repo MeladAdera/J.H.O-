@@ -1,4 +1,5 @@
 import type { RefObject } from "react";
+import { useTranslations } from "next-intl";
 import type { HeroStage } from "@/lib/types";
 import { SketchStage } from "./stages/SketchStage";
 import { VectorStage } from "./stages/VectorStage";
@@ -8,10 +9,10 @@ import { GarmentStage } from "./stages/GarmentStage";
    badge, and the corner annotations around the frame.
    Ported from design-reference/code.html (the right-hand column). */
 
-const BADGE: Record<HeroStage, { subtitle: string; title: string }> = {
-  1: { subtitle: "Idea Conception", title: "Stage 1 of 3: Rough Sketch" },
-  2: { subtitle: "Digital Translation", title: "Stage 2 of 3: Vector Design" },
-  3: { subtitle: "Physical Product", title: "Stage 3 of 3: Real T-Shirt" },
+const BADGE_KEY: Record<HeroStage, "sketch" | "vector" | "shirt"> = {
+  1: "sketch",
+  2: "vector",
+  3: "shirt",
 };
 
 interface Props {
@@ -21,7 +22,8 @@ interface Props {
 }
 
 export function StageTheater({ stage, viewportRef }: Props) {
-  const badge = BADGE[stage];
+  const t = useTranslations("hero");
+  const key = BADGE_KEY[stage];
 
   return (
     <div className="relative flex items-center justify-center">
@@ -35,14 +37,14 @@ export function StageTheater({ stage, viewportRef }: Props) {
           <SketchStage />
 
           {/* Live stage badge */}
-          <div className="absolute bottom-4 right-4 z-40 flex items-center gap-3 rounded-xl border border-black/10 bg-white/95 px-3.5 py-2 shadow-lg backdrop-blur-md transition-all duration-300">
+          <div className="absolute bottom-4 end-4 z-40 flex items-center gap-3 rounded-xl border border-black/10 bg-white/95 px-3.5 py-2 shadow-lg backdrop-blur-md transition-all duration-300">
             <div className="h-2.5 w-2.5 animate-ping rounded-full bg-atelier-pink" />
             <div>
               <div className="font-atelier-mono text-[10px] uppercase tracking-wider text-atelier-muted">
-                {badge.subtitle}
+                {t(`stageBadge.${key}.subtitle`)}
               </div>
               <div className="font-atelier-mono text-xs font-semibold text-atelier-dark">
-                {badge.title}
+                {t(`stageBadge.${key}.title`)}
               </div>
             </div>
           </div>
@@ -58,12 +60,12 @@ export function StageTheater({ stage, viewportRef }: Props) {
       </div>
 
       {/* Frame annotations */}
-      <div className="absolute -bottom-6 -left-6 z-30 hidden items-center gap-2 rounded-lg border border-black/10 bg-white/90 px-3 py-1.5 font-atelier-mono text-[10px] text-atelier-muted shadow-sm sm:flex">
+      <div className="absolute -bottom-6 -start-6 z-30 hidden items-center gap-2 rounded-lg border border-black/10 bg-white/90 px-3 py-1.5 font-atelier-mono text-[10px] uppercase text-atelier-muted shadow-sm sm:flex">
         <span className="font-bold text-atelier-pink">•</span>
-        <span>AUTONOMOUS STAGE SEQUENCE: 1 → 2 → 3</span>
+        <span>{t("sequence")}</span>
       </div>
-      <div className="absolute -right-4 -top-5 z-30 hidden items-center gap-2 rounded-lg border border-black/10 bg-white/90 px-3 py-1.5 font-atelier-mono text-[10px] text-atelier-muted shadow-sm sm:flex">
-        <span>PARIS ATELIER CAD UNIT 08</span>
+      <div className="absolute -end-4 -top-5 z-30 hidden items-center gap-2 rounded-lg border border-black/10 bg-white/90 px-3 py-1.5 font-atelier-mono text-[10px] text-atelier-muted shadow-sm sm:flex">
+        <span>{t("frameNote")}</span>
       </div>
     </div>
   );
