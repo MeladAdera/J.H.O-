@@ -33,7 +33,7 @@ export function HeroExperience() {
             direction so start/end mirror in Arabic, while latin-telemetry sits
             on the inner span to keep the text itself left-to-right — otherwise
             the leading "//" and the reference number get reordered. */}
-        <div className="pointer-events-none absolute start-14 top-4 hidden font-atelier-mono text-[10px] uppercase tracking-widest text-black/25 lg:block">
+        <div className="pointer-events-none absolute inset-s-14 top-4 hidden font-atelier-mono text-[10px] uppercase tracking-widest text-black/25 lg:block">
           <span className="latin-telemetry">
             {"// ATELIER METAMORPHOSIS PIPELINE • TRACE ENGINE • REF #744.18"}
           </span>

@@ -28,7 +28,7 @@ export function HeroCopy({ stage, onJump, onRestart }: Props) {
 
   return (
     <div className="z-20 flex flex-col">
-      <div className="mb-6 inline-flex items-center gap-2.5 self-start rounded-full border border-black/[0.08] bg-white px-3.5 py-1.5 shadow-sm">
+      <div className="mb-6 inline-flex items-center gap-2.5 self-start rounded-full border border-black/8 bg-white px-3.5 py-1.5 shadow-sm">
         <span className="h-2 w-2 animate-pulse rounded-full bg-atelier-pink" />
         <span className="font-atelier-mono text-[11px] font-medium uppercase tracking-wider text-atelier-dark">
           {t("badge.flow")}
@@ -50,17 +50,20 @@ export function HeroCopy({ stage, onJump, onRestart }: Props) {
         {t("intro")}
       </p>
 
-      <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
+      <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+        {/* shrink-0 matters: overflow-hidden zeroes a flex item's automatic
+            min-width, so without it the button squeezes below its own text
+            and clips it. */}
         <Link
           href="/collection"
-          className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xl bg-atelier-dark px-7 py-4 font-atelier-mono text-sm uppercase tracking-wider text-white shadow-lg shadow-black/10 transition-all duration-300 hover:gap-4 hover:bg-black active:scale-95"
+          className="group relative inline-flex shrink-0 items-center justify-center gap-3 overflow-hidden rounded-xl bg-atelier-dark px-7 py-4 font-atelier-mono text-sm uppercase tracking-wider text-white shadow-lg shadow-black/10 transition-all duration-300 hover:gap-4 hover:bg-black active:scale-95"
         >
           <span className="relative z-10 whitespace-nowrap font-medium">{t("cta")}</span>
-          <div className="absolute inset-0 bg-gradient-to-r from-atelier-pink-deep/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-linear-to-r from-atelier-pink-deep/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </Link>
 
         {/* Manual stage controls — these pause the loop */}
-        <div className="flex items-center justify-center gap-1.5 rounded-xl border border-black/[0.08] bg-white p-1.5 shadow-sm">
+        <div className="flex items-center justify-center gap-1.5 rounded-xl border border-black/8 bg-white p-1.5 shadow-sm">
           {PILLS.map(({ stage: pill, key }) => (
             <button
               key={pill}
@@ -89,7 +92,7 @@ export function HeroCopy({ stage, onJump, onRestart }: Props) {
         </div>
       </div>
 
-      <div className="mt-10 grid grid-cols-3 gap-4 border-t border-black/[0.08] pt-6 font-atelier-mono text-[11px]">
+      <div className="mt-10 grid grid-cols-3 gap-4 border-t border-black/8 pt-6 font-atelier-mono text-[11px]">
         {PHASES.map(({ key, accent }, index) => (
           <div key={key}>
             <div className="text-[10px] uppercase tracking-wider text-atelier-muted">

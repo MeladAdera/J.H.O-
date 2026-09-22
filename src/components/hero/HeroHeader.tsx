@@ -24,7 +24,7 @@ export function HeroHeader({ stage, onJump }: Props) {
   return (
     <header className="sticky top-0 z-30 flex w-full items-center justify-between gap-4 border-b border-black/[0.07] bg-atelier-canvas/80 px-6 py-4 backdrop-blur-md lg:px-14">
       <div className="flex items-center gap-4">
-        <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-full border border-black/10 bg-white p-0.5 shadow-sm">
+        <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-black/10 bg-white p-0.5 shadow-sm">
           <Image
             src="/images/logo.png"
             alt={tBrand("name")}
@@ -45,7 +45,7 @@ export function HeroHeader({ stage, onJump }: Props) {
       </div>
 
       {/* Live stage stepper */}
-      <div className="hidden items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/85 px-3 py-1.5 shadow-sm md:flex">
+      <div className="hidden items-center gap-1.5 rounded-full border border-black/8 bg-white/85 px-3 py-1.5 shadow-sm md:flex">
         {STEPS.map(({ stage: step, key }, index) => {
           const isDone = step < stage;
           const isCurrent = step === stage;

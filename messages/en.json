@@ -9,6 +9,80 @@
     "myLittleWorld": "My Little World",
     "switchLanguage": "العربية"
   },
+  "collection": {
+    "subtitle": "Museum specimen archive",
+    "reset": "Reset",
+    "breadcrumbs": {
+      "archive": "Archive",
+      "gender": "Division",
+      "season": "Season",
+      "unselected": "Unselected"
+    },
+    "phase": {
+      "gender": "Exhibition division axis",
+      "season": "Climate edition selection"
+    },
+    "panels": {
+      "women": {
+        "kicker": "Division Alpha • Paris studio",
+        "title": "Women",
+        "description": "Architectural draping, pleated couture organza accents, and sculpted outerwear engineered for timeless silhouettes.",
+        "badge": "Architectural silhouette"
+      },
+      "men": {
+        "kicker": "Division Beta • Tokyo lab",
+        "title": "Men",
+        "description": "Boxy tailored monolith cuts, 480GSM loopback weaves, minimalist gallery coats, and anatomical razor-sharp shoulder lines.",
+        "badge": "Geometric monolith"
+      },
+      "summer": {
+        "kicker": "Solar weaves • 240–280GSM",
+        "title": "Summer",
+        "description": "Airy linen-blend and combed cotton weaves. Breathable relaxed silhouettes finished with micro tone-on-tone embroidery.",
+        "badge": "Summer"
+      },
+      "winter": {
+        "kicker": "Loopback fleece • 480GSM heavyweight",
+        "title": "Winter",
+        "description": "Sculptural French Terry fleece and double-knit outerwear built for structural shelter, cocoon hoods, and tonal script.",
+        "badge": "Winter"
+      }
+    },
+    "lookbook": {
+      "title": "{season} edition // {gender}",
+      "intro": "Museum-grade garments individually tailored to patron specification. Inspect fabric telemetry, anatomical cutting notes, and fine embroidery accents below.",
+      "archiveLabel": "{gender} archive",
+      "fitLabel": "Silhouette fit:",
+      "regular": "Regular",
+      "oversized": "Oversized",
+      "specRegular": "280GSM combed cotton // sharp anatomical cut",
+      "specOversized": "360–480GSM French Terry // volumetric shoulder drop",
+      "inspect": "Inspect specimen →",
+      "details": "Details +",
+      "alsoInArchive": "Also in the archive",
+      "empty": "No specimens match this combination yet."
+    },
+    "modal": {
+      "close": "Close specimen view",
+      "telemetry": "Archive telemetry • hand-finished studio specimen",
+      "commissionNote": "Crafted individually in Tokyo & Paris",
+      "fabric": "Fabric profile:",
+      "silhouette": "Silhouette architecture:",
+      "artisan": "Artisan detail:",
+      "artisanValue": "Fine micro-satin script • reinforced double-needle construction",
+      "selectSize": "Select tailored size:",
+      "selectScale": "Select volumetric scale code:",
+      "sizeHelper": "Standard European proportions",
+      "scaleHelper": "Architectural proportion system",
+      "scaleGuide": "Scale guide:",
+      "scale0": "Relaxed draped",
+      "scale1": "Voluminous studio",
+      "scale2": "Exaggerated monumental",
+      "commission": "Commission specimen →",
+      "customize": "Inquire atelier piece • silk embroidery",
+      "sent": "Commission dossier prepared. Our bespoke concierge will contact you within 12 hours."
+    }
+  },
   "hero": {
     "badge": {
       "flow": "Sketch → Design → Shirt",

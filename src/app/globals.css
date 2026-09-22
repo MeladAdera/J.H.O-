@@ -353,6 +353,19 @@ body {
   transform: scaleX(-1);
 }
 
+/* The split-panel "go" arrow points north-east in English, so it has to point
+   north-west in Arabic. Kept here rather than as rtl:rotate-[225deg] because
+   editor auto-fix rewrites arbitrary rotate values to bare numbers such as
+   rotate-225, which Tailwind does not generate — the rule then silently
+   vanishes. */
+[dir="rtl"] .arrow-ne {
+  rotate: 225deg;
+}
+
+[dir="rtl"] .group:hover .arrow-ne {
+  rotate: 180deg;
+}
+
 /* The collection page sets vertical text, which needs the mirrored rotation
    in RTL to stay readable. */
 [dir="rtl"] .text-vertical {

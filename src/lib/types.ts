@@ -12,6 +12,9 @@ export type Gender = "WOMEN" | "MEN";
 export type Season = "SUMMER" | "WINTER";
 export type Fit = "REGULAR" | "OVERSIZED";
 
+/** The archive journey: pick a division, pick a season, browse the lookbook. */
+export type JourneyStage = 1 | 2 | 3;
+
 export interface Specimen {
   id: string;
   /** Display code stamped on the card, e.g. "SPECIMEN N°01". */
