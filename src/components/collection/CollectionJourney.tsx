@@ -97,7 +97,10 @@ export function CollectionJourney() {
   );
 
   return (
-    <div className="flex min-h-screen flex-1 flex-col justify-between bg-archive-black text-archive-chalk">
+    <div
+      data-skin="archive"
+      className="flex min-h-screen flex-1 flex-col justify-between bg-ground text-ink"
+    >
       <div className="film-grain" aria-hidden="true" />
 
       <ArchiveHeader

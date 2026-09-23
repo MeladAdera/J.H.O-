@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { HeroStage } from "@/lib/types";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 /* Ported from design-reference/code.html (header). The telemetry stepper
    tracks the live stage: completed steps go green, the current one pink. */
@@ -22,9 +23,12 @@ export function HeroHeader({ stage, onJump }: Props) {
   const tBrand = useTranslations("brand");
 
   return (
-    <header className="sticky top-0 z-30 flex w-full items-center justify-between gap-4 border-b border-black/[0.07] bg-atelier-canvas/80 px-6 py-4 backdrop-blur-md lg:px-14">
+    <header className="sticky top-0 z-30 flex w-full items-center justify-between gap-4 border-b border-line bg-overlay px-6 py-4 backdrop-blur-md lg:px-14">
       <div className="flex items-center gap-4">
-        <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-black/10 bg-white p-0.5 shadow-sm">
+        {/* The mark is a self-contained opaque disc, so it reads on any
+            ground. Only its ring follows the theme — plus the archive's pink
+            halo, which needs a dark room to be visible at all. */}
+        <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-line bg-surface p-0.5 shadow-sm dark:shadow-[0_0_12px_var(--accent-glow)]">
           <Image
             src="/images/logo.png"
             alt={tBrand("name")}
@@ -34,25 +38,25 @@ export function HeroHeader({ stage, onJump }: Props) {
           />
         </div>
         <div>
-          <span className="font-atelier-mono text-xs font-semibold uppercase tracking-wider text-atelier-dark">
+          <span className="font-atelier-mono text-xs font-semibold uppercase tracking-wider text-ink">
             {tBrand("name")}
           </span>
           {/* Coordinates are telemetry: they stay Latin and left-to-right. */}
-          <p className="latin-telemetry font-atelier-mono text-[11px] text-atelier-muted">
+          <p className="latin-telemetry font-atelier-mono text-[11px] text-ink-muted">
             Latakia / SYRIA  •
           </p>
         </div>
       </div>
 
       {/* Live stage stepper */}
-      <div className="hidden items-center gap-1.5 rounded-full border border-black/8 bg-white/85 px-3 py-1.5 shadow-sm md:flex">
+      <div className="hidden items-center gap-1.5 rounded-full border border-line bg-overlay px-3 py-1.5 shadow-sm backdrop-blur-sm md:flex">
         {STEPS.map(({ stage: step, key }, index) => {
           const isDone = step < stage;
           const isCurrent = step === stage;
           return (
             <div key={step} className="flex items-center gap-1.5">
               {index > 0 && (
-                <span className="flip-arrow font-atelier-mono text-[10px] text-atelier-muted/40">
+                <span className="flip-arrow font-atelier-mono text-[10px] text-ink-faint">
                   →
                 </span>
               )}
@@ -65,19 +69,19 @@ export function HeroHeader({ stage, onJump }: Props) {
                 <span
                   className={`h-2 w-2 rounded-full transition-colors ${
                     isCurrent
-                      ? "bg-atelier-pink"
+                      ? "bg-accent"
                       : isDone
-                        ? "bg-emerald-500"
-                        : "bg-atelier-muted/40"
+                        ? "bg-signal-ok"
+                        : "bg-ink-faint"
                   }`}
                 />
                 <span
                   className={`uppercase transition-colors ${
                     isCurrent
-                      ? "font-semibold text-atelier-dark"
+                      ? "font-semibold text-ink"
                       : isDone
-                        ? "font-medium text-atelier-dark"
-                        : "font-medium text-atelier-muted"
+                        ? "font-medium text-ink"
+                        : "font-medium text-ink-muted"
                   }`}
                 >
                   <span className="latin-telemetry">{`0${step}.`}</span> {t(`steps.${key}`)}
@@ -89,11 +93,12 @@ export function HeroHeader({ stage, onJump }: Props) {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="hidden items-center gap-2 font-atelier-mono text-xs uppercase text-atelier-muted sm:flex">
-          <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-500" />
+        <div className="hidden items-center gap-2 font-atelier-mono text-xs uppercase text-ink-muted sm:flex">
+          <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-signal-ok" />
           <span>{t("commissionsOpen")}</span>
         </div>
-        <LocaleSwitcher theme="light" />
+        <ThemeToggle />
+        <LocaleSwitcher />
       </div>
     </header>
   );

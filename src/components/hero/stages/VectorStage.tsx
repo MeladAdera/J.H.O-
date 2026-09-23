@@ -22,9 +22,9 @@ export function VectorStage() {
         }}
       />
 
-      <div className="relative z-10 flex w-full max-w-[420px] flex-col items-center">
+      <div className="relative z-10 flex w-full max-w-105 flex-col items-center">
         <div className="mb-4 flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 font-atelier-mono text-[11px] uppercase text-white/80">
-          <span className="h-1.5 w-1.5 rounded-full bg-atelier-pink" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#ff7b9a]" />
           <span>
             <span className="latin-telemetry">STAGE 02 //</span> {t("stageLabel")}
           </span>
@@ -35,14 +35,14 @@ export function VectorStage() {
           className="relative flex w-full flex-col items-center overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-6 shadow-2xl backdrop-blur-sm sm:p-8"
         >
           {/* Calibration guides */}
-          <div className="absolute start-2 top-2 font-atelier-mono text-[9px] text-white/30">
+          <div className="absolute inset-s-2 top-2 font-atelier-mono text-[9px] text-white/30">
             <span className="latin-telemetry">+ 00.00 ANCHOR</span>
           </div>
-          <div className="absolute end-2 top-2 font-atelier-mono text-[9px] text-white/30">
+          <div className="absolute inset-e-2 top-2 font-atelier-mono text-[9px] text-white/30">
             <span className="latin-telemetry">1:1 SCALED</span>
           </div>
-          <div className="pointer-events-none absolute inset-x-8 top-1/2 border-t border-dashed border-atelier-pink/30" />
-          <div className="pointer-events-none absolute inset-y-8 left-1/2 border-l border-dashed border-atelier-pink/30" />
+          <div className="pointer-events-none absolute inset-x-8 top-1/2 border-t border-dashed border-[#ff7b9a]/30" />
+          <div className="pointer-events-none absolute inset-y-8 left-1/2 border-l border-dashed border-[#ff7b9a]/30" />
 
           <div className="mb-1 text-center">
             <span className="font-atelier-mono text-[11px] font-bold uppercase tracking-[0.28em] text-pink-200">

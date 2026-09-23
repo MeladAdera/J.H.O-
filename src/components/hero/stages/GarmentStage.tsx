@@ -20,9 +20,9 @@ export function GarmentStage() {
       />
 
       {/* Editorial lighting vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/15 to-transparent" />
 
-      <div className="absolute start-4 top-4 z-20 flex items-center gap-2 rounded-lg border border-white/20 bg-black/60 px-3 py-1.5 font-atelier-mono text-[11px] uppercase text-white backdrop-blur-md">
+      <div className="absolute inset-s-4 top-4 z-20 flex items-center gap-2 rounded-lg border border-white/20 bg-black/60 px-3 py-1.5 font-atelier-mono text-[11px] uppercase text-white backdrop-blur-md">
         <span className="h-2 w-2 rounded-full bg-emerald-400" />
         <span>
           <span className="latin-telemetry">STAGE 03 //</span> {t("verified")}
@@ -38,7 +38,7 @@ export function GarmentStage() {
           <p className="latin-telemetry text-sm font-semibold tracking-wide text-white">
             360GSM French Terry • 3D Puff Embroidery
           </p>
-          <p className="mt-0.5 text-xs text-atelier-pink-soft">
+          <p className="mt-0.5 text-xs text-[#ffd3dc]">
             {t("signature")} <span className="latin-telemetry">#0884</span>
           </p>
         </div>

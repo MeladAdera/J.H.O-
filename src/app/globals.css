@@ -1,100 +1,185 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   J.H.O DESIGN SYSTEM
-   Three pages, three palettes. They are namespaced because the original
-   HTML files all called their palette "atelier" while meaning different
-   colours, and all defined font-serif / font-mono as different fonts.
+   J.H.O DESIGN SYSTEM — one role vocabulary, two modes, three page skins
 
-     atelier-*   page 1  /                 light drafting paper
-     archive-*   page 2  /collection       dark museum
-     surface-* / primary / outline / brand-*
-                 page 3  /my-little-world  obsidian gallery (names kept
-                         verbatim from design-reference/DESIGN.md)
+   Every colour in the UI is one of 19 semantic ROLES. A role says what a
+   colour is FOR (`ground`, `ink`, `line`) rather than what it looks like, so
+   the same class is correct on all three pages in both modes. That is what
+   makes `bg-ground text-ink border-line` portable, and what will make page 3
+   cheap to build.
+
+   Three layers:
+     1. the ramp     --role-*  plain custom properties, swapped per mode
+     2. the bridge   @theme inline exposes each as a Tailwind colour utility
+     3. page skins   [data-skin] overrides a handful of roles per page
+
+   `inline` on @theme is load-bearing. Without it Tailwind emits its own
+   :root copy of every token and resolves the value there, so the [data-skin]
+   and [data-theme] overrides below would silently stop applying.
+
+   Mode is an attribute on <html>, written before first paint by the inline
+   script in [locale]/layout.tsx. There is deliberately no
+   @media (prefers-color-scheme) copy of the dark ramp: CSS cannot share one
+   declaration list between a media query and a bare selector, so a media
+   fallback would mean maintaining a second hand-edited copy of 20 values
+   that can drift. The system preference is honoured by the script instead.
+   Without JS the site stays light, which is the hero's native design.
    ========================================================================== */
 
+/* Pairs `dark:` with the attribute rather than the media query, so a manual
+   choice wins in both directions. Only for the handful of things a role
+   cannot express — blend modes, filters, a glow that exists in one mode. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+
+  /* -- surfaces ---------------------------------------------------------- */
+  --role-ground: #faf8f5; /* the page itself */
+  --role-surface: #ffffff; /* a card raised off the ground */
+  --role-sunken: #efeae3; /* a well recessed into it */
+  --role-overlay: rgb(255 255 255 / 0.72); /* anything with backdrop-blur */
+  --role-scrim: rgb(24 22 20 / 0.55); /* dims the page behind a modal */
+
+  /* -- hairlines. Two weights is the whole ladder. ------------------------ */
+  --role-line: rgb(20 20 22 / 0.09);
+  --role-line-strong: rgb(20 20 22 / 0.14);
+
+  /* -- text. Ratios are measured against --role-ground. ------------------- */
+  --role-ink: #141416; /* 17.36:1 */
+  --role-ink-muted: #5c5c66; /* 6.23:1 — was #7a7a85 at 4.00, below AA */
+  --role-ink-faint: #8e8e99; /* 3.06:1 — separators only, never text */
+
+  /* -- the inverted solid: black pill in light, white pill in dark -------- */
+  --role-inverse: #141416;
+  --role-on-inverse: #faf8f5;
+
+  /* -- accent. `accent` fills, `accent-ink` is the legible text pink. ----- */
+  --role-accent: #ff7b9a; /* 2.32:1 — fills and dots ONLY */
+  --role-accent-ink: #bf3157; /* 5.22:1 */
+  --role-accent-soft: rgb(255 123 154 / 0.16);
+  --role-on-accent: #141416; /* 7.49:1 on --role-accent */
+
+  /* -- metal & status ---------------------------------------------------- */
+  --role-gold: #836318; /* 5.26:1 — #e8c177 is 1.61 on paper, unusable */
+  --role-signal-ok: #046a4a; /* 6.26:1 */
+  --role-signal-warn: #a8490a; /* 5.47:1 */
+
+  /* -- Over photographs. Both identical in both modes: a gradient on an image
+        is artwork, and lightening it destroys the text stamped on it. The
+        photo does not change with the theme, so neither may anything sitting
+        on top of it. `on-photo` is solid, so it may take /alpha modifiers. */
+  --role-photo-scrim: #08080a;
+  --role-on-photo: #f5f5f7;
+
+  /* -- not roles: used only inside CSS literals and arbitrary values ------ */
+  --grid-line: rgb(0 0 0 / 0.038);
+  --grid-bloom: rgb(255 123 154 / 0.035);
+  --accent-glow: rgb(191 49 87 / 0.22);
+  --accent-glow-strong: rgb(191 49 87 / 0.4);
+  --inverse-glow: rgb(20 20 22 / 0.18);
+  --grain-opacity: 0.05;
+  --grain-filter: invert(1);
+}
+
+/* --- Dark: the "Atelier & Gallery" palette from design-reference/DESIGN.md.
+       Page 3 is authored against exactly these values, which is why it needs
+       no skin overrides at all. ---------------------------------------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --role-ground: #141316;
+  --role-surface: #1c1b1e;
+  --role-sunken: #0f0e11;
+  --role-overlay: rgb(20 19 22 / 0.82);
+  --role-scrim: rgb(8 8 10 / 0.9);
+
+  --role-line: rgb(230 225 229 / 0.1);
+  --role-line-strong: rgb(230 225 229 / 0.22);
+
+  --role-ink: #e6e1e5; /* 14.34:1 */
+  --role-ink-muted: #a58a8e; /* 5.84:1 */
+  --role-ink-faint: #6f6a74; /* 3.52:1 */
+
+  --role-inverse: #e6e1e5;
+  --role-on-inverse: #141316;
+
+  /* Note the inversion: dark's fill pink is the saturated one and its text
+     pink is the lighter one — the same split DESIGN.md draws between
+     primary-container (#ff7597) and primary (#ffb1c0). */
+  --role-accent: #ff7597; /* 7.27:1 */
+  --role-accent-ink: #ffb1c0; /* 10.84:1 */
+  --role-accent-soft: rgb(255 117 151 / 0.16);
+  --role-on-accent: #141316; /* 7.22:1 on --role-accent */
+
+  --role-gold: #e8c177; /* 10.86:1 */
+  --role-signal-ok: #5ad1a5; /* 9.78:1 */
+  --role-signal-warn: #e8b04b; /* 9.47:1 */
+
+  --grid-line: rgb(230 225 229 / 0.045);
+  --grid-bloom: rgb(255 117 151 / 0.055);
+  --accent-glow: rgb(255 117 151 / 0.3);
+  --accent-glow-strong: rgb(255 117 151 / 0.55);
+  --inverse-glow: rgb(245 245 247 / 0.2);
+  --grain-opacity: 0.035;
+  --grain-filter: none;
+}
+
+/* --- Page skins. `data-skin` rather than a class so it cannot collide with
+       a utility, and because it matches the existing data-stage /
+       data-vector-artwork convention. Roles are inherited custom properties,
+       so one attribute on the page root re-tints every descendant. ------- */
+
+/* The collection is a darker room than the default gallery. These six values
+   reproduce the pre-migration page exactly. */
+[data-theme="dark"] [data-skin="archive"] {
+  --role-ground: #08080a;
+  --role-sunken: #0d0d10;
+  --role-ink: #f5f5f7;
+  --role-ink-muted: #7e7e8e;
+  --role-on-accent: #08080a;
+  --role-overlay: rgb(10 10 13 / 0.82);
+}
+
+/* In daylight it stays a half-step below the hero's paper, so full-bleed
+   photography sits in a room instead of floating on white. */
+[data-skin="archive"] {
+  --role-ground: #f4f1ec;
+  --role-sunken: #e6e0d7;
+}
+
+@theme inline {
+  --color-ground: var(--role-ground);
+  --color-surface: var(--role-surface);
+  --color-sunken: var(--role-sunken);
+  --color-overlay: var(--role-overlay);
+  --color-scrim: var(--role-scrim);
+
+  --color-line: var(--role-line);
+  --color-line-strong: var(--role-line-strong);
+
+  --color-ink: var(--role-ink);
+  --color-ink-muted: var(--role-ink-muted);
+  --color-ink-faint: var(--role-ink-faint);
+
+  --color-inverse: var(--role-inverse);
+  --color-on-inverse: var(--role-on-inverse);
+
+  --color-accent: var(--role-accent);
+  --color-accent-ink: var(--role-accent-ink);
+  --color-accent-soft: var(--role-accent-soft);
+  --color-on-accent: var(--role-on-accent);
+
+  --color-gold: var(--role-gold);
+  --color-signal-ok: var(--role-signal-ok);
+  --color-signal-warn: var(--role-signal-warn);
+
+  --color-photo-scrim: var(--role-photo-scrim);
+  --color-on-photo: var(--role-on-photo);
+}
+
 @theme {
-  /* --- Page 1: Hero — light drafting paper -------------------------------- */
-  --color-atelier-canvas: #faf8f5;
-  --color-atelier-grid: #efeae3;
-  --color-atelier-dark: #141416;
-  --color-atelier-charcoal: #222226;
-  --color-atelier-muted: #7a7a85;
-  --color-atelier-pink: #ff7b9a;
-  --color-atelier-pink-deep: #e65478;
-  --color-atelier-pink-soft: #ffd3dc;
-  --color-atelier-tape: #f3eddf;
-
-  /* --- Page 2: Collection — dark museum ----------------------------------- */
-  --color-archive-black: #08080a;
-  --color-archive-deep: #0d0d10;
-  --color-archive-charcoal: #141418;
-  --color-archive-surface: #1b1b22;
-  --color-archive-muted: #7e7e8e;
-  --color-archive-chalk: #f5f5f7;
-  --color-archive-pink: #ff7597;
-  --color-archive-pink-soft: #ffb6c7;
-
-  /* --- Page 3: My Little World — obsidian gallery -------------------------
-     Values from the page's own Tailwind config, which is what produced
-     screen3.png. DESIGN.md's prose lists a different background (#0c0b0e);
-     the config wins. */
-  --color-surface: #141316;
-  --color-surface-dim: #141316;
-  --color-surface-bright: #3a383c;
-  --color-surface-container-lowest: #0f0e11;
-  --color-surface-container-low: #1c1b1e;
-  --color-surface-container: #201f22;
-  --color-surface-container-high: #2b292d;
-  --color-surface-container-highest: #363438;
-  --color-surface-variant: #363438;
-  --color-surface-tint: #ffb1c0;
-  --color-on-surface: #e6e1e5;
-  --color-on-surface-variant: #ddbfc3;
-  --color-inverse-surface: #e6e1e5;
-  --color-inverse-on-surface: #313033;
-  --color-background: #141316;
-  --color-on-background: #e6e1e5;
-  --color-outline: #a58a8e;
-  --color-outline-variant: #564145;
-  --color-primary: #ffb1c0;
-  --color-on-primary: #660029;
-  --color-primary-container: #ff7597;
-  --color-on-primary-container: #740430;
-  --color-inverse-primary: #a83255;
-  --color-primary-fixed: #ffd9df;
-  --color-primary-fixed-dim: #ffb1c0;
-  --color-on-primary-fixed: #3f0016;
-  --color-on-primary-fixed-variant: #88183e;
-  --color-secondary: #e8c177;
-  --color-on-secondary: #402d00;
-  --color-secondary-container: #5f4504;
-  --color-on-secondary-container: #d9b36b;
-  --color-secondary-fixed: #ffdea3;
-  --color-secondary-fixed-dim: #e8c177;
-  --color-on-secondary-fixed: #261900;
-  --color-on-secondary-fixed-variant: #5c4202;
-  --color-tertiary: #ffb1c4;
-  --color-on-tertiary: #5a172f;
-  --color-tertiary-container: #e4869f;
-  --color-on-tertiary-container: #651f37;
-  --color-tertiary-fixed: #ffd9e0;
-  --color-tertiary-fixed-dim: #ffb1c4;
-  --color-on-tertiary-fixed: #3e011a;
-  --color-on-tertiary-fixed-variant: #772d45;
-  --color-error: #ffb4ab;
-  --color-on-error: #690005;
-  --color-error-container: #93000a;
-  --color-on-error-container: #ffdad6;
-  --color-brand-black: #0f0e11;
-  --color-brand-surface: #141316;
-  --color-brand-card: #1c1b1e;
-  --color-brand-border: rgba(221, 191, 195, 0.14);
-  --color-brand-pink: #ffb1c0;
-  --color-brand-pink-glow: #ff7597;
-  --color-brand-cream: #f5f2eb;
-  --color-brand-muted: #a58a8e;
-
   /* --- Fonts (variables are set by next/font in [locale]/layout.tsx) ------
      Each token lists its Latin face first, then an Arabic face. None of the
      Latin typefaces has Arabic glyphs, so the browser falls back per
@@ -129,13 +214,15 @@ body {
    PAGE 1 — hero (from design-reference/code.html)
    ========================================================================== */
 
-/* Architectural draft grid behind the hero */
+/* Architectural draft grid behind the hero. In the dark room the ruling
+   inverts to light-on-dark and the pink bloom is pushed up, because a wash
+   that reads on paper disappears entirely against #141316. */
 .draft-canvas-grid {
-  background-color: #faf8f5;
+  background-color: var(--role-ground);
   background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.038) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.038) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(255, 123, 154, 0.035) 0%, transparent 70%);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, var(--grid-bloom) 0%, transparent 70%);
   background-size: 32px 32px, 32px 32px, 100% 100%;
 }
 
@@ -171,13 +258,16 @@ body {
    PAGE 2 — collection (from design-reference/our collection.html)
    ========================================================================== */
 
-/* 35mm grain overlay */
+/* 35mm grain overlay. The noise is white, so on paper it has to be inverted
+   to register at all — see --grain-filter / --grain-opacity.
+   z-index sits below the modal (z-50) so it grains the page, not the dialog. */
 .film-grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 99;
-  opacity: 0.035;
+  z-index: 40;
+  filter: var(--grain-filter);
+  opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
@@ -186,17 +276,21 @@ body {
   transform: rotate(180deg);
 }
 
+/* In daylight --role-overlay drops to 0.72 so the blur actually contributes:
+   at the dark room's 0.82 the panel is near-opaque and the frost is carried
+   by the tint, which on paper would just read as a solid bar. */
 .atelier-glass {
-  background: rgba(10, 10, 13, 0.82);
+  background: var(--role-overlay);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--role-line);
 }
 
 .atelier-glass-card {
-  background: rgba(17, 17, 22, 0.7);
+  background: var(--role-overlay);
   backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--role-line);
 }
 
 /* The signature split-panel expand/collapse used by BOTH the gender and
@@ -242,10 +336,12 @@ body {
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+/* The button floats on the panel photography, so it fills with the accent and
+   takes on-accent text in both modes rather than following the page. */
 .split-panel:hover .circle-reveal-btn {
-  background-color: #ff7597;
-  color: #08080a;
-  border-color: #ff7597;
+  background-color: var(--role-accent);
+  color: var(--role-on-accent);
+  border-color: var(--role-accent);
   transform: scale(1.08);
 }
 
@@ -286,10 +382,10 @@ body {
 @keyframes pulseGlow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 117, 151, 0.55);
+    box-shadow: 0 0 0 0 var(--accent-glow-strong);
   }
   50% {
-    box-shadow: 0 0 0 7px rgba(255, 117, 151, 0);
+    box-shadow: 0 0 0 7px transparent;
   }
 }
 

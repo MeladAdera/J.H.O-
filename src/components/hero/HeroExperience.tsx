@@ -23,7 +23,10 @@ export function HeroExperience() {
   const { scope, jumpToStage, restart } = useMetamorphosis({ onStageChange });
 
   return (
-    <div className="draft-canvas-grid relative flex min-h-screen flex-1 flex-col justify-between overflow-x-hidden text-atelier-dark">
+    <div
+      data-skin="atelier"
+      className="draft-canvas-grid relative flex min-h-screen flex-1 flex-col justify-between overflow-x-hidden text-ink"
+    >
       <PencilFilterDefs />
 
       <HeroHeader stage={stage} onJump={jumpToStage} />
@@ -33,7 +36,7 @@ export function HeroExperience() {
             direction so start/end mirror in Arabic, while latin-telemetry sits
             on the inner span to keep the text itself left-to-right — otherwise
             the leading "//" and the reference number get reordered. */}
-        <div className="pointer-events-none absolute inset-s-14 top-4 hidden font-atelier-mono text-[10px] uppercase tracking-widest text-black/25 lg:block">
+        <div className="pointer-events-none absolute inset-s-14 top-4 hidden font-atelier-mono text-[10px] uppercase tracking-widest text-ink-faint lg:block">
           <span className="latin-telemetry">
             {"// ATELIER METAMORPHOSIS PIPELINE • TRACE ENGINE • REF #744.18"}
           </span>

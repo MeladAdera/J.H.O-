@@ -7,7 +7,13 @@
     "hero": "Hero",
     "collection": "Our Collection",
     "myLittleWorld": "My Little World",
-    "switchLanguage": "العربية"
+    "switchLanguage": "العربية",
+    "theme": {
+      "system": "Auto",
+      "light": "Light",
+      "dark": "Dark",
+      "switchTo": "Change theme — currently {mode}"
+    }
   },
   "collection": {
     "subtitle": "Museum specimen archive",
@@ -24,13 +30,13 @@
     },
     "panels": {
       "women": {
-        "kicker": "Division Alpha • Paris studio",
+        "kicker": "Division Alpha • latakia studio",
         "title": "Women",
         "description": "Architectural draping, pleated couture organza accents, and sculpted outerwear engineered for timeless silhouettes.",
         "badge": "Architectural silhouette"
       },
       "men": {
-        "kicker": "Division Beta • Tokyo lab",
+        "kicker": "Division Beta • latakia lab",
         "title": "Men",
         "description": "Boxy tailored monolith cuts, 480GSM loopback weaves, minimalist gallery coats, and anatomical razor-sharp shoulder lines.",
         "badge": "Geometric monolith"

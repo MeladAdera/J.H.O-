@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -16,6 +16,7 @@ import {
   Space_Mono,
 } from "next/font/google";
 import { routing, directionOf } from "@/i18n/routing";
+import { ThemeScript } from "@/components/shared/ThemeScript";
 import "../globals.css";
 
 /* The three designs use nine Latin typefaces between them, none of which has
@@ -114,6 +115,16 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+/* Tints the browser chrome to match the page. Static rather than
+   generateViewport: it does not depend on the request, and the media-keyed
+   form lets the UA pick without us reading anything request-scoped. */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf8f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#141316" },
+  ],
+};
+
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
@@ -135,13 +146,22 @@ export default async function LocaleLayout({
   // Enables static rendering for this locale.
   setRequestLocale(locale);
 
+  /* data-theme is the server's guess; the script in <head> corrects it during
+     parsing. suppressHydrationWarning is required because of that: without it
+     React treats the corrected attribute as a mismatch and re-renders from the
+     nearest boundary, which reintroduces the flash it exists to prevent. */
   return (
     <html
       lang={locale}
       dir={directionOf(locale)}
+      data-theme="light"
+      suppressHydrationWarning
       className={`${fontVariables} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <head>
+        <ThemeScript />
+      </head>
+      <body className="flex min-h-full flex-col bg-ground text-ink">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
