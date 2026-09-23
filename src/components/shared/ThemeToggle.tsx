@@ -1,14 +1,13 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useSyncExternalStore } from "react";
+import { useCallback, useLayoutEffect } from "react";
 import { useTranslations } from "next-intl";
+import { useThemePreference } from "@/hooks/useTheme";
 import {
   THEME_PREFERENCES,
   applyTheme,
   readPreference,
   resolveTheme,
-  serverPreference,
-  subscribeToPreference,
   writePreference,
   type ThemePreference,
 } from "@/lib/theme";
@@ -54,11 +53,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
      "system", which is what the layout renders, so hydration matches; React
      then swaps in the real value. Mirroring this into useState instead would
      mean a setState in an effect, i.e. a cascading render. */
-  const preference = useSyncExternalStore(
-    subscribeToPreference,
-    readPreference,
-    serverPreference,
-  );
+  const preference = useThemePreference();
 
   /* Re-apply the attribute the inline script set. React's dev-only Strict
      Mode remount resets <html> to just the attributes it manages from JSX,

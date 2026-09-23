@@ -51,10 +51,14 @@ export type StationId = "overview" | "desk" | "rack" | "vanity" | "laptop";
 /** Index into the waypoints array — 0 is always the overview. */
 export type StationIndex = 0 | 1 | 2 | 3 | 4;
 
+/** A camera waypoint in the diorama. Copy lives in messages/*.json under
+    `world.stations.<id>`, not here — the HUD is translated like everything
+    else, and the scene only needs the geometry. */
 export interface Station {
   index: StationIndex;
   id: StationId;
-  /** HUD heading, e.g. "// 01 • THE ROUND DESK & STITCH LAMP". */
-  title: string;
-  desc: string;
+  /** Camera position in world units. */
+  cam: readonly [number, number, number];
+  /** The point the camera aims at. */
+  look: readonly [number, number, number];
 }
