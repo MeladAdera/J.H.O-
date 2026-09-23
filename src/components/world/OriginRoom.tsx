@@ -4,6 +4,9 @@ import { useCallback, useState } from "react";
 import { useTranslations } from "next-intl";
 import { StationControls } from "./StationControls";
 import { StationHud } from "./StationHud";
+import { useTheme } from "@/hooks/useTheme";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useOriginRoom } from "@/hooks/useOriginRoom";
 import type { StationIndex } from "@/lib/types";
 
 /* The single client boundary for page 3. Station state lives here because the
@@ -16,6 +19,10 @@ import type { StationIndex } from "@/lib/types";
 export function OriginRoom() {
   const t = useTranslations("world");
   const [station, setStation] = useState<StationIndex>(0);
+  const theme = useTheme();
+
+  const reducedMotion = useReducedMotion();
+  const mountRef = useOriginRoom({ station, theme, reducedMotion });
 
   const select = useCallback((next: StationIndex) => setStation(next), []);
 
@@ -51,10 +58,13 @@ export function OriginRoom() {
         {/* The stage. Kept dark in both themes for now; step 5 decides how the
             room itself is lit, which is a scene concern rather than a CSS one. */}
         <div className="relative w-full overflow-hidden bg-sunken">
-          <div className="h-135 w-full sm:h-160 md:h-180">
-            <div className="flex h-full w-full items-center justify-center">
+          {/* The canvas mounts into this div. The message underneath stays in
+              the flow as the fallback: if WebGL is unavailable the hook bails
+              before appending anything and this is what remains visible. */}
+          <div ref={mountRef} className="relative h-135 w-full sm:h-160 md:h-180">
+            <div className="absolute inset-0 -z-10 flex items-center justify-center px-8 text-center">
               <span className="text-mono-telemetry text-[10px] uppercase text-ink-faint">
-                {t("loading")}
+                {t("unsupported")}
               </span>
             </div>
           </div>
