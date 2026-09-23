@@ -19,9 +19,9 @@ export function ArchiveFooter() {
 
         {/* Coordinates and archive version are telemetry: Latin, left-to-right. */}
         <div className="latin-telemetry flex items-center gap-6 text-center text-[10px] uppercase tracking-wider text-ink-muted">
-          <span>PARIS [48.8566° N]</span>
+          <span>SYRIA [48.8566° N]</span>
           <span className="text-ink-faint">•</span>
-          <span>TOKYO [35.6762° N]</span>
+          <span>LATAKIA [35.6762° N]</span>
           <span className="text-ink-faint">•</span>
           <span className="text-ink-muted">ARCHIVE SPECIMEN V2.6</span>
         </div>

@@ -131,7 +131,7 @@ export function SpecimenModal({ specimen, size, onSelectSize, onClose }: Props) 
           <div className="space-y-3 border-t border-line pt-4">
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-inverse px-6 py-3.5 font-archive-mono text-xs font-semibold uppercase tracking-widest text-on-accent shadow-[0_0_20px_var(--inverse-glow)] transition duration-300 hover:bg-accent focus:outline-none"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-inverse px-6 py-3.5 font-archive-mono text-xs font-semibold uppercase tracking-widest text-on-inverse shadow-[0_0_20px_var(--inverse-glow)] transition duration-300 hover:bg-accent hover:text-on-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-ink"
             >
               {t("commission")}
             </button>
