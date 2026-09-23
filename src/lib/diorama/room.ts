@@ -1,5 +1,16 @@
 import * as THREE from "three";
 import { PALETTE as P } from "./palette";
+import { Registry, mesh } from "./kit";
+import {
+  buildDesk,
+  buildFurnishings,
+  buildMotes,
+  buildRack,
+  buildStandingMirror,
+  buildVanity,
+} from "./props";
+
+export { Registry } from "./kit";
 
 /* Builds the origin room's geometry. Ported from
    design-reference/my little world.html:329-740.
@@ -11,40 +22,6 @@ import { PALETTE as P } from "./palette";
    Three.js allocates those on the GPU and React will unmount this scene on
    every client navigation, so anything not disposed leaks a buffer per visit
    until the context is lost. */
-
-export class Registry {
-  private geometries = new Set<THREE.BufferGeometry>();
-  private materials = new Set<THREE.Material>();
-
-  geo<T extends THREE.BufferGeometry>(g: T): T {
-    this.geometries.add(g);
-    return g;
-  }
-
-  mat<T extends THREE.Material>(m: T): T {
-    this.materials.add(m);
-    return m;
-  }
-
-  dispose(): void {
-    for (const g of this.geometries) g.dispose();
-    for (const m of this.materials) m.dispose();
-    this.geometries.clear();
-    this.materials.clear();
-  }
-}
-
-function mesh(
-  geo: THREE.BufferGeometry,
-  mat: THREE.Material,
-  cast = true,
-  receive = true,
-): THREE.Mesh {
-  const m = new THREE.Mesh(geo, mat);
-  m.castShadow = cast;
-  m.receiveShadow = receive;
-  return m;
-}
 
 /** The exhibition plinth the whole room sits on, plus its checkered tiles. */
 function buildBase(reg: Registry, radius: number): THREE.Group {
@@ -123,6 +100,16 @@ export function buildRoom(): Room {
 
   group.add(buildBase(registry, 10.2));
   group.add(buildWalls(registry));
+
+  // Station props, in waypoint order.
+  group.add(buildDesk(registry)); // 01 and 04
+  group.add(buildRack(registry)); // 02
+  group.add(buildVanity(registry)); // 03
+  group.add(buildStandingMirror(registry)); // 03
+
+  // Dressing the wide shot.
+  group.add(buildFurnishings(registry));
+  group.add(buildMotes(registry));
 
   return { group, registry };
 }
