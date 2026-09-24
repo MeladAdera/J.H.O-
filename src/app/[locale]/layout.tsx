@@ -16,6 +16,7 @@ import {
   Space_Mono,
 } from "next/font/google";
 import { routing, directionOf } from "@/i18n/routing";
+import { PageNavBar } from "@/components/shared/PageNav";
 import { ThemeScript } from "@/components/shared/ThemeScript";
 import "../globals.css";
 
@@ -161,8 +162,14 @@ export default async function LocaleLayout({
       <head>
         <ThemeScript />
       </head>
-      <body className="flex min-h-full flex-col bg-ground text-ink">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      {/* pb-14 reserves the mobile bottom bar's height so page footers are not
+          left underneath it. The bar itself is mounted here rather than in the
+          three headers so a page cannot ship without navigation. */}
+      <body className="flex min-h-full flex-col bg-ground pb-14 text-ink md:pb-0">
+        <NextIntlClientProvider>
+          {children}
+          <PageNavBar />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

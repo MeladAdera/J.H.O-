@@ -13,7 +13,8 @@
       "light": "Light",
       "dark": "Dark",
       "switchTo": "Change theme — currently {mode}"
-    }
+    },
+    "pages": "Pages"
   },
   "collection": {
     "subtitle": "Museum specimen archive",

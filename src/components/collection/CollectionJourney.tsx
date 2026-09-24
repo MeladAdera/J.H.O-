@@ -103,12 +103,7 @@ export function CollectionJourney() {
     >
       <div className="film-grain" aria-hidden="true" />
 
-      <ArchiveHeader
-        stage={state.stage}
-        gender={state.gender}
-        season={state.season}
-        onGoToStage={goToStage}
-      />
+      <ArchiveHeader canReset={state.stage > 1} onReset={() => goToStage(1)} />
 
       <main className="relative flex w-full flex-1 flex-col justify-center pt-15">
         {state.stage === 1 && (

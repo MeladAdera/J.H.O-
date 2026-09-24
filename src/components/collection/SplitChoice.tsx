@@ -32,7 +32,7 @@ export function SplitChoice<T extends string>({
   const t = useTranslations("collection.panels");
 
   return (
-    <section className="relative flex h-[calc(100vh-60px)] w-full flex-col overflow-hidden md:flex-row">
+    <section className="relative flex h-[calc(100vh-60px-3.5rem)] md:h-[calc(100vh-60px)] w-full flex-col overflow-hidden md:flex-row">
       {/* Phase indicator */}
       <div className="pointer-events-none absolute top-5 left-1/2 z-30 -translate-x-1/2 text-center">
         <div className="flex items-center gap-2 rounded-full border border-on-photo/10 bg-photo-scrim/85 px-4 py-1.5 font-archive-mono text-[9px] uppercase tracking-[0.3em] text-on-photo/70 shadow-2xl backdrop-blur-md">

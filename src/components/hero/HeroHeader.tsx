@@ -1,24 +1,17 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import type { HeroStage } from "@/lib/types";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
+import { PageNav } from "@/components/shared/PageNav";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
-/* Ported from design-reference/code.html (header). The telemetry stepper
-   tracks the live stage: completed steps go green, the current one pink. */
+/* Ported from design-reference/code.html (header).
 
-const STEPS: { stage: HeroStage; key: "sketch" | "vector" | "shirt" }[] = [
-  { stage: 1, key: "sketch" },
-  { stage: 2, key: "vector" },
-  { stage: 3, key: "shirt" },
-];
+   The original carried a live stage stepper here. It is gone: HeroCopy has
+   the same three stage controls beside the headline, plus a replay, so the
+   stepper was a second copy of an existing control occupying the one place on
+   this page where site-wide navigation could go. */
 
-interface Props {
-  stage: HeroStage;
-  onJump: (stage: HeroStage) => void;
-}
-
-export function HeroHeader({ stage, onJump }: Props) {
+export function HeroHeader() {
   const t = useTranslations("hero");
   const tBrand = useTranslations("brand");
 
@@ -48,49 +41,7 @@ export function HeroHeader({ stage, onJump }: Props) {
         </div>
       </div>
 
-      {/* Live stage stepper */}
-      <div className="hidden items-center gap-1.5 rounded-full border border-line bg-overlay px-3 py-1.5 shadow-sm backdrop-blur-sm md:flex">
-        {STEPS.map(({ stage: step, key }, index) => {
-          const isDone = step < stage;
-          const isCurrent = step === stage;
-          return (
-            <div key={step} className="flex items-center gap-1.5">
-              {index > 0 && (
-                <span className="flip-arrow font-atelier-mono text-[10px] text-ink-faint">
-                  →
-                </span>
-              )}
-              <button
-                type="button"
-                onClick={() => onJump(step)}
-                aria-current={isCurrent ? "step" : undefined}
-                className="flex items-center gap-2 rounded-full px-3 py-1 font-atelier-mono text-xs transition-all duration-300"
-              >
-                <span
-                  className={`h-2 w-2 rounded-full transition-colors ${
-                    isCurrent
-                      ? "bg-accent"
-                      : isDone
-                        ? "bg-signal-ok"
-                        : "bg-ink-faint"
-                  }`}
-                />
-                <span
-                  className={`uppercase transition-colors ${
-                    isCurrent
-                      ? "font-semibold text-ink"
-                      : isDone
-                        ? "font-medium text-ink"
-                        : "font-medium text-ink-muted"
-                  }`}
-                >
-                  <span className="latin-telemetry">{`0${step}.`}</span> {t(`steps.${key}`)}
-                </span>
-              </button>
-            </div>
-          );
-        })}
-      </div>
+      <PageNav className="hidden md:flex" />
 
       <div className="flex items-center gap-3">
         <div className="hidden items-center gap-2 font-atelier-mono text-xs uppercase text-ink-muted sm:flex">

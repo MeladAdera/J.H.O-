@@ -13,7 +13,8 @@
       "light": "فاتح",
       "dark": "داكن",
       "switchTo": "تغيير المظهر — الحالي {mode}"
-    }
+    },
+    "pages": "الصفحات"
   },
   "collection": {
     "subtitle": "أرشيف النماذج",

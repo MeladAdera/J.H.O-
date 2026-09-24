@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
+import { PageNav } from "@/components/shared/PageNav";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 /* Page 3's own header. The three pages deliberately do not share one — see
@@ -9,7 +10,6 @@ import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 export function WorldHeader() {
   const t = useTranslations("world");
-  const tNav = useTranslations("nav");
   const tBrand = useTranslations("brand");
 
   return (
@@ -35,17 +35,7 @@ export function WorldHeader() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-6 font-world-mono text-[11px] uppercase tracking-wider md:flex">
-          <Link href="/" className="text-ink-muted transition-colors hover:text-ink">
-            {tNav("hero")}
-          </Link>
-          <Link href="/collection" className="text-ink-muted transition-colors hover:text-ink">
-            {tNav("collection")}
-          </Link>
-          <span className="text-ink underline decoration-accent-ink underline-offset-4">
-            {tNav("myLittleWorld")}
-          </span>
-        </nav>
+        <PageNav className="hidden md:flex" />
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
