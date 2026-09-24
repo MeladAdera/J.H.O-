@@ -389,6 +389,52 @@ body {
   }
 }
 
+/* The footer's arrow, when the footer is reached: two nudges forward, then
+   still. Animates `translate` rather than `transform` on purpose — the arrow
+   is mirrored in RTL by .flip-arrow's transform, and a transform keyframe
+   would override that mirror for the length of the animation. `translate`
+   composes with it. The RTL keyframes move the other way, so the arrow
+   always nudges in the direction the page turns. */
+@keyframes beckon {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  22% {
+    translate: 9px 0;
+  }
+  48% {
+    translate: 0 0;
+  }
+  70% {
+    translate: 6px 0;
+  }
+}
+
+@keyframes beckon-rtl {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  22% {
+    translate: -9px 0;
+  }
+  48% {
+    translate: 0 0;
+  }
+  70% {
+    translate: -6px 0;
+  }
+}
+
+.beckon {
+  animation: beckon 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s 1;
+}
+
+[dir="rtl"] .beckon {
+  animation-name: beckon-rtl;
+}
+
 /* Pages 1 and 3 both define .pulse-dot but with different animations.
    Page 1's is a scale/opacity pulse, page 3's is a glowing ring. */
 .pulse-dot {
@@ -402,7 +448,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .pulse-dot,
   .pulse-glow,
-  .animate-fade-in-up {
+  .animate-fade-in-up,
+  .beckon {
     animation: none;
   }
 }

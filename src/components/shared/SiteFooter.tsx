@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { PAGES } from "@/data/pages";
@@ -21,7 +22,14 @@ import { PAGES } from "@/data/pages";
 
    From the last page the link wraps to the first and says so, because "My
    Little World → Hero" reads like a menu item where "Back to the start" reads
-   like the end of a sequence. */
+   like the end of a sequence.
+
+   When the footer is reached — 60% of it in the viewport — the arrow beckons:
+   two nudges forward, then still. Once per page, never looping; a looping
+   attention-grab at the foot of a gallery reads as a notification. The
+   observer unobserves after the first hit, and reduced motion turns the
+   keyframes off in globals.css. On the hero the footer is in view from the
+   start, so there it plays on load. */
 
 export function SiteFooter() {
   const t = useTranslations("footer");
@@ -29,12 +37,33 @@ export function SiteFooter() {
   const tNav = useTranslations("nav");
   const pathname = usePathname();
 
+  const ref = useRef<HTMLElement | null>(null);
+  const [arrived, setArrived] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setArrived(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const index = Math.max(0, PAGES.findIndex((p) => p.href === pathname));
   const wraps = index === PAGES.length - 1;
   const next = PAGES[(index + 1) % PAGES.length];
 
   return (
-    <footer className="flex w-full flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line px-6 py-4 lg:px-14">
+    <footer
+      ref={ref}
+      className="flex w-full flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line px-6 py-4 lg:px-14">
       <div className="min-w-0">
         <div className="font-editorial text-[15px] tracking-[0.16em] text-ink">
           {tBrand("name")}
@@ -67,7 +96,9 @@ export function SiteFooter() {
             direction too, so it always moves the way the page turns. */}
         <span
           aria-hidden="true"
-          className="flip-arrow font-atelier-mono text-xl transition-transform duration-300 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5"
+          className={`flip-arrow font-atelier-mono text-xl transition-transform duration-300 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 ${
+            arrived ? "beckon" : ""
+          }`}
         >
           ⟶
         </span>
