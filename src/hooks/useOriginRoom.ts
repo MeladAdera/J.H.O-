@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { STATIONS } from "@/data/stations";
 import { LIGHTING } from "@/lib/diorama/lighting";
 import { buildRoom } from "@/lib/diorama/room";
+import { bakeEnvironment, type Environment } from "@/lib/diorama/environment";
 import type { Theme } from "@/lib/theme";
 import type { StationIndex } from "@/lib/types";
 
@@ -113,6 +114,21 @@ export function useOriginRoom({
     /** The stitch lamp's un-flickered intensity for the current lighting mix. */
     let stitchBase = 0;
 
+    /* Filled in after the first lighting pass — a bake needs the lights it is
+       meant to capture, and applyLighting is what sets those. */
+    let environments: Record<Theme, Environment> | null = null;
+    let currentEnvironment: Theme | null = null;
+    const applyEnvironment = (mix: number) => {
+      if (!environments) return;
+      /* Swapped at the midpoint rather than blended: what changes is the
+         brightness of a reflection inside two small mirrors, and a cube map
+         cannot be lerped without baking a third. */
+      const wanted: Theme = mix > 0.5 ? "light" : "dark";
+      if (wanted === currentEnvironment) return;
+      currentEnvironment = wanted;
+      scene.environment = environments[wanted].texture;
+    };
+
     /* Lighting is tweened rather than snapped: the toggle should read as the
        room's lights coming up, not as a different page. `t` is eased outside. */
     const applyLighting = (t: number) => {
@@ -140,10 +156,22 @@ export function useOriginRoom({
       mix(background, from.background, to.background);
       scene.background = background;
       renderer.toneMappingExposure = lerp(from.exposure, to.exposure);
+      applyEnvironment(t);
     };
 
     // 0 = night, 1 = day. Starts settled so there is no opening fade.
     let daylight = themeRef.current === "light" ? 1 : 0;
+
+    /* Bake each mode's reflection once, with that mode's lights actually
+       applied. Roughly eye height at the centre of the room, so the mirrors
+       reflect the space rather than the underside of the plinth. */
+    const bakePoint = new THREE.Vector3(0, 2.4, 0);
+    applyLighting(0);
+    const darkEnv = bakeEnvironment(renderer, scene, bakePoint);
+    applyLighting(1);
+    const lightEnv = bakeEnvironment(renderer, scene, bakePoint);
+    environments = { dark: darkEnv, light: lightEnv };
+
     applyLighting(daylight);
 
     // --- camera waypoints ------------------------------------------------
@@ -322,6 +350,8 @@ export function useOriginRoom({
       canvas.removeEventListener("pointercancel", endDrag);
       canvas.removeEventListener("wheel", onWheel);
       registry.dispose();
+      environments?.dark.dispose();
+      environments?.light.dispose();
       renderer.dispose();
       // Frees the GPU context immediately rather than waiting for GC; browsers
       // cap live contexts (~16) and a few navigations would otherwise hit it.

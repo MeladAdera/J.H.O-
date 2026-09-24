@@ -190,8 +190,16 @@
         "desc": "The complete origin diorama: vanity desk with arched mirror and perfumes, the standing mirror, the draped crafting altar, the ring lamp, the coat tree, twin beds and the checkered tile grid."
       },
       "desk": {
-        "title": "The round desk & stitch lamp",
-        "desc": "A yellow fabric draped table, ring-light lamp, a cup of pastel fineliners, a bowl of sticky notes and a purple sketchbook."
+        "title": "The round crafting altar",
+        "desc": "A round table under a heavy yellow drape, carrying the cup of pastel fineliners, a bowl of sticky notes and the purple sketchbook. Everything here started as a pencil line on this surface."
+      },
+      "lamp": {
+        "title": "The stitch ring lamp",
+        "desc": "The blue ring light that kept the late hours. Its head throws a circle of warm light straight down onto the fabric, which is why the altar below it is the brightest thing in the room after dark."
+      },
+      "laptop": {
+        "title": "The laptop workstation",
+        "desc": "The open workstation where garment cutlines, typography prints and 3D clothing simulations are born."
       },
       "rack": {
         "title": "The coat tree & lime jacket",
@@ -200,10 +208,6 @@
       "vanity": {
         "title": "The vanity mirror & perfumes",
         "desc": "The sculpted arched vanity desk with cosmetic bottles, perfumes and a stool, beside the standing dressing mirror."
-      },
-      "laptop": {
-        "title": "The laptop workstation",
-        "desc": "The open workstation where garment cutlines, typography prints and 3D clothing simulations are born."
       }
     },
     "archive": {

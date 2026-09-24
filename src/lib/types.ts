@@ -45,11 +45,11 @@ export type SpecimenSize = RegularSize | OversizedScale;
 
 // --- Page 3: my little world ------------------------------------------------
 
-/** The five diorama camera waypoints, in the order the scene defines them. */
-export type StationId = "overview" | "desk" | "rack" | "vanity" | "laptop";
+/** The diorama camera waypoints, in the order the scene defines them. */
+export type StationId = "overview" | "desk" | "lamp" | "laptop" | "rack" | "vanity";
 
 /** Index into the waypoints array — 0 is always the overview. */
-export type StationIndex = 0 | 1 | 2 | 3 | 4;
+export type StationIndex = 0 | 1 | 2 | 3 | 4 | 5;
 
 /** A camera waypoint in the diorama. Copy lives in messages/*.json under
     `world.stations.<id>`, not here — the HUD is translated like everything

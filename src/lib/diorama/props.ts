@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { PALETTE as P } from "./palette";
 import { Registry, mesh, at } from "./kit";
+import { STATION_INDEX } from "@/data/stations";
 
 /* The furniture of the origin room, ported from
    design-reference/my little world.html:385-740.
@@ -181,7 +182,7 @@ export function buildDesk(reg: Registry): THREE.Group {
   /* Tagged for its own station, so clicking the laptop opens station 04 while
      the table around it opens 01 — the raycaster stops at the nearest tagged
      ancestor, and this one sits below the desk's tag. */
-  laptop.userData.station = 4;
+  laptop.userData.station = STATION_INDEX.laptop;
   laptop.position.set(-0.35, 1.62, 0.15);
   laptop.rotation.y = 0.38;
   laptop.add(
@@ -217,6 +218,9 @@ export function buildDesk(reg: Registry): THREE.Group {
 
   // --- ring lamp -------------------------------------------------------
   const lamp = new THREE.Group();
+  // Its own station, like the laptop: both sit on the desk but are tagged
+  // below the desk's own tag, so the raycaster reaches them first.
+  lamp.userData.station = STATION_INDEX.lamp;
   lamp.position.set(0.45, 1.62, 0.65);
   const shell = reg.mat(new THREE.MeshStandardMaterial({ color: P.stitchBlue, roughness: 0.4 }));
 

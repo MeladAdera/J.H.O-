@@ -30,6 +30,7 @@ export function StationControls({ active, onSelect }: Props) {
             type="button"
             role="radio"
             aria-checked={isActive}
+            aria-label={t(`stations.${station.id}.title`)}
             onClick={() => onSelect(station.index)}
             className={`group flex items-center gap-2 border px-3 py-1.5 font-world-mono text-[10px] uppercase tracking-[0.16em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-ink ${
               isActive
@@ -45,7 +46,10 @@ export function StationControls({ active, onSelect }: Props) {
             <span className="latin-telemetry">
               {String(station.index).padStart(2, "0")}
             </span>
-            <span>{t(`stations.${station.id}.title`)}</span>
+            {/* Six full titles stack into six rows on a phone. The HUD below
+                names whichever station is active, so the picker can fall back
+                to its numbers — the accessible name still carries the title. */}
+            <span className="hidden sm:inline">{t(`stations.${station.id}.title`)}</span>
           </button>
         );
       })}
