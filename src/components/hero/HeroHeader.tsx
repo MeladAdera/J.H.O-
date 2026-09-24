@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
-import { PageNav } from "@/components/shared/PageNav";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 /* Ported from design-reference/code.html (header).
@@ -40,8 +39,6 @@ export function HeroHeader() {
           </p>
         </div>
       </div>
-
-      <PageNav className="hidden md:flex" />
 
       <div className="flex items-center gap-3">
         <div className="hidden items-center gap-2 font-atelier-mono text-xs uppercase text-ink-muted sm:flex">

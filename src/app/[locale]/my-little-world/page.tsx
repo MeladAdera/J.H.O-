@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { WorldHeader } from "@/components/world/WorldHeader";
 import { OriginRoom } from "@/components/world/OriginRoom";
 import { ArchivePlates } from "@/components/world/ArchivePlates";
+import { SiteFooter } from "@/components/shared/SiteFooter";
 
 export default async function MyLittleWorldPage(props: {
   params: Promise<{ locale: string }>;
@@ -16,6 +17,7 @@ export default async function MyLittleWorldPage(props: {
         <OriginRoom />
         <ArchivePlates />
       </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
-import { PageNav } from "@/components/shared/PageNav";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 /* Ported from design-reference/our collection.html (header).
@@ -45,8 +44,6 @@ export function ArchiveHeader({ canReset, onReset }: Props) {
             </span>
           </div>
         </Link>
-
-        <PageNav className="hidden md:flex" />
 
         <div className="flex items-center gap-3">
           {/* The journey's only way back, now that the breadcrumbs are gone.

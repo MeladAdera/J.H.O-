@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import type { Fit, Gender, JourneyStage, Season, Specimen, SpecimenSize } from "@/lib/types";
 import { GENDER_PANELS, SEASON_PANELS } from "@/data/panels";
 import { ArchiveHeader } from "./ArchiveHeader";
-import { ArchiveFooter } from "./ArchiveFooter";
+import { SiteFooter } from "@/components/shared/SiteFooter";
 import { SplitChoice } from "./SplitChoice";
 import { LookbookGrid } from "./LookbookGrid";
 import { SpecimenModal } from "./SpecimenModal";
@@ -146,7 +146,7 @@ export function CollectionJourney() {
         />
       )}
 
-      <ArchiveFooter />
+      <SiteFooter />
     </div>
   );
 }

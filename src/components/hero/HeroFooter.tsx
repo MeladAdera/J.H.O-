@@ -13,7 +13,7 @@ export function HeroFooter({ stage }: { stage: HeroStage }) {
   const t = useTranslations("hero");
 
   return (
-    <footer className="z-20 flex w-full flex-wrap items-center justify-between gap-4 border-t border-line bg-overlay px-6 py-3 font-atelier-mono text-[11px] uppercase text-ink-muted backdrop-blur-sm lg:px-14">
+    <div className="z-20 flex w-full flex-wrap items-center justify-between gap-4 border-t border-line bg-overlay px-6 py-3 font-atelier-mono text-[11px] uppercase text-ink-muted backdrop-blur-sm lg:px-14">
       <div className="flex items-center gap-4">
         <span className="flex items-center gap-2 font-medium text-ink">
           <span className="h-2 w-2 rounded-full bg-accent" />
@@ -42,6 +42,6 @@ export function HeroFooter({ stage }: { stage: HeroStage }) {
           {t("footer.submit")}
         </a>
       </div>
-    </footer>
+    </div>
   );
 }

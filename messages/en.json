@@ -13,8 +13,7 @@
       "light": "Light",
       "dark": "Dark",
       "switchTo": "Change theme — currently {mode}"
-    },
-    "pages": "Pages"
+    }
   },
   "collection": {
     "subtitle": "Museum specimen archive",
@@ -231,5 +230,12 @@
       "pause": "Touring",
       "resume": "Resume tour"
     }
+  },
+  "footer": {
+    "backToStart": "Back to the start",
+    "copyright": "© 2026",
+    "location": "Latakia, Syria",
+    "archive": "Archive v2.6",
+    "nextAria": "Continue to {page}"
   }
 }

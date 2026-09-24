@@ -7,6 +7,7 @@ import { HeroHeader } from "./HeroHeader";
 import { HeroCopy } from "./HeroCopy";
 import { StageTheater } from "./StageTheater";
 import { HeroFooter } from "./HeroFooter";
+import { SiteFooter } from "@/components/shared/SiteFooter";
 import { PencilFilterDefs } from "./PencilFilterDefs";
 
 /* The single client boundary for the hero.
@@ -53,6 +54,7 @@ export function HeroExperience() {
       </main>
 
       <HeroFooter stage={stage} />
+      <SiteFooter />
     </div>
   );
 }

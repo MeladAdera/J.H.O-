@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
-import { PageNav } from "@/components/shared/PageNav";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 /* Page 3's own header. The three pages deliberately do not share one — see
@@ -34,8 +33,6 @@ export function WorldHeader() {
             </span>
           </div>
         </Link>
-
-        <PageNav className="hidden md:flex" />
 
         <div className="flex items-center gap-3">
           <ThemeToggle />

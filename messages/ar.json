@@ -13,8 +13,7 @@
       "light": "فاتح",
       "dark": "داكن",
       "switchTo": "تغيير المظهر — الحالي {mode}"
-    },
-    "pages": "الصفحات"
+    }
   },
   "collection": {
     "subtitle": "أرشيف النماذج",
@@ -231,5 +230,12 @@
       "pause": "جولة جارية",
       "resume": "استئناف الجولة"
     }
+  },
+  "footer": {
+    "backToStart": "العودة إلى البداية",
+    "copyright": "© 2026",
+    "location": "اللاذقية، سوريا",
+    "archive": "Archive v2.6",
+    "nextAria": "المتابعة إلى {page}"
   }
 }
