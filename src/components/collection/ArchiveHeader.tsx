@@ -3,26 +3,40 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import type { Gender, JourneyStage, Season } from "@/lib/types";
 
-/* Ported from design-reference/our collection.html (header).
+/* Ported from design-reference/our collection.html (header). The breadcrumbs
+   are live: each one becomes clickable only once the choice before it has
+   been made, and they read back the current selection.
 
-   The original carried live journey breadcrumbs across the middle. They are
-   gone: the centre is the one place on this page wide enough for the site
-   navigation, and the breadcrumbs were competing with it.
-
-   They did carry one thing worth keeping, though — they were the only way
-   back through the journey. That survives as the reset control, which appears
-   only once a choice has been made. */
+   They are also the way back through the journey — but only from md up,
+   where there is room for them. Below that a reset control stands in, shown
+   once there is a choice to undo. Before it existed a phone had no way back
+   at all. */
 
 interface Props {
-  /** True once the visitor has chosen at least a gender. */
-  canReset: boolean;
-  onReset: () => void;
+  stage: JourneyStage;
+  gender: Gender | null;
+  season: Season | null;
+  onGoToStage: (stage: JourneyStage) => void;
 }
 
-export function ArchiveHeader({ canReset, onReset }: Props) {
+export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
   const t = useTranslations("collection");
   const tBrand = useTranslations("brand");
+  const tPanels = useTranslations("collection.panels");
+
+  const unselected = t("breadcrumbs.unselected");
+  const genderLabel = gender ? tPanels(`${gender.toLowerCase()}.title`) : unselected;
+  const seasonLabel = season ? tPanels(`${season.toLowerCase()}.title`) : unselected;
+
+  /** Reachable crumbs are clickable; the one for the current stage is lit. */
+  const crumb = (reachable: boolean, isCurrent: boolean) =>
+    [
+      "transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-ink",
+      reachable ? "hover:text-accent-ink" : "cursor-default opacity-40",
+      isCurrent ? "text-accent-ink" : "",
+    ].join(" ");
 
   return (
     <header className="atelier-glass fixed inset-x-0 top-0 z-50 px-4 py-3.5 md:px-8">
@@ -45,15 +59,52 @@ export function ArchiveHeader({ canReset, onReset }: Props) {
           </div>
         </Link>
 
+        {/* Live journey breadcrumbs */}
+        <nav
+          aria-label={t("breadcrumbs.archive")}
+          className="hidden items-center gap-2 rounded-full border border-line bg-sunken px-4 py-1.5 font-archive-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted backdrop-blur-md md:flex"
+        >
+          <button
+            type="button"
+            onClick={() => onGoToStage(1)}
+            aria-current={stage === 1 ? "step" : undefined}
+            className={crumb(true, stage === 1)}
+          >
+            <span className="latin-telemetry">01</span> {t("breadcrumbs.archive")}
+          </button>
+          <span className="text-ink-faint">{"//"}</span>
+          <button
+            type="button"
+            onClick={() => gender && onGoToStage(2)}
+            disabled={!gender}
+            aria-current={stage === 2 ? "step" : undefined}
+            className={crumb(Boolean(gender), stage === 2)}
+          >
+            <span className="latin-telemetry">02</span> {t("breadcrumbs.gender")}:{" "}
+            <span className="font-semibold text-ink">{genderLabel}</span>
+          </button>
+          <span className="text-ink-faint">{"//"}</span>
+          <button
+            type="button"
+            onClick={() => gender && season && onGoToStage(3)}
+            disabled={!gender || !season}
+            aria-current={stage === 3 ? "step" : undefined}
+            className={crumb(Boolean(gender && season), stage === 3)}
+          >
+            <span className="latin-telemetry">03</span> {t("breadcrumbs.season")}:{" "}
+            <span className="font-semibold text-ink">{seasonLabel}</span>
+          </button>
+        </nav>
+
         <div className="flex items-center gap-3">
-          {/* The journey's only way back, now that the breadcrumbs are gone.
-              Hidden until there is something to undo, so the opening screen
-              stays as quiet as it was. */}
-          {canReset && (
+          {/* The phone's way back: the crumbs are hidden below md. Hidden
+              until there is something to undo, so the opening screen stays as
+              quiet as it was. */}
+          {stage > 1 && (
             <button
               type="button"
-              onClick={onReset}
-              className="latin-telemetry hidden items-center gap-2 border border-line px-3 py-1.5 font-archive-mono text-[9px] uppercase tracking-[0.2em] text-ink-muted transition-colors hover:border-accent-ink hover:text-accent-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-ink sm:inline-flex"
+              onClick={() => onGoToStage(1)}
+              className="latin-telemetry inline-flex items-center gap-2 border border-line px-3 py-1.5 font-archive-mono text-[9px] uppercase tracking-[0.2em] text-ink-muted transition-colors hover:border-accent-ink hover:text-accent-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-ink md:hidden"
             >
               <span className="flip-arrow">&larr;</span>
               {t("reset")}
