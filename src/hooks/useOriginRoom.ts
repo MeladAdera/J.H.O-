@@ -21,22 +21,41 @@ interface Options {
   theme: Theme;
   /** Skips the idle drift and shortens camera glides. */
   reducedMotion?: boolean;
+  /** Fired when a prop in the scene is clicked. */
+  onSelectStation?: (index: StationIndex) => void;
+  /** Fired on any press or zoom inside the room — used to stop the tour. */
+  onInteract?: () => void;
 }
+
+/** Below this much pointer travel a press counts as a click, not a drag. */
+const CLICK_SLOP = 6;
 
 const DEG = Math.PI / 180;
 
-export function useOriginRoom({ station, theme, reducedMotion = false }: Options) {
+export function useOriginRoom({
+  station,
+  theme,
+  reducedMotion = false,
+  onSelectStation,
+  onInteract,
+}: Options) {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const stationRef = useRef(station);
   const themeRef = useRef(theme);
   const reducedRef = useRef(reducedMotion);
+  const selectRef = useRef(onSelectStation);
+  const interactRef = useRef(onInteract);
 
   /* Refs are written after render, not during it. The render loop is a rAF,
-     so it picks the new value up on the next frame either way. */
+     so it picks the new value up on the next frame either way. The callback
+     goes through a ref too, so a caller passing an inline arrow does not
+     rebuild the whole scene on every render. */
   useEffect(() => {
     stationRef.current = station;
     themeRef.current = theme;
     reducedRef.current = reducedMotion;
+    selectRef.current = onSelectStation;
+    interactRef.current = onInteract;
   });
 
   useEffect(() => {
@@ -148,15 +167,47 @@ export function useOriginRoom({ station, theme, reducedMotion = false }: Options
     canvas.style.touchAction = "none";
     canvas.style.cursor = "grab";
 
+    /* Picking. Props carry userData.station; the raycaster hits a leaf mesh,
+       so resolving a click means walking up to the nearest tagged ancestor. */
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+
+    const stationAt = (clientX: number, clientY: number): StationIndex | null => {
+      const box = canvas.getBoundingClientRect();
+      pointer.x = ((clientX - box.left) / box.width) * 2 - 1;
+      pointer.y = -((clientY - box.top) / box.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      for (const hit of raycaster.intersectObject(room, true)) {
+        let node: THREE.Object3D | null = hit.object;
+        while (node) {
+          const tag = node.userData?.station;
+          if (typeof tag === "number") return tag as StationIndex;
+          node = node.parent;
+        }
+      }
+      return null;
+    };
+
+    let pressX = 0;
+    let pressY = 0;
+
     const onPointerDown = (e: PointerEvent) => {
       dragging = true;
-      lastX = e.clientX;
-      lastY = e.clientY;
+      lastX = pressX = e.clientX;
+      lastY = pressY = e.clientY;
       canvas.style.cursor = "grabbing";
       canvas.setPointerCapture(e.pointerId);
+      /* Touching the room at all ends the tour — whether the press turns out
+         to be a click on a prop or a drag to look around. Waiting to see which
+         would let the camera glide away mid-gesture. */
+      interactRef.current?.();
     };
     const onPointerMove = (e: PointerEvent) => {
-      if (!dragging) return;
+      if (!dragging) {
+        // Hint that props are clickable before the user commits to a press.
+        canvas.style.cursor = stationAt(e.clientX, e.clientY) === null ? "grab" : "pointer";
+        return;
+      }
       yaw -= (e.clientX - lastX) * 0.005;
       // Clamped so the camera cannot pass the poles and flip the horizon.
       pitch = Math.max(-35 * DEG, Math.min(55 * DEG, pitch + (e.clientY - lastY) * 0.005));
@@ -164,14 +215,24 @@ export function useOriginRoom({ station, theme, reducedMotion = false }: Options
       lastY = e.clientY;
     };
     const endDrag = (e: PointerEvent) => {
+      if (!dragging) return;
       dragging = false;
       canvas.style.cursor = "grab";
       if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
+
+      /* A press that barely moved is a click on whatever is under it. Without
+         the slop test every drag would also "select" the prop it started on. */
+      const travelled = Math.hypot(e.clientX - pressX, e.clientY - pressY);
+      if (e.type !== "pointercancel" && travelled < CLICK_SLOP) {
+        const picked = stationAt(e.clientX, e.clientY);
+        if (picked !== null) selectRef.current?.(picked);
+      }
     };
     const onWheel = (e: WheelEvent) => {
       // Only claim the gesture while zooming, so the page still scrolls past.
       e.preventDefault();
       zoom = Math.max(0.45, Math.min(1.8, zoom + e.deltaY * 0.0012));
+      interactRef.current?.();
     };
 
     canvas.addEventListener("pointerdown", onPointerDown);

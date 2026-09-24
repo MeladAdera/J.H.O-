@@ -178,6 +178,10 @@ export function buildDesk(reg: Registry): THREE.Group {
 
   // --- laptop ---------------------------------------------------------
   const laptop = new THREE.Group();
+  /* Tagged for its own station, so clicking the laptop opens station 04 while
+     the table around it opens 01 — the raycaster stops at the nearest tagged
+     ancestor, and this one sits below the desk's tag. */
+  laptop.userData.station = 4;
   laptop.position.set(-0.35, 1.62, 0.15);
   laptop.rotation.y = 0.38;
   laptop.add(

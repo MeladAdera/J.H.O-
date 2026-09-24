@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { PALETTE as P } from "./palette";
 import { Registry, mesh } from "./kit";
+import type { StationIndex } from "@/lib/types";
 import {
   buildDesk,
   buildFurnishings,
@@ -101,11 +102,21 @@ export function buildRoom(): Room {
   group.add(buildBase(registry, 10.2));
   group.add(buildWalls(registry));
 
-  // Station props, in waypoint order.
-  group.add(buildDesk(registry)); // 01 and 04
-  group.add(buildRack(registry)); // 02
-  group.add(buildVanity(registry)); // 03
-  group.add(buildStandingMirror(registry)); // 03
+  /* Station props, in waypoint order. `userData.station` is what makes a prop
+     clickable: the raycaster walks up from whatever mesh it hits to the
+     nearest tagged ancestor, so a whole group answers as one object. buildDesk
+     tags its laptop sub-group 4, and because that tag is found first, clicking
+     the laptop lands on station 04 while the table it sits on lands on 01. */
+  const props: [THREE.Group, StationIndex][] = [
+    [buildDesk(registry), 1],
+    [buildRack(registry), 2],
+    [buildVanity(registry), 3],
+    [buildStandingMirror(registry), 3],
+  ];
+  for (const [prop, station] of props) {
+    prop.userData.station = station;
+    group.add(prop);
+  }
 
   // Dressing the wide shot.
   group.add(buildFurnishings(registry));

@@ -179,7 +179,7 @@
     "title": "My little world",
     "intro": "The room where the label began — modelled from memory, station by station. Drag to look around, scroll to zoom, or jump to a station below.",
     "dioramaLabel": "Origin room diorama",
-    "hint": "Drag to rotate • Scroll to zoom • Pick a station to glide the camera",
+    "hint": "Drag to rotate • Scroll to zoom • Click anything in the room to read about it",
     "resetView": "Reset view",
     "loading": "Building the room…",
     "unsupported": "Your browser cannot display the 3D room. The photographs below show the same space.",
@@ -221,6 +221,10 @@
         "title": "Coat tree",
         "note": "Lime jacket and bag"
       }
+    },
+    "tour": {
+      "pause": "Touring",
+      "resume": "Resume tour"
     }
   }
 }
