@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 export function WorldHeader() {
   const t = useTranslations("world");
+  const tNav = useTranslations("nav");
   const tBrand = useTranslations("brand");
 
   return (
@@ -33,6 +34,18 @@ export function WorldHeader() {
             </span>
           </div>
         </Link>
+
+        <nav className="hidden items-center gap-6 font-world-mono text-[11px] uppercase tracking-wider md:flex">
+          <Link href="/" className="text-ink-muted transition-colors hover:text-ink">
+            {tNav("hero")}
+          </Link>
+          <Link href="/collection" className="text-ink-muted transition-colors hover:text-ink">
+            {tNav("collection")}
+          </Link>
+          <span className="text-ink underline decoration-accent-ink underline-offset-4">
+            {tNav("myLittleWorld")}
+          </span>
+        </nav>
 
         <div className="flex items-center gap-3">
           <ThemeToggle />

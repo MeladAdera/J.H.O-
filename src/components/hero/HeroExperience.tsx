@@ -30,7 +30,7 @@ export function HeroExperience() {
     >
       <PencilFilterDefs />
 
-      <HeroHeader />
+      <HeroHeader stage={stage} onJump={jumpToStage} />
 
       <main className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-6 py-8 lg:px-14 lg:py-12">
         {/* Drafting watermark. The positioned box stays in the page's own
