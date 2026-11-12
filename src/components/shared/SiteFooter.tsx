@@ -15,10 +15,9 @@ import { PAGES } from "@/data/pages";
    how you turn the page. It carries no "next" label — the serif and the
    accent do that work, and the arrow says which way.
 
-   Mounted inside each page's own column rather than once in the layout, on
-   purpose. The hero is composed as a single screen — a flex column that fills
-   the viewport — and a footer placed after that column would land below the
-   fold. Inside it, the main area gives up the ~50px and the screen holds.
+   Mounted inside each page's own column rather than once in the layout, so
+   it sits on that page's ground. On the home page it follows the first-look
+   scrapbook, below the hero's own screen.
 
    From the last page the link wraps to the first and says so, because "My
    Little World → Hero" reads like a menu item where "Back to the start" reads
@@ -28,8 +27,7 @@ import { PAGES } from "@/data/pages";
    two nudges forward, then still. Once per page, never looping; a looping
    attention-grab at the foot of a gallery reads as a notification. The
    observer unobserves after the first hit, and reduced motion turns the
-   keyframes off in globals.css. On the hero the footer is in view from the
-   start, so there it plays on load. */
+   keyframes off in globals.css. */
 
 export function SiteFooter() {
   const t = useTranslations("footer");

@@ -254,6 +254,95 @@ body {
   }
 }
 
+/* --- Page 1, second section: the first-look scrapbook ---------------------
+   The sheet is a raised surface on the drafting table, in both modes: warm
+   paper by day, and at night a dark sheet one step above the dark ground.
+   The section paints only with these --paper-* tokens (not the roles), so
+   the scrapbook's own materials — tape, gingham, pencil — can change with
+   the mode alongside the text. Ratios are measured against --paper. */
+.scrap-sheet {
+  --paper: #fdfcfa;
+  --paper-card: #f3f2ef; /* the polaroid's frame */
+  --paper-note: #efedea; /* the taped note card */
+  --paper-ink: #141416; /* 17.9:1 */
+  --paper-ink-soft: #3d3d45; /* 10.5:1, 9.2:1 on --paper-note */
+  --paper-muted: #5c5c66; /* 6.4:1, 5.9:1 on --paper-card */
+  --paper-accent: #bf3157; /* 5.4:1, 4.7:1 on --paper-note */
+  --paper-rule: #f6a7bd; /* rules only, never text */
+  --paper-edge: #cfc6c0;
+  --paper-sketch: #2b2625; /* pencil lead */
+  --tape: rgb(200 198 194 / 0.8);
+  --gingham-base: #ffffff;
+  --gingham-check: rgb(255 123 154 / 0.5);
+  --pin-shadow: 0 14px 28px -12px rgb(20 20 22 / 0.35), 0 1px 2px rgb(20 20 22 / 0.12);
+  background: var(--paper);
+  color: var(--paper-ink);
+  box-shadow:
+    0 1px 2px rgb(20 20 22 / 0.08),
+    0 28px 56px -32px rgb(20 20 22 / 0.4);
+}
+
+/* Night: the dark gallery palette from the roles, one step up from the
+   ground (#141316) so the sheet still reads as an object on the table. The
+   pinks lighten the way the roles' accent-ink does, the tape turns to a
+   translucent pale strip and the gingham to pink on dark cloth. */
+[data-theme="dark"] .scrap-sheet {
+  --paper: #1c1b1e;
+  --paper-card: #2b292d;
+  --paper-note: #252327;
+  --paper-ink: #e6e1e5; /* 13.3:1 */
+  --paper-ink-soft: #cdc6ca; /* 10.2:1, 9.3:1 on --paper-note */
+  --paper-muted: #b3a2a6; /* 7.1:1, 5.9:1 on --paper-card */
+  --paper-accent: #ffb1c0; /* 10.0:1, 9.1:1 on --paper-note */
+  --paper-rule: rgb(255 117 151 / 0.55);
+  --paper-edge: rgb(230 225 229 / 0.14);
+  --paper-sketch: #d8d0cb;
+  --tape: rgb(222 216 210 / 0.3);
+  --gingham-base: #2a2226;
+  --gingham-check: rgb(255 117 151 / 0.34);
+  --pin-shadow: 0 16px 30px -12px rgb(0 0 0 / 0.7), 0 1px 2px rgb(0 0 0 / 0.5);
+  box-shadow:
+    0 0 0 1px rgb(230 225 229 / 0.06),
+    0 32px 64px -28px rgb(0 0 0 / 0.85);
+}
+
+/* Pinned things sit a little crooked. The angle comes in as --tilt and
+   mirrors in Arabic, so the sheet reads as the same sheet seen in a mirror.
+   A custom property rather than rotate-[…] utilities: see .arrow-ne below
+   for what the editor's auto-fix does to arbitrary rotate values. */
+.scrap-tilt {
+  transform: rotate(var(--tilt, 0deg));
+}
+
+[dir="rtl"] .scrap-tilt {
+  transform: rotate(calc(var(--tilt, 0deg) * -1));
+}
+
+/* Grey masking tape with torn ends. Size and placement come from the
+   component; this is only the material. */
+.scrap-tape {
+  position: absolute;
+  z-index: 1;
+  background: var(--tape);
+  box-shadow: 0 1px 2px rgb(20 20 22 / 0.12);
+  clip-path: polygon(
+    2% 0, 98% 0, 100% 18%, 97% 36%, 100% 54%, 97% 72%, 100% 90%, 98% 100%,
+    2% 100%, 0 86%, 3% 68%, 0 50%, 3% 32%, 0 14%
+  );
+}
+
+.scrap-gingham {
+  background-color: var(--gingham-base);
+  background-image:
+    linear-gradient(90deg, var(--gingham-check) 50%, transparent 50%),
+    linear-gradient(var(--gingham-check) 50%, transparent 50%);
+  background-size: 18px 18px;
+}
+
+.scrap-shadow {
+  box-shadow: var(--pin-shadow);
+}
+
 /* ==========================================================================
    PAGE 2 — collection (from design-reference/our collection.html)
    ========================================================================== */

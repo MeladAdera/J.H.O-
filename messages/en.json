@@ -174,6 +174,50 @@
     "sequence": "Autonomous stage sequence: 1 → 2 → 3",
     "frameNote": "Take your time. Choose your style."
   },
+  "firstLook": {
+    "label": "First look at the summer collection",
+    "eyebrow": "02 — First look · Summer 2026",
+    "brand": "J.H.O Atelier",
+    "title": "First look",
+    "season": "Summer oversize · 2026",
+    "lede": "Summer oversize tees, pinned here before they reach you.",
+    "note": {
+      "eyebrow": "Who it's for",
+      "title": "For the girl who dresses for herself.",
+      "body": "Relaxed cotton, cut big for summer. On most of them the sleeve sits at the elbow or rolls up to ¾."
+    },
+    "fig1": {
+      "label": "Fig. 01",
+      "caption": "Oversize · drop shoulder"
+    },
+    "fig2": {
+      "label": "Fig. 02",
+      "caption": "Sleeve: elbow or 3/4"
+    },
+    "cta": "Explore our collection →",
+    "items": {
+      "n09": {
+        "name": "Street 76",
+        "alt": "Street 76 oversize tee in black with a pink 76 varsity print, worn"
+      },
+      "n10": {
+        "name": "The sea calls me",
+        "alt": "The Sea Calls Me tee in white with a starfish, coconut and seashell print, worn"
+      },
+      "n11": {
+        "name": "Coffee first",
+        "alt": "Brown Garfield tee with a sleepy coffee-cup print, worn"
+      },
+      "n12": {
+        "name": "Say yes baby",
+        "alt": "Red Say Yes Baby oversize tee with an arched 2026 print, worn"
+      },
+      "n14": {
+        "name": "White Fox hibiscus",
+        "alt": "Sky-blue White Fox oversize tee with a pink hibiscus print, worn"
+      }
+    }
+  },
   "world": {
     "eyebrow": "Origin archive • Room 402",
     "genesis": "Atelier genesis",
