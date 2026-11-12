@@ -29,30 +29,32 @@ export function StageTheater({ stage, viewportRef }: Props) {
     <div className="relative flex items-center justify-center">
       <div
         ref={viewportRef}
-        className="group relative aspect-[4/5] w-full max-w-[620px] overflow-hidden rounded-2xl border border-black/10 bg-white p-2 shadow-2xl transition-transform duration-700 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] sm:aspect-[4/5.1] sm:p-3"
+        className="group relative aspect-4/5 w-full max-w-155 overflow-hidden rounded-2xl border border-line bg-surface p-2 shadow-2xl transition-transform duration-700 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] sm:aspect-[4/5.1] sm:p-3"
       >
+        {/* The theater's black box. Not themed: it is the unlit space the
+            three acts play inside, and every act paints over it. */}
         <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl bg-neutral-900">
           <GarmentStage />
           <VectorStage />
           <SketchStage />
 
           {/* Live stage badge */}
-          <div className="absolute bottom-4 end-4 z-40 flex items-center gap-3 rounded-xl border border-black/10 bg-white/95 px-3.5 py-2 shadow-lg backdrop-blur-md transition-all duration-300">
-            <div className="h-2.5 w-2.5 animate-ping rounded-full bg-atelier-pink" />
+          <div className="absolute bottom-4 inset-e-4 z-40 flex items-center gap-3 rounded-xl border border-line bg-overlay px-3.5 py-2 shadow-lg backdrop-blur-md transition-all duration-300">
+            <div className="h-2.5 w-2.5 animate-ping rounded-full bg-accent" />
             <div>
-              <div className="font-atelier-mono text-[10px] uppercase tracking-wider text-atelier-muted">
+              <div className="font-atelier-mono text-[10px] uppercase tracking-wider text-ink-muted">
                 {t(`stageBadge.${key}.subtitle`)}
               </div>
-              <div className="font-atelier-mono text-xs font-semibold text-atelier-dark">
+              <div className="font-atelier-mono text-xs font-semibold text-ink">
                 {t(`stageBadge.${key}.title`)}
               </div>
             </div>
           </div>
 
           {/* Transformation progress */}
-          <div className="absolute inset-x-0 top-0 z-40 h-1 bg-black/10">
+          <div className="absolute inset-x-0 top-0 z-40 h-1 bg-line-strong">
             <div
-              className="h-full bg-atelier-pink transition-all duration-700"
+              className="h-full bg-accent transition-all duration-700"
               style={{ width: `${(stage / 3) * 100}%` }}
             />
           </div>
@@ -60,11 +62,11 @@ export function StageTheater({ stage, viewportRef }: Props) {
       </div>
 
       {/* Frame annotations */}
-      <div className="absolute -bottom-6 -start-6 z-30 hidden items-center gap-2 rounded-lg border border-black/10 bg-white/90 px-3 py-1.5 font-atelier-mono text-[10px] uppercase text-atelier-muted shadow-sm sm:flex">
-        <span className="font-bold text-atelier-pink">•</span>
+      <div className="absolute -bottom-6 -inset-s-6 z-30 hidden items-center gap-2 rounded-lg border border-line bg-overlay px-3 py-1.5 font-atelier-mono text-[10px] uppercase text-ink-muted shadow-sm backdrop-blur-sm sm:flex">
+        <span className="font-bold text-accent-ink">•</span>
         <span>{t("sequence")}</span>
       </div>
-      <div className="absolute -end-4 -top-5 z-30 hidden items-center gap-2 rounded-lg border border-black/10 bg-white/90 px-3 py-1.5 font-atelier-mono text-[10px] text-atelier-muted shadow-sm sm:flex">
+      <div className="absolute -inset-e-4 -top-5 z-30 hidden items-center gap-2 rounded-lg border border-line bg-overlay px-3 py-1.5 font-atelier-mono text-[10px] text-ink-muted shadow-sm backdrop-blur-sm sm:flex">
         <span>{t("frameNote")}</span>
       </div>
     </div>

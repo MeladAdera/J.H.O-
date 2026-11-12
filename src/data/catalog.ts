@@ -3,10 +3,16 @@ import type { Specimen } from "@/lib/types";
 /* The specimen archive. Ported from the CATALOG in
    design-reference/our collection.html, with images repointed at /public.
 
-   NOTE: specimen-01..06.jpg are currently generated PLACEHOLDERS. The
-   original photo URLs (lh3.googleusercontent.com/aida/…) started returning
-   403 and are permanently gone. To use real product photography, drop the
-   files into public/images/ under the same names — no code change needed. */
+   Each product's photo lives in public/images/products/, named after its
+   number and name: N°09 "Street 76" is products/n09-street-76.jpg. To swap a
+   photo, replace the file under the same name. To add a product, drop its
+   photo in that folder and add an entry here; to remove one, delete both.
+   Then run `npm run check:content` (see public/images/README.md).
+
+   NOTE: n01 … n06 are generated PLACEHOLDERS. The original photo URLs
+   (lh3.googleusercontent.com/aida/…) started returning 403 and are
+   permanently gone. N°07 and N°08 have no photos of their own yet and
+   borrow n03's and n01's. */
 
 export const CATALOG: Specimen[] = [
   {
@@ -17,7 +23,7 @@ export const CATALOG: Specimen[] = [
     season: "SUMMER",
     fit: "REGULAR",
     fabric: "280GSM Combed Organic Cotton // Diamond Satin Needlework",
-    img: "/images/specimen-01.jpg",
+    img: "/images/products/n01-minimalist-gallery-tee.jpg",
     subtitle: "Clean tailored gallery silhouette with subtle geometric chest embroidery",
     priceNote: "Commissioned Atelier Specimen",
   },
@@ -29,7 +35,7 @@ export const CATALOG: Specimen[] = [
     season: "SUMMER",
     fit: "OVERSIZED",
     fabric: "360GSM Heavyweight Compact Cotton // Blush Silk Inscription",
-    img: "/images/specimen-02.jpg",
+    img: "/images/products/n02-boxy-script-tee.jpg",
     subtitle: "Boxy drop-shoulder cut draped with pink micro atelier typography",
     priceNote: "Commissioned Atelier Specimen",
   },
@@ -41,7 +47,7 @@ export const CATALOG: Specimen[] = [
     season: "WINTER",
     fit: "OVERSIZED",
     fabric: "480GSM Loopback French Terry // Sculptural Hood Architecture",
-    img: "/images/specimen-03.jpg",
+    img: "/images/products/n03-structural-hoodie.jpg",
     subtitle: "Double-knit heavyweight drape with pink cuff monogram embroidery",
     priceNote: "Commissioned Atelier Specimen",
   },
@@ -53,7 +59,7 @@ export const CATALOG: Specimen[] = [
     season: "SUMMER",
     fit: "OVERSIZED",
     fabric: "260GSM Linen-Cotton Hybrid // Tone-on-Tone Bespoke Relief Stitch",
-    img: "/images/specimen-04.jpg",
+    img: "/images/products/n04-linen-blend-tee.jpg",
     subtitle: "Airy summer volume bathed in natural architectural sunlight",
     priceNote: "Commissioned Atelier Specimen",
   },
@@ -65,7 +71,7 @@ export const CATALOG: Specimen[] = [
     season: "WINTER",
     fit: "REGULAR",
     fabric: "520GSM Bonded Wool Melton // Blush Pleated Organza Sculpting",
-    img: "/images/specimen-05.jpg",
+    img: "/images/products/n05-blush-coat.jpg",
     subtitle: "Dramatic high-collar couture garment with intricate contour pleating",
     priceNote: "Commissioned Atelier Specimen",
   },
@@ -77,7 +83,7 @@ export const CATALOG: Specimen[] = [
     season: "WINTER",
     fit: "REGULAR",
     fabric: "480GSM Double-Face Brushed Wool // Muted Graphic Inlay",
-    img: "/images/specimen-06.jpg",
+    img: "/images/products/n06-geometric-overcoat.jpg",
     subtitle: "Sharp gallery tailoring with structured anatomical shoulder lines",
     priceNote: "Commissioned Atelier Specimen",
   },
@@ -89,7 +95,7 @@ export const CATALOG: Specimen[] = [
     season: "WINTER",
     fit: "OVERSIZED",
     fabric: "480GSM Double-Faced French Terry // Silk Thread Sleeve Accents",
-    img: "/images/specimen-03.jpg",
+    img: "/images/products/n03-structural-hoodie.jpg", // no photo of its own yet
     subtitle: "Monumental cocoon hood with relaxed drape volume",
     priceNote: "Commissioned Atelier Specimen",
   },
@@ -101,8 +107,80 @@ export const CATALOG: Specimen[] = [
     season: "SUMMER",
     fit: "REGULAR",
     fabric: "280GSM Combed Long-Staple Cotton // Micro Atelier Crest",
-    img: "/images/specimen-01.jpg",
+    img: "/images/products/n01-minimalist-gallery-tee.jpg", // no photo of its own yet
     subtitle: "Clean tailored neckline with subtle blush pink insignia",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-09",
+    code: "SPECIMEN N°09",
+    title: "The Street 76 Oversize Tee",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "OVERSIZED",
+    fabric: "Soft Breathable Cotton // Pink Varsity Print & Parental Advisory Patch",
+    img: "/images/products/n09-street-76.jpg",
+    subtitle: "Oversized black tee with a pink 76 varsity print and an adjustable sleeve",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-10",
+    code: "SPECIMEN N°10",
+    title: "The Sea Calls Me Tee",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "REGULAR",
+    fabric: "Soft Breathable Cotton // Starfish, Coconut & Seashell Print",
+    img: "/images/products/n10-sea-calls-me.jpg",
+    subtitle: "Light white summer tee with a hand-painted seaside motif",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-11",
+    code: "SPECIMEN N°11",
+    title: "The Garfield Coffee Tee",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "REGULAR",
+    fabric: "Soft Premium Cotton // High-Definition Cartoon Print",
+    img: "/images/products/n11-garfield-coffee.jpg",
+    subtitle: "Relaxed brown tee with a sleepy coffee-cup Garfield print",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-12",
+    code: "SPECIMEN N°12",
+    title: "The Say Yes Baby Oversize Tee",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "OVERSIZED",
+    fabric: "Soft Comfort Cotton // Varsity Arch Lettering Print",
+    img: "/images/products/n12-say-yes-baby.jpg",
+    subtitle: "Bold red oversized tee with a 2026 Say Yes Baby arch print and an adjustable sleeve",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-13",
+    code: "SPECIMEN N°13",
+    title: "The Graphic Trio Oversize Tees",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "OVERSIZED",
+    fabric: "Cool Breathable Cotton // Malibu, Starry Night & NYC Rose Prints",
+    img: "/images/products/n13-graphic-trio.jpg",
+    subtitle: "Three white oversized tees in three designs: Malibu Beach, Starry Night and NYC Rose",
+    priceNote: "Commissioned Atelier Specimen",
+  },
+  {
+    id: "sp-14",
+    code: "SPECIMEN N°14",
+    title: "The White Fox Hibiscus Oversize Tee",
+    gender: "WOMEN",
+    season: "SUMMER",
+    fit: "OVERSIZED",
+    fabric: "Soft Comfort Cotton // Pink Hibiscus Print",
+    img: "/images/products/n14-white-fox-hibiscus.jpg",
+    subtitle: "Oversized hibiscus tee available in sky blue, pink and white",
     priceNote: "Commissioned Atelier Specimen",
   },
 ];

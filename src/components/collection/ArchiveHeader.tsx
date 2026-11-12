@@ -2,11 +2,17 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import type { Gender, JourneyStage, Season } from "@/lib/types";
 
 /* Ported from design-reference/our collection.html (header). The breadcrumbs
    are live: each one becomes clickable only once the choice before it has
-   been made, and they read back the current selection. */
+   been made, and they read back the current selection.
+
+   They are also the way back through the journey — but only from md up,
+   where there is room for them. Below that a reset control stands in, shown
+   once there is a choice to undo. Before it existed a phone had no way back
+   at all. */
 
 interface Props {
   stage: JourneyStage;
@@ -27,9 +33,9 @@ export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
   /** Reachable crumbs are clickable; the one for the current stage is lit. */
   const crumb = (reachable: boolean, isCurrent: boolean) =>
     [
-      "transition focus:outline-none",
-      reachable ? "hover:text-archive-pink" : "cursor-default opacity-40",
-      isCurrent ? "text-archive-pink" : "",
+      "transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-ink",
+      reachable ? "hover:text-accent-ink" : "cursor-default opacity-40",
+      isCurrent ? "text-accent-ink" : "",
     ].join(" ");
 
   return (
@@ -37,17 +43,17 @@ export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
       <div className="mx-auto flex max-w-[1840px] items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-3.5 focus:outline-none">
           <Image
-            src="/images/logo.png"
+            src="/images/brand/logo.png"
             alt={tBrand("name")}
             width={32}
             height={32}
-            className="h-8 w-8 rounded-full border border-archive-pink/40 object-cover shadow-[0_0_12px_rgba(255,117,151,0.25)] transition duration-300 group-hover:border-archive-pink"
+            className="h-8 w-8 rounded-full border border-accent-ink object-cover shadow-[0_0_12px_var(--accent-glow)] transition duration-300 group-hover:border-accent-ink"
           />
           <div className="flex flex-col">
-            <span className="font-archive-serif text-sm font-medium uppercase tracking-[0.24em] text-archive-chalk transition group-hover:text-archive-pink-soft md:text-base">
+            <span className="font-archive-serif text-sm font-medium uppercase tracking-[0.24em] text-ink transition group-hover:text-accent-ink md:text-base">
               {tBrand("name")}
             </span>
-            <span className="font-archive-mono text-[9px] uppercase tracking-widest text-archive-muted">
+            <span className="font-archive-mono text-[9px] uppercase tracking-widest text-ink-muted">
               {t("subtitle")}
             </span>
           </div>
@@ -56,7 +62,7 @@ export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
         {/* Live journey breadcrumbs */}
         <nav
           aria-label={t("breadcrumbs.archive")}
-          className="hidden items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-1.5 font-archive-mono text-[10px] uppercase tracking-[0.2em] text-archive-muted backdrop-blur-md md:flex"
+          className="hidden items-center gap-2 rounded-full border border-line bg-sunken px-4 py-1.5 font-archive-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted backdrop-blur-md md:flex"
         >
           <button
             type="button"
@@ -66,7 +72,7 @@ export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
           >
             <span className="latin-telemetry">01</span> {t("breadcrumbs.archive")}
           </button>
-          <span className="text-white/20">{"//"}</span>
+          <span className="text-ink-faint">{"//"}</span>
           <button
             type="button"
             onClick={() => gender && onGoToStage(2)}
@@ -75,9 +81,9 @@ export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
             className={crumb(Boolean(gender), stage === 2)}
           >
             <span className="latin-telemetry">02</span> {t("breadcrumbs.gender")}:{" "}
-            <span className="font-semibold text-archive-chalk">{genderLabel}</span>
+            <span className="font-semibold text-ink">{genderLabel}</span>
           </button>
-          <span className="text-white/20">{"//"}</span>
+          <span className="text-ink-faint">{"//"}</span>
           <button
             type="button"
             onClick={() => gender && season && onGoToStage(3)}
@@ -86,15 +92,26 @@ export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
             className={crumb(Boolean(gender && season), stage === 3)}
           >
             <span className="latin-telemetry">03</span> {t("breadcrumbs.season")}:{" "}
-            <span className="font-semibold text-archive-chalk">{seasonLabel}</span>
+            <span className="font-semibold text-ink">{seasonLabel}</span>
           </button>
         </nav>
 
         <div className="flex items-center gap-3">
-          <span className="latin-telemetry hidden rounded-full border border-archive-pink/30 bg-[rgba(255,117,151,0.18)] px-3 py-1 font-archive-mono text-[9px] tracking-[0.2em] text-archive-pink lg:inline-block">
-            ARCHIVE 2026 // BESPOKE
-          </span>
-          <LocaleSwitcher theme="dark" />
+          {/* The phone's way back: the crumbs are hidden below md. Hidden
+              until there is something to undo, so the opening screen stays as
+              quiet as it was. */}
+          {stage > 1 && (
+            <button
+              type="button"
+              onClick={() => onGoToStage(1)}
+              className="latin-telemetry inline-flex items-center gap-2 border border-line px-3 py-1.5 font-archive-mono text-[9px] uppercase tracking-[0.2em] text-ink-muted transition-colors hover:border-accent-ink hover:text-accent-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-ink md:hidden"
+            >
+              <span className="flip-arrow">&larr;</span>
+              {t("reset")}
+            </button>
+          )}
+          <ThemeToggle />
+          <LocaleSwitcher />
         </div>
       </div>
     </header>

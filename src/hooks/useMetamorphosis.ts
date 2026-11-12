@@ -137,11 +137,18 @@ export function useMetamorphosis({ onStageChange }: Options) {
           "sketchToVector",
         )
         .to(stage2, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2 }, "sketchToVector")
-        .from(
+        /* fromTo, not from: a `from` reads the END state off the element's
+           computed style when the timeline is BUILT. The end shadow came from
+           a Tailwind class, so once the theme could change under it the tween
+           would keep animating toward a stale colour and snap on the next
+           loop. Pinning both ends also states the intent — this glow is part
+           of the artwork inside the theater and never follows the theme. */
+        .fromTo(
           "[data-vector-artwork]",
+          { scale: 0.92, boxShadow: "0 0 0 rgba(255,123,154,0)" },
           {
-            scale: 0.92,
-            boxShadow: "0 0 0 rgba(255,123,154,0)",
+            scale: 1,
+            boxShadow: "0 18px 45px -12px rgba(255,123,154,0.35)",
             duration: 1,
             ease: "back.out(1.4)",
           },

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import type { Fit, Gender, JourneyStage, Season, Specimen, SpecimenSize } from "@/lib/types";
 import { GENDER_PANELS, SEASON_PANELS } from "@/data/panels";
 import { ArchiveHeader } from "./ArchiveHeader";
-import { ArchiveFooter } from "./ArchiveFooter";
+import { SiteFooter } from "@/components/shared/SiteFooter";
 import { SplitChoice } from "./SplitChoice";
 import { LookbookGrid } from "./LookbookGrid";
 import { SpecimenModal } from "./SpecimenModal";
@@ -97,7 +97,10 @@ export function CollectionJourney() {
   );
 
   return (
-    <div className="flex min-h-screen flex-1 flex-col justify-between bg-archive-black text-archive-chalk">
+    <div
+      data-skin="archive"
+      className="flex min-h-screen flex-1 flex-col justify-between bg-ground text-ink"
+    >
       <div className="film-grain" aria-hidden="true" />
 
       <ArchiveHeader
@@ -148,7 +151,7 @@ export function CollectionJourney() {
         />
       )}
 
-      <ArchiveFooter />
+      <SiteFooter />
     </div>
   );
 }

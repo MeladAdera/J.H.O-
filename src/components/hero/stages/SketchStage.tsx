@@ -23,7 +23,7 @@ export function SketchStage() {
       />
 
       {/* The drafting sheet, pinned slightly askew */}
-      <div className="relative z-10 flex w-full max-w-[430px] rotate-[-0.6deg] flex-col items-center rounded-xl border border-[#E5DEC9] bg-[#FFFDF9] p-6 shadow-lg sm:p-8">
+      <div className="relative z-10 flex w-full max-w-107.5 rotate-[-0.6deg] flex-col items-center rounded-xl border border-[#E5DEC9] bg-[#FFFDF9] p-6 shadow-lg sm:p-8">
         {/* Tape */}
         <div className="absolute -top-3 left-1/2 flex h-6 w-24 -translate-x-1/2 rotate-[1.5deg] items-center justify-center border border-[#DACFBA] bg-[#EBE2CD]/80 shadow-sm backdrop-blur-sm">
           <span className="font-atelier-mono text-[8px] uppercase tracking-widest text-neutral-600">
@@ -35,7 +35,7 @@ export function SketchStage() {
           <span className="font-medium text-neutral-700">
             {t("ideaSpark")} • {t("brief")} <span className="latin-telemetry">#049</span>
           </span>
-          <span className="font-semibold text-atelier-pink">
+          <span className="font-semibold text-[#ff7b9a]">
             <span className="latin-telemetry">STAGE 01 //</span> {t("stageLabel")}
           </span>
         </div>

@@ -31,13 +31,15 @@ Then open <http://localhost:3000>.
 npm run build     # production build
 npm run lint      # eslint
 npx tsc --noEmit  # typecheck
+npm run check:content  # both languages match; every image path exists
 ```
 
 ## Project structure
 
 ```
 design-reference/     the original HTML designs + screenshots, kept as the source of truth
-public/images/        photography and artwork
+messages/<locale>/    the copy, one file per page: common, home, collection, world
+public/images/        photography and artwork, one folder per page (see its README)
 src/
   app/                routes only — one folder per URL
   components/         one folder per page; shared/ holds only what two pages really share
@@ -57,6 +59,7 @@ the colour-management (r152) and physical-lighting (r155) overhauls. The diorama
 was authored against the old behaviour, so upgrading changes how the scene is
 lit and coloured. Any upgrade means re-tuning the six lights.
 
-**The product photos are placeholders.** `public/images/specimen-01.jpg` …
-`specimen-06.jpg` are generated stand-ins. Replace them with real product
-photography using the same filenames — no code changes needed.
+**Some product photos are placeholders.** `public/images/products/n01-…` to
+`n06-…` are generated stand-ins. Replace them with real product photography
+under the same filenames — no code changes needed. How to add, swap or remove
+a photo or a message is in `public/images/README.md` and `messages/README.md`.

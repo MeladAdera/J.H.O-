@@ -3,39 +3,51 @@
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+import { HEADER_CONTROL } from "./ThemeToggle";
 
 /* Swaps between English and Arabic while staying on the same page.
    usePathname from @/i18n/navigation returns the path without the locale
    prefix, so /ar/collection round-trips to /en/collection. */
 
 interface Props {
-  /** Matches the palette of whichever page it sits on. */
-  theme?: "light" | "dark";
   className?: string;
 }
 
-export function LocaleSwitcher({ theme = "light", className = "" }: Props) {
+/* There used to be a `theme` prop here carrying a hardcoded palette per call
+   site. HEADER_CONTROL is correct on every page in both modes, so the prop is
+   gone — and with it the chance of confusing a per-page palette with the
+   actual theme.
+
+   The button shows the language it switches TO, as a two-character mark
+   rather than the full endonym: "العربية" and "English" are wide enough to
+   unbalance the header, and the full name still carries the accessible name
+   and the tooltip. */
+
+const MARK: Record<Locale, string> = { en: "EN", ar: "ع" };
+
+export function LocaleSwitcher({ className = "" }: Props) {
   const t = useTranslations("nav");
   const locale = useLocale() as Locale;
   const pathname = usePathname();
   const router = useRouter();
 
   const next: Locale = locale === "en" ? "ar" : "en";
-
-  const palette =
-    theme === "light"
-      ? "border-black/[0.08] bg-white text-atelier-dark hover:bg-black/[0.04]"
-      : "border-white/15 bg-white/5 text-white/80 hover:border-white/40 hover:text-white";
+  const label = `${t("switchLanguage")} — ${next === "ar" ? "Switch to Arabic" : "Switch to English"}`;
 
   return (
     <button
       type="button"
       onClick={() => router.replace(pathname, { locale: next })}
       lang={next}
-      aria-label={`Switch to ${next === "ar" ? "Arabic" : "English"}`}
-      className={`rounded-lg border px-3 py-1.5 font-atelier-mono text-xs tracking-wider transition-colors ${palette} ${className}`}
+      aria-label={label}
+      title={label}
+      className={`${HEADER_CONTROL} font-atelier-mono text-[11px] font-medium tracking-wider ${className}`}
     >
-      {t("switchLanguage")}
+      {/* The Arabic mark sits low in the em box next to Latin digits, so it
+          gets a hair of optical lift rather than a shared baseline. */}
+      <span className={next === "ar" ? "-translate-y-px text-[15px] leading-none" : "leading-none"}>
+        {MARK[next]}
+      </span>
     </button>
   );
 }

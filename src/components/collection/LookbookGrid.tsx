@@ -43,25 +43,25 @@ export function LookbookGrid({ gender, season, fit, onSetFit, onSelect }: Props)
 
   const fitButton = (value: Fit) =>
     value === fit
-      ? "rounded-full bg-archive-pink px-5 py-1.5 font-archive-mono text-xs font-semibold uppercase tracking-wider text-archive-black shadow-[0_0_12px_rgba(255,117,151,0.3)] transition duration-300 focus:outline-none"
-      : "rounded-full px-5 py-1.5 font-archive-mono text-xs uppercase tracking-wider text-archive-muted transition duration-300 hover:text-archive-chalk focus:outline-none";
+      ? "rounded-full bg-accent px-5 py-1.5 font-archive-mono text-xs font-semibold uppercase tracking-wider text-on-accent shadow-[0_0_12px_var(--accent-glow)] transition duration-300 focus:outline-none"
+      : "rounded-full px-5 py-1.5 font-archive-mono text-xs uppercase tracking-wider text-ink-muted transition duration-300 hover:text-ink focus:outline-none";
 
   return (
     <section className="mx-auto flex w-full max-w-[1840px] flex-col px-4 py-10 md:px-12">
       {/* Banner */}
-      <div className="mb-10 flex flex-col justify-between gap-6 border-b border-white/10 pb-8 pt-4 lg:flex-row lg:items-end">
+      <div className="mb-10 flex flex-col justify-between gap-6 border-b border-line pb-8 pt-4 lg:flex-row lg:items-end">
         <div>
-          <div className="mb-2.5 flex items-center gap-3 font-archive-mono text-xs uppercase tracking-widest text-archive-pink">
-            <span className="rounded-full border border-archive-pink/30 bg-archive-pink/10 px-3 py-0.5">
+          <div className="mb-2.5 flex items-center gap-3 font-archive-mono text-xs uppercase tracking-widest text-accent-ink">
+            <span className="rounded-full border border-accent-ink bg-accent/10 px-3 py-0.5">
               {seasonLabel} <span className="latin-telemetry">2026</span>
             </span>
-            <span className="text-white/30">•</span>
-            <span className="text-archive-chalk">{t("archiveLabel", { gender: genderLabel })}</span>
+            <span className="text-ink-faint">•</span>
+            <span className="text-ink">{t("archiveLabel", { gender: genderLabel })}</span>
           </div>
-          <h1 className="font-archive-serif text-4xl font-light tracking-tight text-archive-chalk md:text-5xl lg:text-6xl">
+          <h1 className="font-archive-serif text-4xl font-light tracking-tight text-ink md:text-5xl lg:text-6xl">
             {t("title", { season: seasonLabel, gender: genderLabel })}
           </h1>
-          <p className="mt-2 max-w-xl font-archive-sans text-xs font-light leading-relaxed tracking-wide text-archive-muted md:text-sm">
+          <p className="mt-2 max-w-xl font-archive-sans text-xs font-light leading-relaxed tracking-wide text-ink-muted md:text-sm">
             {t("intro")}
           </p>
         </div>
@@ -69,10 +69,10 @@ export function LookbookGrid({ gender, season, fit, onSetFit, onSelect }: Props)
         {/* Fit switcher */}
         <div className="flex flex-col gap-2.5 sm:items-end">
           <div className="flex items-center gap-3">
-            <span className="font-archive-mono text-[10px] uppercase tracking-[0.2em] text-archive-muted">
+            <span className="font-archive-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted">
               {t("fitLabel")}
             </span>
-            <div className="flex items-center gap-1 rounded-full border border-white/15 bg-black/60 p-1 shadow-inner backdrop-blur-md">
+            <div className="flex items-center gap-1 rounded-full border border-line bg-sunken p-1 shadow-inner backdrop-blur-md">
               <button type="button" onClick={() => onSetFit("REGULAR")} className={fitButton("REGULAR")}>
                 {t("regular")}
               </button>
@@ -81,8 +81,8 @@ export function LookbookGrid({ gender, season, fit, onSetFit, onSelect }: Props)
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-2 font-archive-mono text-[10px] tracking-wide text-archive-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-archive-pink" />
+          <div className="flex items-center gap-2 font-archive-mono text-[10px] tracking-wide text-ink-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             <span className="latin-telemetry">
               {fit === "REGULAR" ? t("specRegular") : t("specOversized")}
             </span>
@@ -91,7 +91,7 @@ export function LookbookGrid({ gender, season, fit, onSetFit, onSelect }: Props)
       </div>
 
       {matches.length === 0 && alsoInArchive.length === 0 ? (
-        <p className="py-20 text-center font-archive-mono text-xs uppercase tracking-[0.3em] text-archive-muted">
+        <p className="py-20 text-center font-archive-mono text-xs uppercase tracking-[0.3em] text-ink-muted">
           {t("empty")}
         </p>
       ) : null}
@@ -105,11 +105,11 @@ export function LookbookGrid({ gender, season, fit, onSetFit, onSelect }: Props)
       {alsoInArchive.length > 0 && (
         <>
           <div className="my-10 flex items-center gap-4">
-            <span className="h-px flex-1 bg-white/10" />
-            <span className="font-archive-mono text-[10px] uppercase tracking-[0.3em] text-archive-muted">
+            <span className="h-px flex-1 bg-line" />
+            <span className="font-archive-mono text-[10px] uppercase tracking-[0.3em] text-ink-muted">
               {t("alsoInArchive")}
             </span>
-            <span className="h-px flex-1 bg-white/10" />
+            <span className="h-px flex-1 bg-line" />
           </div>
           <div className="grid grid-cols-1 gap-6 pb-20 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {alsoInArchive.map((specimen, index) => (

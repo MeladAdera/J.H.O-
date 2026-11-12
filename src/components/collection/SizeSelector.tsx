@@ -23,17 +23,17 @@ export function SizeSelector({ fit, selected, onSelect }: Props) {
     [
       "flex h-10 items-center justify-center rounded-lg border font-archive-mono text-xs font-medium transition duration-200 focus:outline-none",
       isActive
-        ? "border-archive-pink bg-archive-pink font-bold text-archive-black shadow-[0_0_15px_rgba(255,117,151,0.3)]"
-        : "border-white/20 text-archive-chalk hover:border-archive-pink",
+        ? "border-accent-ink bg-accent font-bold text-on-accent shadow-[0_0_15px_var(--accent-glow)]"
+        : "border-line-strong text-ink hover:border-accent-ink",
     ].join(" ");
 
   return (
     <div className="mb-6">
       <div className="mb-2 flex items-center justify-between">
-        <span className="font-archive-mono text-[10px] uppercase tracking-wider text-archive-chalk">
+        <span className="font-archive-mono text-[10px] uppercase tracking-wider text-ink">
           {fit === "REGULAR" ? t("selectSize") : t("selectScale")}
         </span>
-        <span className="font-archive-mono text-[9px] tracking-wide text-archive-pink">
+        <span className="font-archive-mono text-[9px] tracking-wide text-accent-ink">
           {fit === "REGULAR" ? t("sizeHelper") : t("scaleHelper")}
         </span>
       </div>
@@ -60,18 +60,18 @@ export function SizeSelector({ fit, selected, onSelect }: Props) {
                 className={`${pill(selected === code)} gap-1 px-4`}
               >
                 <span className="uppercase">{t("scaleGuide").replace(":", "")}</span>
-                <strong className={selected === code ? "" : "text-archive-pink"}>{code}</strong>
+                <strong className={selected === code ? "" : "text-accent-ink"}>{code}</strong>
               </button>
             ))}
       </div>
 
       {fit === "OVERSIZED" && (
-        <div className="mt-3 rounded-lg border border-white/10 bg-white/5 p-3 font-archive-mono text-[10px] leading-relaxed text-archive-muted">
-          <span className="text-archive-pink">{t("scaleGuide")}</span>{" "}
+        <div className="mt-3 rounded-lg border border-line bg-ink/5 p-3 font-archive-mono text-[10px] leading-relaxed text-ink-muted">
+          <span className="text-accent-ink">{t("scaleGuide")}</span>{" "}
           {OVERSIZED_SCALES.map(({ code }, index) => (
             <span key={code}>
               {index > 0 && " • "}
-              <span className="latin-telemetry text-archive-chalk">{code}</span> ={" "}
+              <span className="latin-telemetry text-ink">{code}</span> ={" "}
               {t(`scale${code}` as "scale0" | "scale1" | "scale2")}
             </span>
           ))}
