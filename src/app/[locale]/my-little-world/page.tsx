@@ -1,7 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { WorldHeader } from "@/components/world/WorldHeader";
-import { OriginRoom } from "@/components/world/OriginRoom";
-import { ArchivePlates } from "@/components/world/ArchivePlates";
+import { WorldExperience } from "@/components/world/WorldExperience";
 import { SiteFooter } from "@/components/shared/SiteFooter";
 
 export default async function MyLittleWorldPage(props: {
@@ -14,8 +13,7 @@ export default async function MyLittleWorldPage(props: {
     <div data-skin="world" className="flex min-h-screen flex-1 flex-col bg-ground text-ink">
       <WorldHeader />
       <main className="flex-1">
-        <OriginRoom />
-        <ArchivePlates />
+        <WorldExperience />
       </main>
       <SiteFooter />
     </div>

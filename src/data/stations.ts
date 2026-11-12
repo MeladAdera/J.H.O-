@@ -47,10 +47,39 @@ export const STATION_INDEX = Object.fromEntries(
   STATIONS.map((s) => [s.id, s.index]),
 ) as Record<StationId, StationIndex>;
 
+/** The diorama camera's field of view, in degrees. The telemetry readout over
+    the canvas prints this, so it lives here rather than in the hook: a number
+    typed twice is a number that drifts. */
+export const CAMERA_FOV = 40;
+
 /* The three photographic archive plates shown beneath the diorama. These are
-   real photographs of the room, as opposed to the modelled version above. */
+   real photographs of the room, as opposed to the modelled version above.
+   The capture times and reference codes are the plate's own telemetry —
+   Latin in both locales, so they live here rather than in messages/. The
+   third photograph is the portrait one. */
 export const ARCHIVE_PLATES = [
-  { key: "roomWide", img: "/images/archive-room-wide.jpg" },
-  { key: "vanityMirror", img: "/images/archive-vanity-mirror.jpg" },
-  { key: "coatrack", img: "/images/archive-coatrack.jpg" },
+  {
+    key: "roomWide",
+    img: "/images/archive-room-wide.jpg",
+    numeral: "I",
+    portrait: false,
+    time: "17:15:43",
+    code: "DSC_0918_12",
+  },
+  {
+    key: "vanityMirror",
+    img: "/images/archive-vanity-mirror.jpg",
+    numeral: "II",
+    portrait: false,
+    time: "17:13:03",
+    code: "DSC_0918_02",
+  },
+  {
+    key: "coatrack",
+    img: "/images/archive-coatrack.jpg",
+    numeral: "III",
+    portrait: true,
+    time: "17:14:11",
+    code: "DSC_0918_10",
+  },
 ] as const;

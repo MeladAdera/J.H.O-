@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { STATIONS } from "@/data/stations";
+import { CAMERA_FOV, STATIONS } from "@/data/stations";
 import { LIGHTING } from "@/lib/diorama/lighting";
 import { buildRoom } from "@/lib/diorama/room";
 import { bakeEnvironment, type Environment } from "@/lib/diorama/environment";
@@ -87,7 +87,7 @@ export function useOriginRoom({
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(CAMERA_FOV, width / height, 0.1, 1000);
 
     const { group: room, registry } = buildRoom();
     scene.add(room);

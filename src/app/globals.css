@@ -435,6 +435,31 @@ body {
   animation-name: beckon-rtl;
 }
 
+/* The caret of the title block's type-on. A hairline in the accent that
+   blinks while the line is being written and goes with the last character.
+   It has no reduced-motion rule of its own: TypedLines never renders it
+   when motion is reduced. */
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typed-caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  margin-inline: 1px 2px;
+  vertical-align: -0.12em;
+  background: var(--role-accent);
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+
 /* Pages 1 and 3 both define .pulse-dot but with different animations.
    Page 1's is a scale/opacity pulse, page 3's is a glowing ring. */
 .pulse-dot {
