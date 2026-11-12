@@ -11,7 +11,7 @@ export function GarmentStage() {
     <div data-stage="3" className="absolute inset-0 z-10 h-full w-full opacity-0">
       <Image
         data-garment-photo
-        src="/images/hero-garment.jpg"
+        src="/images/home/hero-garment.jpg"
         alt={t("signature")}
         fill
         priority

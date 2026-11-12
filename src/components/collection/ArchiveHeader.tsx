@@ -43,7 +43,7 @@ export function ArchiveHeader({ stage, gender, season, onGoToStage }: Props) {
       <div className="mx-auto flex max-w-[1840px] items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-3.5 focus:outline-none">
           <Image
-            src="/images/logo.png"
+            src="/images/brand/logo.png"
             alt={tBrand("name")}
             width={32}
             height={32}

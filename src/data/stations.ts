@@ -60,7 +60,7 @@ export const CAMERA_FOV = 40;
 export const ARCHIVE_PLATES = [
   {
     key: "roomWide",
-    img: "/images/archive-room-wide.jpg",
+    img: "/images/world/room-wide.jpg",
     numeral: "I",
     portrait: false,
     time: "17:15:43",
@@ -68,7 +68,7 @@ export const ARCHIVE_PLATES = [
   },
   {
     key: "vanityMirror",
-    img: "/images/archive-vanity-mirror.jpg",
+    img: "/images/world/vanity-mirror.jpg",
     numeral: "II",
     portrait: false,
     time: "17:13:03",
@@ -76,7 +76,7 @@ export const ARCHIVE_PLATES = [
   },
   {
     key: "coatrack",
-    img: "/images/archive-coatrack.jpg",
+    img: "/images/world/coat-rack.jpg",
     numeral: "III",
     portrait: true,
     time: "17:14:11",

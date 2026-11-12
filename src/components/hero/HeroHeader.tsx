@@ -30,7 +30,7 @@ export function HeroHeader({ stage, onJump }: Props) {
             halo, which needs a dark room to be visible at all. */}
         <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-line bg-surface p-0.5 shadow-sm dark:shadow-[0_0_12px_var(--accent-glow)]">
           <Image
-            src="/images/logo.png"
+            src="/images/brand/logo.png"
             alt={tBrand("name")}
             width={36}
             height={36}

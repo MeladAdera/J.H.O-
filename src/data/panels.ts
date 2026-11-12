@@ -7,7 +7,7 @@ import type { Gender, Season } from "@/lib/types";
    that actually differs between them lives here as data, so <SplitChoice>
    can render both screens.
 
-   Text is not here — it comes from messages/{en,ar}.json under
+   Text is not here — it comes from messages/{en,ar}/collection.json under
    collection.panels.<key> — only the Latin telemetry codes and the styling
    that varies per panel. */
 
@@ -38,7 +38,7 @@ export const GENDER_PANELS: ChoicePanel<Gender>[] = [
     badgeCode: "SPECIMEN 01 //",
     bracketed: true,
     dotClass: "bg-[#ff7597]",
-    img: "/images/specimen-05.jpg",
+    img: "/images/products/n05-blush-coat.jpg",
     objectClass: "object-top",
     tintClass: "bg-linear-to-r rtl:bg-linear-to-l from-[#ff7597]/10 via-transparent to-transparent mix-blend-color-dodge",
     coordinates: "STRUCTURAL FLUIDITY • COUTURE ARCHITECTURE • 48.8566° N",
@@ -49,7 +49,7 @@ export const GENDER_PANELS: ChoicePanel<Gender>[] = [
     badgeCode: "SPECIMEN 02 //",
     bracketed: true,
     dotClass: "bg-on-photo/60",
-    img: "/images/specimen-06.jpg",
+    img: "/images/products/n06-geometric-overcoat.jpg",
     objectClass: "object-top",
     tintClass: "bg-linear-to-l rtl:bg-linear-to-r from-[#ff7597]/10 via-transparent to-transparent mix-blend-color-dodge",
     coordinates: "TAILORED PROPORTION • MINIMALIST CUT • 35.6762° N",
@@ -62,7 +62,7 @@ export const SEASON_PANELS: ChoicePanel<Season>[] = [
     key: "summer",
     badgeCode: "SEASON 01 //",
     dotClass: "bg-amber-400",
-    img: "/images/specimen-04.jpg",
+    img: "/images/products/n04-linen-blend-tee.jpg",
     objectClass: "object-center",
     tintClass: "bg-amber-500/10 mix-blend-soft-light",
   },
@@ -71,7 +71,7 @@ export const SEASON_PANELS: ChoicePanel<Season>[] = [
     key: "winter",
     badgeCode: "SEASON 02 //",
     dotClass: "bg-[#ff7597]",
-    img: "/images/specimen-03.jpg",
+    img: "/images/products/n03-structural-hoodie.jpg",
     objectClass: "object-center",
     tintClass: "bg-[#ff7597]/15 mix-blend-color-dodge",
   },

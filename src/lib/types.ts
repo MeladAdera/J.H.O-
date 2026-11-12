@@ -51,7 +51,7 @@ export type StationId = "overview" | "desk" | "lamp" | "laptop" | "rack" | "vani
 /** Index into the waypoints array — 0 is always the overview. */
 export type StationIndex = 0 | 1 | 2 | 3 | 4 | 5;
 
-/** A camera waypoint in the diorama. Copy lives in messages/*.json under
+/** A camera waypoint in the diorama. Copy lives in messages/<locale>/world.json under
     `world.stations.<id>`, not here — the HUD is translated like everything
     else, and the scene only needs the geometry. */
 export interface Station {

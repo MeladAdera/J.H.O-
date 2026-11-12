@@ -106,7 +106,7 @@ export function OriginRoom({
             like a plaque beside the title. */}
         <div className="flex items-center gap-5 border border-line bg-surface px-6 py-4 shadow-xl">
           <Image
-            src="/images/logo.png"
+            src="/images/brand/logo.png"
             alt=""
             width={48}
             height={48}

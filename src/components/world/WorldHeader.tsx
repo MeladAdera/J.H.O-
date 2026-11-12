@@ -35,7 +35,7 @@ export function WorldHeader() {
         <Link href="/" className="group flex min-w-0 items-center gap-3.5 sm:shrink-0">
           <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-line bg-surface p-0.5">
             <Image
-              src="/images/logo.png"
+              src="/images/brand/logo.png"
               alt={tBrand("name")}
               width={36}
               height={36}

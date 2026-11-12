@@ -1,0 +1,116 @@
+{
+  "world": {
+    "eyebrow": "Origin archive • Room 402",
+    "genesis": "Atelier genesis",
+    "title": "My little world",
+    "lede": {
+      "ideas": "Here the first outlines of my ideas appeared, and turned from imagination into something you can touch.",
+      "room": "My room, where a lot of love and a lot of ideas live."
+    },
+    "seal": {
+      "coord": "Coord: <latin>{coords}</latin> // Sanctuary in situ",
+      "status": "Status: active drafting environment"
+    },
+    "header": {
+      "eyebrow": "Origin archives",
+      "eyebrowDetail": "Bedroom sanctuary",
+      "telemetry": "Origin room 402 // In situ 3D diorama // Checkered floor",
+      "navLabel": "Page navigation",
+      "collection": "Collection archive"
+    },
+    "waypoint": "Waypoint navigation • Live spatial feed",
+    "dioramaLabel": "Origin room diorama",
+    "telemetry": {
+      "fov": "FOV",
+      "tilt": "Tilt",
+      "scale": "Scale: 1:12 physical replica"
+    },
+    "hint": "Drag to rotate • Scroll to zoom • Click anything in the room to read about it",
+    "live": "Live interactive lab",
+    "resetView": "Reset view",
+    "loading": "Building the room…",
+    "unsupported": "Your browser cannot display the 3D room. The photographs below show the same space.",
+    "stationLabel": "Station",
+    "stations": {
+      "overview": {
+        "title": "Architectural overview",
+        "desc": "The complete origin diorama: vanity desk with arched mirror and perfumes, the standing mirror, the draped crafting altar, the ring lamp, the coat tree, twin beds and the checkered tile grid."
+      },
+      "desk": {
+        "title": "The round crafting altar",
+        "desc": "A round table under a heavy yellow drape, carrying the cup of pastel fineliners, a bowl of sticky notes and the purple sketchbook. Everything here started as a pencil line on this surface."
+      },
+      "lamp": {
+        "title": "The stitch ring lamp",
+        "desc": "The blue ring light that kept the late hours. Its head throws a circle of warm light straight down onto the fabric, which is why the altar below it is the brightest thing in the room after dark."
+      },
+      "laptop": {
+        "title": "The laptop workstation",
+        "desc": "The open workstation where garment cutlines, typography prints and 3D clothing simulations are born."
+      },
+      "rack": {
+        "title": "The coat tree & lime jacket",
+        "desc": "A wrought iron coat rack carrying a neon lime jacket, a black gold-hardware bag and a monogram purse."
+      },
+      "vanity": {
+        "title": "The vanity mirror & perfumes",
+        "desc": "The sculpted arched vanity desk with cosmetic bottles, perfumes and a stool, beside the standing dressing mirror."
+      }
+    },
+    "tour": {
+      "pause": "Touring",
+      "resume": "Resume tour"
+    },
+    "artifacts": {
+      "eyebrow": "Sanctuary anatomy",
+      "title": "Artifacts of the origin room",
+      "index": "Archive index",
+      "station": "Station",
+      "focusCam": "Focus cam",
+      "viewpoint": "Viewpoint",
+      "quotes": {
+        "overview": "The lived-in sanctuary.",
+        "desk": "Where ideas take shape.",
+        "lamp": "Where the late hours were lit.",
+        "laptop": "Where sketches become digital.",
+        "rack": "Where designs become something real.",
+        "vanity": "Where reflections meet form and colour."
+      }
+    },
+    "archive": {
+      "eyebrow": "Curated evidence • Room 402",
+      "title": "In situ archives",
+      "intro": "Original photographs of the bedroom sanctuary. These raw, everyday moments were the blueprint for the 3D diorama and for the collection.",
+      "exhibit": "Exhibit A: 09.18.2026",
+      "scan": "Archive scan",
+      "plate": "Plate {numeral}",
+      "ref": "Ref: {code}",
+      "authentic": "Authentic record",
+      "roomWide": {
+        "label": "Sanctuary vista",
+        "context": "Room perspective",
+        "title": "Checkered floor & linen grid",
+        "desc": "The spatial matrix that defines Room 402: checkered tiles setting the rhythm against soft draped textiles, twin beds and the standing fan."
+      },
+      "vanityMirror": {
+        "label": "Vanity & horizon",
+        "context": "Material horizon",
+        "title": "Arched vanity, LED mirror & wardrobe",
+        "desc": "The sculptural curved vanity mirror, the cosmetics station, the illuminated standing mirror and the wardrobe holding fabric swatches and finished sample cuts."
+      },
+      "coatrack": {
+        "label": "The craft altar",
+        "context": "Workbench detail",
+        "title": "The altar of sketches & rack",
+        "desc": "The focal hub where the yellow draped crafting table meets the wrought-iron coat tree with its neon lime jacket, gold-hardware bag and laptop station."
+      }
+    },
+    "epilogue": {
+      "eyebrow": "Transformation // From origin to runway",
+      "title": "From a bedroom sanctuary to haute couture reality.",
+      "body": "Every silhouette in the collection traces back to this small room. What starts as sticky notes and pencil marks on draped cloth becomes wearable, real-world art.",
+      "discover": "Discover the collection archive",
+      "recenter": "Re-centre the 3D diorama"
+    }
+  }
+}

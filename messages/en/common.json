@@ -1,0 +1,25 @@
+{
+  "brand": {
+    "name": "J.H.O Atelier & Lab",
+    "tagline": "Your idea → design → real"
+  },
+  "nav": {
+    "hero": "Hero",
+    "collection": "Our Collection",
+    "myLittleWorld": "My Little World",
+    "switchLanguage": "العربية",
+    "theme": {
+      "system": "Auto",
+      "light": "Light",
+      "dark": "Dark",
+      "switchTo": "Change theme — currently {mode}"
+    }
+  },
+  "footer": {
+    "backToStart": "Back to the start",
+    "copyright": "© 2026",
+    "location": "Latakia, Syria",
+    "archive": "Archive v2.6",
+    "nextAria": "Continue to {page}"
+  }
+}

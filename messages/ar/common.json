@@ -1,0 +1,25 @@
+{
+  "brand": {
+    "name": "J.H.O Atelier & Lab",
+    "tagline": "فكرتك ← تصميم ← حقيقة"
+  },
+  "nav": {
+    "hero": "الرئيسية",
+    "collection": "مجموعتنا",
+    "myLittleWorld": "عالمي الصغير",
+    "switchLanguage": "English",
+    "theme": {
+      "system": "تلقائي",
+      "light": "فاتح",
+      "dark": "داكن",
+      "switchTo": "تغيير المظهر — الحالي {mode}"
+    }
+  },
+  "footer": {
+    "backToStart": "العودة إلى البداية",
+    "copyright": "© 2026",
+    "location": "اللاذقية، سوريا",
+    "archive": "Archive v2.6",
+    "nextAria": "المتابعة إلى {page}"
+  }
+}
